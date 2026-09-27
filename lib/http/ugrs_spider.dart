@@ -15,6 +15,7 @@ import 'package:celechron/http/zjuServices/grs_new.dart';
 import 'package:celechron/http/zjuServices/exceptions.dart';
 import 'package:celechron/http/zjuServices/response_utils.dart';
 import 'package:celechron/utils/tuple.dart';
+import 'package:celechron/utils/student_id_utils.dart';
 import 'package:celechron/database/database_helper.dart';
 import 'package:celechron/model/grade.dart';
 import 'package:celechron/model/semester.dart';
@@ -344,9 +345,7 @@ class UgrsSpider implements Spider {
     }
 
     final now = DateTime.now();
-    final enrollmentDigits =
-        _username.length >= 3 ? _username.substring(1, 3) : '';
-    final parsedEnrollmentYear = int.tryParse(enrollmentDigits);
+    final parsedEnrollmentYear = enrollmentYearFromStudentId(_username);
     if (parsedEnrollmentYear == null) {
       return Tuple7(loginErrorMessages, <String?>['无法解析学号中的入学年份：$_username'],
           outSemesters, outGrades, outMajorGrade, outSpecialDates, outTodos);

@@ -10,6 +10,7 @@ import 'package:celechron/http/zjuServices/courses.dart';
 import 'package:celechron/http/zjuServices/grs_new.dart';
 import 'package:celechron/http/zjuServices/exceptions.dart';
 import 'package:celechron/utils/tuple.dart';
+import 'package:celechron/utils/student_id_utils.dart';
 import 'package:celechron/model/todo.dart';
 import 'package:get/get.dart';
 import 'package:flutter/foundation.dart';
@@ -292,9 +293,7 @@ class GrsSpider implements Spider {
     // 建立学期编号与“入学以来第几个学期”的映射。如"2022-2023-1"对应第22年入学同学的第1个学期，即"2022-2023秋冬"。
     final now = DateTime.now();
     var currentAcademicYearStart = academicYearStartFor(now);
-    final enrollmentDigits =
-        _username.length >= 3 ? _username.substring(1, 3) : '';
-    final parsedEnrollmentYear = int.tryParse(enrollmentDigits);
+    final parsedEnrollmentYear = enrollmentYearFromStudentId(_username);
     if (parsedEnrollmentYear == null) {
       return Tuple7(loginErrorMessages, <String?>['无法解析学号中的入学年份：$_username'],
           outSemesters, outGrades, outMajorGrade, outSpecialDates, outTodos);

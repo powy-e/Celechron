@@ -193,7 +193,9 @@ class _CoursesProbePageState extends State<CoursesProbePage> {
             CupertinoTextField(
               controller: _usernameController,
               placeholder: '学号',
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.text,
+              autocorrect: false,
+              enableSuggestions: false,
             ),
             const SizedBox(height: 12),
             CupertinoTextField(

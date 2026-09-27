@@ -51,7 +51,9 @@ class LoginForm extends StatelessWidget {
                         height: 48,
                         child: CupertinoTextField(
                           controller: usernameController,
-                          keyboardType: TextInputType.number,
+                          keyboardType: TextInputType.text,
+                          autocorrect: false,
+                          enableSuggestions: false,
                           prefix: Container(
                               padding: const EdgeInsets.only(left: 12),
                               child: Text('学号',
