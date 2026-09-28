@@ -94,54 +94,8 @@ Future<void> showRefreshResultDialog(
   );
 }
 
-class ScholarErrorHandler extends StatelessWidget {
-  final FlutterErrorDetails errorDetails;
-  final _scholarController = Get.put(ScholarController());
-
-  ScholarErrorHandler({
-    super.key,
-    required this.errorDetails,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SliverList(
-      delegate: SliverChildListDelegate([
-        CupertinoListSection.insetGrouped(
-          header: Container(
-            padding: const EdgeInsets.only(left: 16, right: 16),
-            child: Text(
-              context.l10n.academicFetchProblem,
-              style: TextStyle(
-                  color: CupertinoDynamicColor.resolve(
-                      CupertinoColors.secondaryLabel, context),
-                  fontSize: 14),
-            ),
-          ),
-          children: [
-            CupertinoButton(
-              onPressed: () async {
-                final results = await _scholarController.fetchData();
-                if (context.mounted &&
-                    results.any((result) => result != null)) {
-                  await showRefreshResultDialog(context, results);
-                }
-              },
-              child: Text(context.l10n.academicRetry),
-            ),
-          ],
-        ),
-      ]),
-    );
-  }
-}
-
 class ScholarPage extends StatelessWidget {
-  ScholarPage({super.key}) {
-    ErrorWidget.builder = (FlutterErrorDetails errorDetails) {
-      return ScholarErrorHandler(errorDetails: errorDetails);
-    };
-  }
+  ScholarPage({super.key});
 
   final _scholarController = Get.put(ScholarController());
   final ValueNotifier<bool> _isRefreshing = ValueNotifier(false);

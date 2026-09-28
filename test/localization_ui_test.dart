@@ -11,6 +11,7 @@ import 'package:celechron/page/flow/flow_controller.dart';
 import 'package:celechron/page/home_page.dart';
 import 'package:celechron/page/option/option_view.dart';
 import 'package:celechron/page/scholar/scholar_controller.dart';
+import 'package:celechron/page/scholar/scholar_view.dart';
 import 'package:celechron/page/task/task_controller.dart';
 import 'package:celechron/page/task/task_edit_page.dart';
 import 'package:celechron/worker/fuse.dart';
@@ -59,6 +60,13 @@ class _LanguageDb extends DatabaseHelper {
 class _StaticFuse extends Fuse {
   @override
   Future<String?> checkUpdate() async => null;
+}
+
+class _BrokenBoxChild extends StatelessWidget {
+  const _BrokenBoxChild();
+
+  @override
+  Widget build(BuildContext context) => throw StateError('original build error');
 }
 
 Option _option() => Option(
@@ -239,7 +247,6 @@ void main() {
   testWidgets('English navigation labels fit narrow phone', (tester) async {
     await tester.binding.setSurfaceSize(const Size(320, 700));
     addTearDown(() => tester.binding.setSurfaceSize(null));
-    final previousErrorWidgetBuilder = ErrorWidget.builder;
     AppLanguage.use('en');
     await tester.pumpWidget(_app(const HomePage(title: 'Celechron')));
     await tester.pump(const Duration(seconds: 1));
@@ -252,6 +259,40 @@ void main() {
     Get.find<TaskController>().onClose();
     Get.find<FlowController>().onClose();
     Get.find<ScholarController>().onClose();
-    ErrorWidget.builder = previousErrorWidgetBuilder;
+  });
+
+  testWidgets('fresh Chinese startup mounts the home and academics pages',
+      (tester) async {
+    await AppLanguage.initialize(db);
+    expect(AppLanguage.code, 'zh');
+    expect(scholar.isLogan, isFalse);
+
+    await tester.pumpWidget(_app(const HomePage(title: 'Celechron')));
+    await tester.pump(const Duration(seconds: 1));
+    expect(tester.takeException(), isNull);
+    await tester.tap(find.text('学业'));
+    await tester.pump(const Duration(milliseconds: 100));
+    expect(tester.takeException(), isNull);
+
+    Get.find<TaskController>().onClose();
+    Get.find<FlowController>().onClose();
+    Get.find<ScholarController>().onClose();
+  });
+
+  testWidgets('scholar page leaves errors in other box layouts intact',
+      (tester) async {
+    final originalBuilder = ErrorWidget.builder;
+    ScholarPage();
+    expect(ErrorWidget.builder, same(originalBuilder));
+
+    await tester.pumpWidget(_app(const Column(children: [
+      Expanded(child: _BrokenBoxChild()),
+    ])));
+    final error = tester.takeException();
+    expect(error, isA<StateError>());
+    expect(error.toString(), contains('original build error'));
+    await tester.pump();
+    expect(tester.takeException(), isNull);
+    Get.find<ScholarController>().onClose();
   });
 }
