@@ -1,6 +1,6 @@
 # English localization implementation
 
-Research began on 2026-09-27. Implementation was completed on 2026-09-28 on `feat/english-localization`.
+Research began on 2026-09-27. The implementation landed on 2026-09-28 on `feat/english-localization`; platform build and device checks remain as described below.
 
 The app now defaults to Chinese on every device. English is selectable in Settings, saved in secure storage, and applied to the mounted interface without discarding navigation state. Flutter app copy uses generated ARB catalogs, while Android and Apple surfaces use their native localization resources. Canonical university data, parser inputs, and stored identifiers remain unchanged.
 
@@ -10,9 +10,12 @@ The app now defaults to Chinese on every device. English is selectable in Settin
 - Native code propagates the saved language to Android widgets and Apple widget/watch storage. Android and iOS have localized string resources and permission text. Native previews were reviewed in both languages; an Apple build still requires macOS with Xcode.
 - A real-font Flutter widget harness checked Settings at 390 px and 320 px with larger text, both directions of the language switch, the language picker, login sheet, task editor, navigation, and Academics. The narrow Academics search control presents an accessible icon because its text cannot fit at 320 px.
 - `flutter test --no-pub -r expanded` passed 128 tests. `flutter analyze --no-pub --no-fatal-infos` found no errors or warnings; it reported 68 informational style hints. `git diff --check` passed.
+- Android AAPT2 compiled the localized resources. Gradle Kotlin compilation and a full APK build could not run because this ARM host lacks the required Flutter Android artifacts.
 - Remaining Chinese text in app source is primarily canonical semester/grade values, university response labels, parser patterns, legal identifiers, raw diagnostics, or original user/university content. The interface translates known categories at display boundaries. Arbitrary course names, instructors, locations, and user text are not machine-translated.
 
-## What the audit found
+## Pre-implementation audit findings
+
+The following observations describe the repository before the localization changes, not its current state.
 
 - `lib/main.dart` declares English and Chinese but forces `Locale('zh')`. Existing Flutter delegates cover framework controls, not application copy.
 - `flutter_localizations` and `intl` are already dependencies. There is no ARB catalog or `l10n.yaml`.
@@ -33,7 +36,9 @@ The app now defaults to Chinese on every device. English is selectable in Settin
 
 Flutter documents ARB catalogs, generated delegates, placeholders, and plurals in its [internationalization guide](https://docs.flutter.dev/ui/internationalization). Use source-directory imports for generated Dart files, following the [generation migration guidance](https://docs.flutter.dev/release/breaking-changes/flutter-generate-i10n-source).
 
-## Implementation sequence used
+## Original implementation checklist
+
+This was the working checklist for the implementation. The current verification record is above; the remaining release checks are below.
 
 1. **Classify and protect behavior.** Inventory text as presentation copy, parser/protocol data, stable identifiers, imported/user content, or comments. Resolve the text-dependent behavior below before changing the relevant messages.
 2. **Add the localization foundation.** Add `lib/l10n/app_en.arb`, `app_zh.arb`, `l10n.yaml`, and `flutter: generate: true`. Use Chinese as the source/template catalog with English as its translation. Wire generated delegates into `GetCupertinoApp`; keep Chinese as the default for existing and new installations regardless of device language. Add a settings selector with `简体中文` and `English`, persist the choice in `Option`, and rebuild localized views when it changes. Pass locale/localization explicitly to background services and exports instead of depending on a widget context.
@@ -101,6 +106,8 @@ Prefer official English fields where available; their availability has not been 
 
 ## Verification record and platform follow-up
 
+The checklist below was written before implementation. Items requiring installed devices or platform toolchains remain release checks.
+
 - Generate catalogs; check key parity, placeholder types, and plural branches; format and analyze using the pinned SDK.
 - Run the existing Flutter test suite. Update assertions for translated UI copy while retaining raw Chinese parsing fixtures.
 - Add focused regression coverage for refresh classification, GPA/term parsing, calendar identity and legacy calendar lookup where behavior is refactored.
@@ -110,4 +117,4 @@ Prefer official English fields where available; their availability has not been 
 - Review remaining Chinese literals with an explicit allowlist for source data, parsing, identifiers, comments, and raw diagnostics. A blanket ban on Chinese characters would be incorrect.
 - Confirm existing stored data, calendar events, and notifications remain compatible after updating.
 
-The Flutter test, analysis, catalog, and real-font visual checks listed above are complete. Android and Apple target build/device checks require their respective platform toolchains; Apple targets cannot be built in the Linux workspace. The older checklist above remains a reference for future release testing, especially restored-account background refresh, installed widgets, watch surfaces, and OS permission prompts.
+The Flutter test, analysis, catalog, and real-font visual checks listed above are complete. Android AAPT2 resource compilation passed, while Gradle Kotlin compilation and the full APK build were blocked by missing Flutter Android artifacts for this ARM host. Apple targets cannot be built in this Linux workspace and require macOS with Xcode. The older checklist above remains a reference for future release testing, especially restored-account background refresh, installed widgets, watch surfaces, and OS permission prompts.
