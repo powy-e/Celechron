@@ -65,11 +65,11 @@ struct FlowEntry: TimelineEntry {
 
 struct FlowWidgetProvider: TimelineProvider {
     func placeholder(in context: Context) -> FlowEntry {
-        FlowEntry(refreshAt: Date(), toDisplay: [Flow(location: "紫金港西1-216", name: "信号与系统", startTime: Date().addingTimeInterval(-3600), endTime: Date().addingTimeInterval(1500))], stillToDoToday: 0)
+        FlowEntry(refreshAt: Date(), toDisplay: [Flow(location: NativeLanguage.text("紫金港西1-216", "Zijingang West 1-216"), name: NativeLanguage.text("信号与系统", "Signals and Systems"), startTime: Date().addingTimeInterval(-3600), endTime: Date().addingTimeInterval(1500))], stillToDoToday: 0)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (FlowEntry) -> Void) {
-        completion(FlowEntry(refreshAt: Date(), toDisplay: [Flow(location: "紫金港西1-216", name: "信号与系统", startTime: Date().addingTimeInterval(-3600), endTime: Date().addingTimeInterval(1500))], stillToDoToday: 0))
+        completion(FlowEntry(refreshAt: Date(), toDisplay: [Flow(location: NativeLanguage.text("紫金港西1-216", "Zijingang West 1-216"), name: NativeLanguage.text("信号与系统", "Signals and Systems"), startTime: Date().addingTimeInterval(-3600), endTime: Date().addingTimeInterval(1500))], stillToDoToday: 0))
     }
     
     func getTimeline(in context: Context, completion: @escaping (Timeline<FlowEntry>) -> Void) {

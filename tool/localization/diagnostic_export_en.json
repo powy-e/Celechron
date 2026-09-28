@@ -1,0 +1,160 @@
+{
+  "diagnosticExportTitle": "Celechron Diagnostic Log",
+  "diagnosticExportLocalTime": "Local export time: {time}",
+  "@diagnosticExportLocalTime": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnosticExportUtcTime": "UTC export time: {time}",
+  "@diagnosticExportUtcTime": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnosticExportVersion": "App version: {version}",
+  "@diagnosticExportVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnosticExportPlatform": "Platform: {platform}",
+  "@diagnosticExportPlatform": {
+    "placeholders": {
+      "platform": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnosticExportRefreshId": "refreshId: {id}",
+  "@diagnosticExportRefreshId": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnosticExportOrigin": "Source: {origin}",
+  "@diagnosticExportOrigin": {
+    "placeholders": {
+      "origin": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnosticExportReadable": "=== 1. Readable diagnostic report ===",
+  "diagnosticExportNoReports": "No refresh records could be parsed.",
+  "diagnosticExportTotalTime": "Total duration: {duration}",
+  "@diagnosticExportTotalTime": {
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnosticExportModuleCounts": "Modules: {success} succeeded / {degraded} used cache / {failed} failed",
+  "@diagnosticExportModuleCounts": {
+    "placeholders": {
+      "success": {
+        "type": "String"
+      },
+      "degraded": {
+        "type": "String"
+      },
+      "failed": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnosticExportFlags": "Signed in again: {relogged}; retried: {retried}; cache fallback: {cached}",
+  "@diagnosticExportFlags": {
+    "placeholders": {
+      "relogged": {
+        "type": "String"
+      },
+      "retried": {
+        "type": "String"
+      },
+      "cached": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnosticExportYes": "Yes",
+  "diagnosticExportNo": "No",
+  "diagnosticExportModules": "=== 2. Module results ===",
+  "diagnosticExportNoModuleRequests": "{title}: No separate module requests.",
+  "@diagnosticExportNoModuleRequests": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnosticExportModuleRow": "{name}: {state}; {duration}; {reason}",
+  "@diagnosticExportModuleRow": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "state": {
+        "type": "String"
+      },
+      "duration": {
+        "type": "String"
+      },
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnosticExportTimeline": "=== 3. Key timeline ===",
+  "diagnosticExportNoTimeline": "No key timeline events.",
+  "diagnosticExportIssues": "=== 4. Issues found ===",
+  "diagnosticExportNoIssues": "No issues to explain.",
+  "diagnosticExportTechnical": "  refreshId={id}; UTC={utc}; HTTP={http}; interface={interfaceName}; URL={url}; exception={exceptionType}; summary={summary}; stack={stack}",
+  "@diagnosticExportTechnical": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      },
+      "utc": {
+        "type": "String"
+      },
+      "http": {
+        "type": "String"
+      },
+      "interfaceName": {
+        "type": "String"
+      },
+      "url": {
+        "type": "String"
+      },
+      "exceptionType": {
+        "type": "String"
+      },
+      "summary": {
+        "type": "String"
+      },
+      "stack": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnosticExportRaw": "=== 5. Complete raw log (UTC) ===",
+  "diagnosticExportRawNote": "The timestamps below remain in ISO 8601 UTC. A time zone difference from the local times above is expected.",
+  "diagnosticExportShare": "Celechron diagnostic log: {fileName}",
+  "@diagnosticExportShare": {
+    "placeholders": {
+      "fileName": {
+        "type": "String"
+      }
+    }
+  }
+}

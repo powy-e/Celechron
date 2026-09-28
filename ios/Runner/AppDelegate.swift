@@ -74,6 +74,18 @@ private class FlowMessengerImplementation: FlowMessenger {
         }
         ecardWidgetChannel.setMethodCallHandler({
           (call: FlutterMethodCall, result: @escaping FlutterResult) -> Void in
+            if call.method == "setLanguage" {
+                guard let arguments = call.arguments as? [String: Any],
+                      let languageCode = arguments["languageCode"] as? String,
+                      NativeLanguage.set(languageCode) else {
+                    result(FlutterError(code: "invalid_language", message: "Expected languageCode en or zh", details: nil))
+                    return
+                }
+                WidgetCenter.shared.reloadAllTimelines()
+                WatchConnectivityBridge.shared.syncLanguageToWatch()
+                result(nil)
+                return
+            }
             guard call.method == "update" || call.method == "logout" else {
                 result(FlutterMethodNotImplemented)
                 return

@@ -135,16 +135,20 @@ struct ECardWidgetView: View {
     let entry: ECardWidgetProvider.Entry
     
     var body: some View {
-        let balanceString = entry.balance > 0 ? 
-                                entry.balance < 10000 ?
-        String(format: "%d.%d%d元", arguments: [entry.balance / 100, entry.balance % 100 / 10, entry.balance % 10])
-                                  : String(format: "%d.%d元", arguments: [entry.balance / 100, entry.balance % 100 / 10])
-                            : "待刷新"
+        let balanceString: String
+        if entry.balance < 0 {
+            balanceString = NativeLanguage.text("待刷新", "Refresh")
+        } else {
+            let amount = entry.balance < 10000
+                ? String(format: "%d.%d%d", arguments: [entry.balance / 100, entry.balance % 100 / 10, entry.balance % 10])
+                : String(format: "%d.%d", arguments: [entry.balance / 100, entry.balance % 100 / 10])
+            balanceString = NativeLanguage.code == "en" ? "¥\(amount)" : "\(amount)元"
+        }
         VStack(alignment: .leading) {
             HStack {
                 Image(systemName: "creditcard")
                 Spacer().frame(width: 4)
-                Text("校园卡余额")
+                Text(NativeLanguage.text("校园卡余额", "Card balance"))
                     .font(.footnote).bold()
             }
             
@@ -161,7 +165,7 @@ struct ECardWidgetView: View {
             
             
             HStack(alignment:.top) {
-                Text("更新时间: " + entry.date.HHmm()).font(.caption2).foregroundColor(.secondary)
+                Text(NativeLanguage.text("更新时间: ", "Updated ") + entry.date.HHmm()).font(.caption2).foregroundColor(.secondary)
                 Spacer()
                 Image(systemName: "qrcode").foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/).font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
             }

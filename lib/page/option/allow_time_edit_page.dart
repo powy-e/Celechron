@@ -1,3 +1,4 @@
+import 'package:celechron/l10n/l10n.dart';
 import 'package:celechron/design/persistent_headers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -47,8 +48,8 @@ class _DateTimePairEditDialogState extends State<DateTimePairEditDialog> {
   @override
   Widget build(BuildContext context) {
     return CupertinoAlertDialog(
-      title: const Text(
-        '更改时段',
+      title: Text(
+        context.l10n.coreChangePeriod,
       ),
       content: StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) {
@@ -62,7 +63,7 @@ class _DateTimePairEditDialogState extends State<DateTimePairEditDialog> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '开始：${timeToString(val.first)}',
+                      context.l10n.coreStartValue(timeToString(val.first)),
                       style: CupertinoTheme.of(context)
                           .textTheme
                           .textStyle
@@ -97,7 +98,7 @@ class _DateTimePairEditDialogState extends State<DateTimePairEditDialog> {
                               );
                             });
                       },
-                      child: const Text('更改'),
+                      child: Text(context.l10n.coreChange),
                     ),
                   ],
                 ),
@@ -105,7 +106,7 @@ class _DateTimePairEditDialogState extends State<DateTimePairEditDialog> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '结束：${timeToString(val.second)}',
+                      context.l10n.coreEndValue(timeToString(val.second)),
                       style: CupertinoTheme.of(context)
                           .textTheme
                           .textStyle
@@ -140,7 +141,7 @@ class _DateTimePairEditDialogState extends State<DateTimePairEditDialog> {
                               );
                             });
                       },
-                      child: const Text('更改'),
+                      child: Text(context.l10n.coreChange),
                     ),
                   ],
                 ),
@@ -151,13 +152,13 @@ class _DateTimePairEditDialogState extends State<DateTimePairEditDialog> {
       ),
       actions: [
         CupertinoDialogAction(
-          child: const Text('取消'),
+          child: Text(context.l10n.coreCancel),
           onPressed: () async {
             Navigator.of(context).pop();
           },
         ),
         CupertinoDialogAction(
-          child: const Text('确定'),
+          child: Text(context.l10n.coreConfirm),
           onPressed: () async {
             Navigator.of(context).pop();
             saveChange();
@@ -206,12 +207,12 @@ class _AllowTimeEditPageState extends State<AllowTimeEditPage> {
           context: context,
           builder: (BuildContext context) {
             return CupertinoAlertDialog(
-              title: const Text(
-                '开始时间必须早于结束时间',
+              title: Text(
+                context.l10n.coreStartMustBeBeforeEnd,
               ),
               actions: [
                 CupertinoDialogAction(
-                  child: const Text('确定'),
+                  child: Text(context.l10n.coreConfirm),
                   onPressed: () async {
                     Navigator.of(context).pop();
                   },
@@ -233,12 +234,12 @@ class _AllowTimeEditPageState extends State<AllowTimeEditPage> {
             context: context,
             builder: (BuildContext context) {
               return CupertinoAlertDialog(
-                title: const Text(
-                  '时间段之间不能有重合或直接相邻',
+                title: Text(
+                  context.l10n.corePeriodsCannotOverlap,
                 ),
                 actions: [
                   CupertinoDialogAction(
-                    child: const Text('确定'),
+                    child: Text(context.l10n.coreConfirm),
                     onPressed: () async {
                       Navigator.of(context).pop();
                     },
@@ -276,14 +277,15 @@ class _AllowTimeEditPageState extends State<AllowTimeEditPage> {
       child: SafeArea(
         child: CustomScrollView(
           slivers: [
-            const CelechronSliverTextHeader(subtitle: '编辑可用工作时段'),
+            CelechronSliverTextHeader(
+                subtitle: context.l10n.coreEditAvailablePeriods),
             SliverList(
               delegate: SliverChildListDelegate([
                 CupertinoListSection.insetGrouped(
                   header: Container(
                     padding: const EdgeInsets.only(left: 16),
                     child: Text(
-                      '可用工作时段列表',
+                      context.l10n.coreAvailablePeriodsList,
                       style: TextStyle(
                           color: CupertinoDynamicColor.resolve(
                               CupertinoColors.secondaryLabel, context),
@@ -355,7 +357,7 @@ class _AllowTimeEditPageState extends State<AllowTimeEditPage> {
                     ));
                     setState(() {});
                   },
-                  child: const Text('添加一个时段'),
+                  child: Text(context.l10n.coreAddPeriod),
                 ),
               ]),
             ),

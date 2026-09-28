@@ -1,3 +1,4 @@
+import 'package:celechron/l10n/l10n.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:get/get.dart';
@@ -56,7 +57,7 @@ class CourseIdMappingEditForm extends StatelessWidget {
                           controller: oldIdController,
                           prefix: Container(
                               padding: const EdgeInsets.only(left: 12),
-                              child: Text('原课号',
+                              child: Text(context.l10n.coreOriginalCourseCode,
                                   style: CupertinoTheme.of(context)
                                       .textTheme
                                       .textStyle)),
@@ -75,7 +76,7 @@ class CourseIdMappingEditForm extends StatelessWidget {
                           controller: newIdController,
                           prefix: Container(
                             padding: const EdgeInsets.only(left: 12),
-                            child: Text('新课号',
+                            child: Text(context.l10n.coreNewCourseCode,
                                 style: CupertinoTheme.of(context)
                                     .textTheme
                                     .textStyle),
@@ -95,7 +96,7 @@ class CourseIdMappingEditForm extends StatelessWidget {
                           controller: commentController,
                           prefix: Container(
                             padding: const EdgeInsets.only(left: 12),
-                            child: Text('备注名',
+                            child: Text(context.l10n.coreDisplayName,
                                 style: CupertinoTheme.of(context)
                                     .textTheme
                                     .textStyle),
@@ -118,11 +119,12 @@ class CourseIdMappingEditForm extends StatelessWidget {
                                 context: context,
                                 builder: (BuildContext context) {
                                   return CupertinoAlertDialog(
-                                    title: const Text('错误'),
-                                    content: const Text('请填写所有字段'),
+                                    title: Text(context.l10n.coreError),
+                                    content:
+                                        Text(context.l10n.coreFillAllFields),
                                     actions: [
                                       CupertinoDialogAction(
-                                        child: const Text('确定'),
+                                        child: Text(context.l10n.coreConfirm),
                                         onPressed: () {
                                           Navigator.pop(context);
                                         },
@@ -147,11 +149,11 @@ class CourseIdMappingEditForm extends StatelessWidget {
                           }
                         },
                         color: CupertinoColors.activeBlue,
-                        child: const SizedBox(
+                        child: SizedBox(
                           height: 24,
                           width: 60,
                           child: Center(
-                              child: Text('保存',
+                              child: Text(context.l10n.coreSave,
                                   style:
                                       TextStyle(color: CupertinoColors.white))),
                         )),
@@ -178,7 +180,8 @@ class CourseIdMappingEditPage extends StatelessWidget {
       child: SafeArea(
         child: CustomScrollView(
           slivers: [
-            const CelechronSliverTextHeader(subtitle: '自定义课程代码映射'),
+            CelechronSliverTextHeader(
+                subtitle: context.l10n.coreCustomCourseCodeMapping),
             Obx(() => SliverList(
                   delegate: SliverChildBuilderDelegate(
                       (context, index) => Container(
@@ -223,10 +226,11 @@ class CourseIdMappingEditPage extends StatelessWidget {
                     showCupertinoModalPopup(
                         context: context,
                         builder: (BuildContext context) {
-                          return CourseIdMappingEditForm(title: '添加新的映射关系');
+                          return CourseIdMappingEditForm(
+                              title: context.l10n.coreAddMapping);
                         });
                   },
-                  child: const Text('添加新的映射关系'),
+                  child: Text(context.l10n.coreAddMapping),
                 ),
               ],
             ))

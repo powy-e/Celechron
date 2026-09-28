@@ -1,0 +1,9 @@
+<resources>
+    <string name="ecard_widget_name">校园卡</string>
+    <string name="ecard_balance">校园卡余额</string>
+    <string name="ecard_updated_at">更新时间：%1$s</string>
+    <string name="ecard_pending">待刷新</string>
+    <string name="ecard_card_icon">校园卡</string>
+    <string name="ecard_refresh_icon">刷新余额</string>
+    <string name="ecard_qr_icon">打开付款码</string>
+</resources>

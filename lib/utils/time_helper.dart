@@ -1,3 +1,5 @@
+import 'package:celechron/l10n/l10n.dart';
+import 'package:intl/intl.dart';
 import 'package:celechron/utils/utils.dart';
 
 class TimeHelper {
@@ -93,15 +95,17 @@ class TimeHelper {
 
   static String chineseDateTime(DateTime dateTime) {
     if (dateTime.year == 1970) {
-      return '考试周第 ${dateTime.day} 天 ${dateTime.hour}:${dateTime.minute.toString().padLeft(2, '0')}';
+      return '${appL10n.sharedExamDay(dateTime.day)} ${dateTime.hour}:${dateTime.minute.toString().padLeft(2, '0')}';
     }
+    if (AppLanguage.isEnglish) return DateFormat('MMM d, yyyy HH:mm', 'en').format(dateTime);
     return '${dateTime.year} 年 ${dateTime.month} 月 ${dateTime.day} 日 ${dateTime.hour}:${dateTime.minute.toString().padLeft(2, '0')}';
   }
 
   static String chineseDate(DateTime date) {
     if (date.year == 1970) {
-      return '考试周第 ${date.day} 天';
+      return appL10n.sharedExamDay(date.day);
     }
+    if (AppLanguage.isEnglish) return DateFormat.yMMMd('en').format(date);
     return '${date.year} 年 ${date.month} 月 ${date.day} 日';
   }
 
@@ -111,8 +115,9 @@ class TimeHelper {
 
   static String chineseDay(DateTime date) {
     if (date.year == 1970) {
-      return '考试周第 ${date.day} 天 ';
+      return '${appL10n.sharedExamDay(date.day)} ';
     }
+    if (AppLanguage.isEnglish) return '${DateFormat.MMMd('en').format(date)} ';
     return '${date.month} 月 ${date.day} 日 ';
   }
 
@@ -134,13 +139,13 @@ class TimeHelper {
     nex = dateOnly(nex);
     int diff = nex.difference(now).inDays;
     if (diff < 0) {
-      return '${-diff} 天前 ';
+      return appL10n.sharedDaysAgo(-diff);
     } else if (diff == 0) {
       return '';
     } else if (diff == 1) {
-      return '次日 ';
+      return appL10n.sharedNextDay;
     } else {
-      return '$diff 天后 ';
+      return appL10n.sharedDaysLater(diff);
     }
   }
 
@@ -153,13 +158,13 @@ class TimeHelper {
     if (diff == 0) {
       return '';
     } else if (diff == 1) {
-      return '明天 ';
+      return appL10n.sharedTomorrow;
     } else if (diff == 2) {
-      return '后天 ';
+      return appL10n.sharedDayAfterTomorrow;
     } else if (diff == -1) {
-      return '昨天 ';
+      return appL10n.sharedYesterday;
     } else if (diff == -2) {
-      return '前天 ';
+      return appL10n.sharedDayBeforeYesterday;
     } else {
       return chineseDay(date);
     }

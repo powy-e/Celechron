@@ -1,3 +1,4 @@
+import 'package:celechron/l10n/l10n.dart';
 // Official packages
 import 'package:extended_sliver/extended_sliver.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,7 +28,7 @@ class SearchPage extends StatelessWidget {
                       children: [
                         Expanded(
                           child: CupertinoSearchTextField(
-                            placeholder: '搜索课程、事项...',
+                            placeholder: context.l10n.coreSearchPlaceholder,
                             placeholderStyle: CupertinoTheme.of(context)
                                 .textTheme
                                 .textStyle

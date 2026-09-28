@@ -40,7 +40,7 @@ enum WatchDeepLink {
     /// 打开 Apple 地图导航到地点（步行优先）
     static func mapsURL(for location: String) -> URL? {
         let trimmed = location.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmed.isEmpty, trimmed != "无地点" else { return nil }
+        guard !trimmed.isEmpty, trimmed != "无地点", trimmed != "No location" else { return nil }
         var components = URLComponents(string: "http://maps.apple.com/")
         components?.queryItems = [
             URLQueryItem(name: "daddr", value: trimmed),

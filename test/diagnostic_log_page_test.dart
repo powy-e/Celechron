@@ -94,6 +94,8 @@ void main() {
       500,
       scrollable: readableScroll,
     );
+    await tester.ensureVisible(degradedToggle);
+    await tester.pumpAndSettle();
     await tester.tap(degradedToggle);
     await tester.pumpAndSettle();
 

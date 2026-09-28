@@ -1,0 +1,285 @@
+{
+  "serviceNotRefreshed": "未刷新",
+  "serviceNotSignedIn": "未登录",
+  "serviceCancelled": "已取消",
+  "serviceNewVersion": "有新版本可用",
+  "serviceUnknownModule": "未知模块",
+  "serviceMajor": "主修",
+  "servicePractice": "实践/素质拓展",
+  "servicePracticeShort": "实践",
+  "serviceSecondClass": "第二课堂",
+  "serviceThirdClass": "第三课堂",
+  "serviceFourthClass": "第四课堂",
+  "serviceSharedFailure": "共享任务失败",
+  "serviceSharedFailureReason": "关联的刷新任务执行失败，本次调用没有重复请求服务器，并收到了相同失败结果。",
+  "serviceNotRunReason": "本次日志中没有该模块的执行记录。",
+  "serviceMissingEnd": "没有记录到刷新结束事件",
+  "serviceBackgroundMissingEnd": "该后台任务没有记录到结束事件，可能被系统终止，或日志尚未在 isolate 退出前写入完成。",
+  "serviceForegroundMissingEnd": "该刷新没有记录到结束事件，可能尚未完成、被终止，或日志写入不完整。",
+  "serviceBackgroundStart": "后台任务开始",
+  "serviceForegroundStart": "前台刷新开始",
+  "serviceRefreshErrorEnd": "刷新异常结束",
+  "serviceRefreshEnd": "刷新结束",
+  "serviceTotalDuration": "总耗时 {duration}",
+  "@serviceTotalDuration": {
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "serviceForegroundActive": "App 进入前台",
+  "serviceLockWait": "跨 isolate 等待账号文件锁",
+  "serviceShareFuture": "共享同账号同操作的刷新 Future",
+  "serviceRelatedTask": "关联任务 {id}",
+  "@serviceRelatedTask": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "serviceQueueOperation": "同账号不同操作正在排队",
+  "serviceYieldAfterLogin": "后台登录后检测到前台并让行",
+  "serviceBackgroundYield": "后台因前台使用主动让行",
+  "serviceStaleLock": "发现并清理遗留刷新锁",
+  "serviceLockAcquired": "已获取同账号刷新锁",
+  "serviceLockReleased": "已释放同账号刷新锁",
+  "serviceModuleCached": "{module}使用缓存",
+  "@serviceModuleCached": {
+    "placeholders": {
+      "module": {
+        "type": "String"
+      }
+    }
+  },
+  "serviceRelogin": "重新登录后继续请求",
+  "serviceRetried": "失败请求已重试",
+  "serviceExecutionError": "刷新执行异常",
+  "serviceSharedErrorReason": "正在共享的刷新任务异常结束，本次调用也收到了相同异常。",
+  "serviceExecutionErrorReason": "刷新在完成全部模块前异常结束，请查看技术详情。",
+  "serviceFutureFallback": "未来学年校历使用预期回退",
+  "serviceFutureFallbackReason": "未来学年配置尚未发布，App 已使用默认配置；这不会被视为严重故障。",
+  "serviceSessionIssue": "教务网会话可能失效",
+  "serviceSessionIssueStatus": "教务网会话可能失效或请求被服务端拒绝，本次请求返回 {status}。",
+  "@serviceSessionIssueStatus": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "serviceServerFailed": "服务端请求未成功",
+  "serviceHttpFailed": "服务端返回 HTTP {status}，请稍后重试或查看技术详情。",
+  "@serviceHttpFailed": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "serviceNullField": "App 未正确处理空字段",
+  "serviceNullFieldReason": "App 未正确处理接口中的空字段；如果有缓存，旧数据仍会保留。",
+  "serviceNetworkIncomplete": "网络请求未完成",
+  "serviceNetworkIncompleteReason": "网络连接中断或请求超时，App 可能已重试或使用缓存。",
+  "serviceCoordinationError": "刷新协调异常",
+  "serviceCoordinationReason": "检测到旧版“已有刷新任务并跳过”结果；正常情况下调用者应共享或等待现有任务。",
+  "serviceLiveAfterBoth": "重新登录并重试后，已实时获取成功。",
+  "serviceLiveAfterLogin": "重新登录后，已实时获取成功。",
+  "serviceLiveAfterRetry": "重试后，已实时获取成功。",
+  "serviceLiveData": "已从服务端实时获取最新数据。",
+  "serviceExisting": "已有",
+  "serviceCachedSession": "教务网会话可能已失效或请求被服务端拒绝，实时请求返回 {status}，本次保留了 {time} 的缓存数据。",
+  "@serviceCachedSession": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "serviceCachedParsing": "App 未正确处理接口中的空字段，本次保留了 {time} 的缓存数据。",
+  "@serviceCachedParsing": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "serviceCachedFailure": "实时请求未成功，本次保留了 {time} 的缓存数据。",
+  "@serviceCachedFailure": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "serviceFailedNoCache": "教务网会话可能已失效或请求被服务端拒绝，且没有可用缓存。",
+  "serviceParseError": "App 未正确处理接口中的空字段。",
+  "serviceNoData": "该模块没有取得可用的实时数据或缓存。",
+  "serviceRefreshSuccess": "刷新成功",
+  "serviceDegraded": "部分降级",
+  "serviceRefreshFailed": "刷新失败",
+  "serviceIncomplete": "记录不完整",
+  "serviceCoordinated": "正常协调完成",
+  "serviceSharedDegraded": "共享任务部分降级",
+  "serviceSharedIncomplete": "共享任务记录不完整",
+  "serviceSharedExisting": "已共享现有刷新",
+  "serviceBackgroundYielded": "后台已主动让行",
+  "serviceSharedDescription": "本次操作没有重复请求服务器，已等待正在执行的刷新任务。",
+  "serviceRelatedTaskLabel": "关联任务：{id}",
+  "@serviceRelatedTaskLabel": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "serviceYieldDescription": "检测到 App 正在前台使用，本次后台任务没有发起模块请求。",
+  "serviceFailed": "失败",
+  "serviceNotExecuted": "未执行",
+  "serviceBackground": "后台刷新",
+  "serviceForeground": "前台刷新",
+  "serviceServerNetwork": "服务端或网络问题",
+  "serviceSessionExpired": "会话失效",
+  "serviceParsing": "App 解析异常",
+  "serviceCoordination": "刷新协调问题",
+  "serviceExpectedFallback": "预期回退",
+  "serviceIncompleteLog": "日志不完整",
+  "serviceSeconds": "{value} 秒",
+  "@serviceSeconds": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "serviceUnknownDuration": "耗时未知",
+  "serviceDuration": "耗时{value}",
+  "@serviceDuration": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "serviceApproximate": "约 {value}",
+  "@serviceApproximate": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "serviceTeacher": "教师: {name}",
+  "@serviceTeacher": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "serviceExamSeat": "座位号: {seat}",
+  "@serviceExamSeat": {
+    "placeholders": {
+      "seat": {
+        "type": "String"
+      }
+    }
+  },
+  "serviceQuerying": "{source}查询进行中",
+  "@serviceQuerying": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  },
+  "serviceQueryError": "{source}查询出错：{error}",
+  "@serviceQueryError": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      },
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "serviceSourceFailure": "{source}失败：{error}",
+  "@serviceSourceFailure": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      },
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "serviceSourceMessage": "{source}：{message}",
+  "@serviceSourceMessage": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      },
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "serviceFailure": "失败：{error}",
+  "@serviceFailure": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "serviceLoginFailure": "无法登录{service}",
+  "@serviceLoginFailure": {
+    "placeholders": {
+      "service": {
+        "type": "String"
+      }
+    }
+  },
+  "serviceSso": "统一身份认证",
+  "servicePortal": "教务网",
+  "serviceCoursesSite": "学在浙大",
+  "serviceGrsSite": "研究生院网",
+  "serviceActivitySite": "素质拓展平台",
+  "serviceInvalidYear": "无法解析学号中的入学年份：{id}",
+  "@serviceInvalidYear": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "serviceGradExams": "研究生课考试",
+  "serviceGradGrades": "研究生课成绩",
+  "serviceUgExams": "本科生课考试",
+  "serviceUgGrades": "本科生课成绩",
+  "serviceLiveSuccess": "实时成功",
+  "serviceCached": "使用缓存",
+  "serviceCalendar": "校历",
+  "serviceTimetable": "课表",
+  "serviceExam": "考试",
+  "serviceGrade": "成绩",
+  "serviceHomework": "作业",
+  "serviceUnknown": "未知",
+  "serviceModuleNotRun": "未发起独立模块请求。",
+  "serviceRequestTimeout": "请求超时",
+  "serviceNetworkFailed": "网络连接失败",
+  "serviceRequestStateError": "请求状态异常",
+  "serviceInvalidResponse": "返回数据格式异常",
+  "serviceRequestFailed": "请求失败",
+  "serviceDefaultConfiguration": "使用默认配置",
+  "serviceUnavailable": "不可用",
+  "serviceCourseSite": "学在浙大",
+  "serviceEcard": "校园卡",
+  "serviceGrs": "研究生院"
+}

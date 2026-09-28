@@ -1,0 +1,398 @@
+{
+  "academicAcademics": "Academics",
+  "academicActivityEnd": "Activity ends",
+  "academicActivityStart": "Activity starts",
+  "academicArtPassed": "Arts: {status}",
+  "@academicArtPassed": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "academicArts": "Arts education",
+  "academicAssignment": "Assignments",
+  "academicBack": "Back",
+  "academicBasicInfo": "Course info",
+  "academicBySemester": "By term",
+  "academicCachedDetails": "Project details are cached or from the previous refresh.",
+  "academicCachedPoints": "These points use cached data or the sum of project records. Refresh when your connection is restored.",
+  "academicCheckPortal": "Verify these details in the Academic Portal.",
+  "academicChooseCourse": "Choose a course",
+  "academicClassSessions": "Class sessions",
+  "academicClassroomCategory": "Classroom category",
+  "academicClassroomPointsLong": "Class IV points",
+  "academicClassroomPointsMid": "Class III points",
+  "academicClassroomPointsShort": "Class II points",
+  "academicConflictCourse": "Conflicting courses",
+  "academicCountedTowardTotal": "Counted toward total",
+  "academicCourseCode": "Course code: {code}",
+  "@academicCourseCode": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "academicCourseCredit": "Course",
+  "academicCourseCreditValue": "{credits} credits",
+  "@academicCourseCreditValue": {
+    "placeholders": {
+      "credits": {
+        "type": "String"
+      }
+    }
+  },
+  "academicCourseDetails": "Course details",
+  "academicCourseIdValue": "Course: {code}",
+  "@academicCourseIdValue": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "academicCourses": "Courses",
+  "academicCredits": "Credits",
+  "academicDegraded": "Degraded",
+  "academicDescription": "Description",
+  "academicDetailsSource": "Details source: {source}",
+  "@academicDetailsSource": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  },
+  "academicDueThisWeek": "Due this week",
+  "academicDueToday": "Due within 1 day",
+  "academicEarnedCredits": "Credits earned",
+  "academicExamTime": "Time: {time}",
+  "@academicExamTime": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "academicExams": "Exams",
+  "academicFailure": "Failed",
+  "academicFetchProblem": "Unable to retrieve data. Check your network connection and try again.\nNote: You must complete all course evaluations before grades are available.",
+  "academicFetchProblemShort": "Unable to retrieve data",
+  "academicFivePoint": "5-point GPA",
+  "academicFourPoint": "4-point GPA",
+  "academicFourthClassroom": "Class IV",
+  "academicFriday": "Fri",
+  "academicGrade": "Grade: {grade} / {scale}",
+  "@academicGrade": {
+    "placeholders": {
+      "grade": {
+        "type": "String"
+      },
+      "scale": {
+        "type": "String"
+      }
+    }
+  },
+  "academicGradeCredit": "{id} / {credits} credits",
+  "@academicGradeCredit": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      },
+      "credits": {
+        "type": "String"
+      }
+    }
+  },
+  "academicGradeValue": "Grade: {grade} / {scale}",
+  "@academicGradeValue": {
+    "placeholders": {
+      "grade": {
+        "type": "String"
+      },
+      "scale": {
+        "type": "String"
+      }
+    }
+  },
+  "academicGrades": "Grades",
+  "academicHideCourseInfo": "Hide course information",
+  "academicIncludedExcludedCounts": "{includedCount} included · {excludedCount} excluded",
+  "@academicIncludedExcludedCounts": {
+    "placeholders": {
+      "includedCount": {
+        "type": "int"
+      },
+      "excludedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "academicLabor": "Labor education",
+  "academicLaborPassed": "Labor: {status}",
+  "@academicLaborPassed": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "academicLastUpdated": "Last updated",
+  "academicLegacyPracticeOnly": "Only the legacy practice summary is available; getSqjl project details are unavailable.",
+  "academicLocation": "Location: {location}",
+  "@academicLocation": {
+    "placeholders": {
+      "location": {
+        "type": "String"
+      }
+    }
+  },
+  "academicLocationLabel": "Location: {location}",
+  "@academicLocationLabel": {
+    "placeholders": {
+      "location": {
+        "type": "String"
+      }
+    }
+  },
+  "academicLongPressClear": "Long press to clear",
+  "academicMajorCredits": "Major credits this year",
+  "academicMajorCreditsShort": "Major credits",
+  "academicMajorFourPoint": "Major 4-point GPA this year",
+  "academicMajorGpa": "Major GPA",
+  "academicMidterm": " (Midterm)",
+  "academicMonday": "Mon",
+  "academicNoCountedProjects": "No projects counted toward the total",
+  "academicNoEndTime": "None",
+  "academicNoPendingProjects": "No pending or excluded projects",
+  "academicNotCounted": "Not counted toward total",
+  "academicNotCountedNotice": "This project is not currently counted toward the total.",
+  "academicNotFilled": "Not provided",
+  "academicNotLoggedIn": "Not signed in",
+  "academicNotPassed": "Not passed",
+  "academicOK": "OK",
+  "academicOfficialPointsTotal": "Official points total",
+  "academicOfflineCacheNote": "Cached data is used automatically when syncing fails.",
+  "academicOnlineCourse": "Online",
+  "academicPassed": "Passed",
+  "academicPendingOrExcluded": "Pending or excluded",
+  "academicPendingUpdate": "Pending update",
+  "academicPercentage": "Percentage",
+  "academicPointsEarned": "Points earned",
+  "academicPointsMayDiffer": "The official total may differ from project records. Project details are shown as returned by getSqjl.",
+  "academicPointsSource": "Points source: {source}",
+  "@academicPointsSource": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  },
+  "academicPractice": "Practice",
+  "academicPracticeClassroom": "Practice",
+  "academicPracticeDetails": "Practice project details",
+  "academicPracticeDetailsUnavailable": "getSqjl project details are unavailable. Try refreshing later.",
+  "academicPracticeFetchProblem": "Unable to retrieve practice points",
+  "academicPracticeProjects": "{category} projects",
+  "@academicPracticeProjects": {
+    "placeholders": {
+      "category": {
+        "type": "String"
+      }
+    }
+  },
+  "academicProjectCategory": "Project category",
+  "academicProjectName": "Project name",
+  "academicPullToRefresh": "Pull to refresh",
+  "academicQualityCategory": "Quality category",
+  "academicRefreshDetails": "Refresh details",
+  "academicRefreshProblem": "Refresh issues: {degradedCount} degraded, {failureCount} failed",
+  "@academicRefreshProblem": {
+    "placeholders": {
+      "degradedCount": {
+        "type": "int"
+      },
+      "failureCount": {
+        "type": "int"
+      }
+    }
+  },
+  "academicReset": "Reset",
+  "academicRetry": "Try again",
+  "academicReviewStatus": "Review status",
+  "academicRoleOrReason": "Role or reason for points",
+  "academicSaturday": "Sat",
+  "academicSchedule": "Schedule",
+  "academicSchoolYearCredits": "Credits this year",
+  "academicSchoolYearFourPoint": "4-point GPA this year",
+  "academicSchoolYearGpa": "GPA this year",
+  "academicSearchCoursesTasks": "Search courses and tasks...",
+  "academicSearchShort": "Search",
+  "academicSeat": "Seat: {seat}",
+  "@academicSeat": {
+    "placeholders": {
+      "seat": {
+        "type": "String"
+      }
+    }
+  },
+  "academicSeatLabel": "Seat: {seat}",
+  "@academicSeatLabel": {
+    "placeholders": {
+      "seat": {
+        "type": "String"
+      }
+    }
+  },
+  "academicSecondClassroom": "Class II",
+  "academicSectionCount": "{title} ({count})",
+  "@academicSectionCount": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "academicSelectAll": "Select all",
+  "academicSelectedCredits": "Selected credits",
+  "academicSelectedFivePoint": "Selected 5-point GPA",
+  "academicSelectedFourPoint": "Selected 4-point GPA",
+  "academicSelectedPercentage": "Selected percentage",
+  "academicSemesterHours": "{semester} term sessions",
+  "@academicSemesterHours": {
+    "placeholders": {
+      "semester": {
+        "type": "String"
+      }
+    }
+  },
+  "academicSemesterSuffix": "{semester} term sessions",
+  "@academicSemesterSuffix": {
+    "placeholders": {
+      "semester": {
+        "type": "String"
+      }
+    }
+  },
+  "academicSessionCount": "{count} sessions / 2 weeks",
+  "@academicSessionCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "academicSessionsPerTwoWeeks": "{count} sessions / 2 weeks",
+  "@academicSessionsPerTwoWeeks": {
+    "placeholders": {
+      "count": {
+        "type": "double"
+      }
+    }
+  },
+  "academicSunday": "Sun",
+  "academicTeacher": "Instructor: {teacher}",
+  "@academicTeacher": {
+    "placeholders": {
+      "teacher": {
+        "type": "String"
+      }
+    }
+  },
+  "academicTeacherValue": "Instructor: {teacher}",
+  "@academicTeacherValue": {
+    "placeholders": {
+      "teacher": {
+        "type": "String"
+      }
+    }
+  },
+  "academicThirdClassroom": "Class III",
+  "academicThursday": "Thu",
+  "academicTimeLabel": "Time: {time}",
+  "@academicTimeLabel": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "academicTotal": "Total",
+  "academicTuesday": "Tue",
+  "academicUnknown": "Unknown",
+  "academicUnselectedFivePoint": "Unselected 5-point GPA",
+  "academicUnselectedFourPoint": "Unselected 4-point GPA",
+  "academicUpdatedAt": "Updated: {time}",
+  "@academicUpdatedAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "academicUpdatedAtShort": "Updated {time}",
+  "@academicUpdatedAtShort": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "academicUpdatedMinutesAgo": "Updated {minutes} min ago",
+  "@academicUpdatedMinutesAgo": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "academicViewDetails": "View details",
+  "academicWednesday": "Wed",
+  "academicWeight": "Weight",
+  "academicWeightedCredits": "Weighted credits",
+  "academicWeightedFivePoint": "Weighted 5-point GPA",
+  "academicWeightedGrades": "Weighted grades",
+  "academicRefreshingCalendar": "Syncing academic calendar...",
+  "academicFetchingSchedule": "Fetching class schedule...",
+  "academicParsingExams": "Reading exam schedule...",
+  "academicWaitingGrades": "Waiting for grades...",
+  "academicCheckingMajorGrades": "Checking major grades...",
+  "academicSyncingAssignments": "Syncing assignments...",
+  "academicCountingPracticeCredits": "Counting activity credits...",
+  "academicParsingUndergraduateExams": "Reading undergraduate exams...",
+  "academicWaitingUndergraduateGrades": "Waiting for undergraduate grades...",
+  "academicParsingGraduateExams": "Reading graduate exams...",
+  "academicWaitingGraduateGrades": "Waiting for graduate grades...",
+  "academicCalendarUpdated": "Academic calendar updated",
+  "academicScheduleFetched": "Class schedule updated",
+  "academicExamsFetched": "Exam schedule updated",
+  "academicGradesFetched": "Grades updated",
+  "academicMajorGradesUpdated": "Major grades updated",
+  "academicAssignmentsFetched": "Assignments updated",
+  "academicActivityCreditsUpdated": "Activity credits updated",
+  "academicConfigUpdated": "Academic calendar updated",
+  "academicUndergraduateExamsFetched": "Undergraduate exams updated",
+  "academicUndergraduateGradesFetched": "Undergraduate grades updated",
+  "academicGraduateExamsFetched": "Graduate exams updated",
+  "academicGraduateGradesFetched": "Graduate grades updated",
+  "academicCalendarFetchFailed": "Could not load academic calendar",
+  "academicScheduleFetchFailed": "Could not load class schedule",
+  "academicExamsFetchFailed": "Could not load exam schedule",
+  "academicGradesFetchFailed": "Could not load grades",
+  "academicMajorGradesFetchFailed": "Could not load major grades",
+  "academicAssignmentsFetchFailed": "Could not load assignments",
+  "academicActivityCreditsFetchFailed": "Could not load activity credits",
+  "academicConfigFetchFailed": "Could not load calendar settings",
+  "academicUndergraduateExamsFetchFailed": "Could not load undergraduate exams",
+  "academicUndergraduateGradesFetchFailed": "Could not load undergraduate grades",
+  "academicGraduateExamsFetchFailed": "Could not load graduate exams",
+  "academicGraduateGradesFetchFailed": "Could not load graduate grades",
+  "academicSyncingData": "Syncing academic data...",
+  "academicWaitingServer": "Waiting for the server...",
+  "academicStillFetching": "Still fetching...",
+  "academicFinishingRefresh": "Finishing refresh..."
+}

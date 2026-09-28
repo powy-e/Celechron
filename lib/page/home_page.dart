@@ -1,3 +1,4 @@
+import 'package:celechron/l10n/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart' show PointerDeviceKind;
 import 'package:flutter/material.dart' show Icons;
@@ -53,26 +54,26 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: CupertinoDynamicColor.resolve(
               CupertinoColors.secondarySystemBackground, context)
           .withValues(alpha: 0.5),
-      items: const <BottomNavigationBarItem>[
+      items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(CupertinoIcons.time),
-          label: '接下来',
+          label: context.l10n.coreUpNext,
         ),
         BottomNavigationBarItem(
           icon: Icon(CupertinoIcons.calendar),
-          label: '日程',
+          label: context.l10n.coreCalendar,
         ),
         BottomNavigationBarItem(
           icon: Icon(CupertinoIcons.check_mark),
-          label: '任务',
+          label: context.l10n.coreTasks,
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.school_rounded),
-          label: '学业',
+          label: context.l10n.coreAcademics,
         ),
         BottomNavigationBarItem(
           icon: Icon(CupertinoIcons.settings),
-          label: '设置',
+          label: context.l10n.coreSettings,
         ),
       ],
       currentIndex: _indexNum,
@@ -158,17 +159,17 @@ class _HomePageState extends State<HomePage> {
           context: context,
           builder: (context) {
             return CupertinoAlertDialog(
-              title: const Text('更新可用'),
+              title: Text(context.l10n.coreUpdateAvailable),
               content: Text(response),
               actions: [
                 CupertinoDialogAction(
-                  child: const Text('忽略'),
+                  child: Text(context.l10n.coreIgnore),
                   onPressed: () async {
                     Navigator.of(context).pop();
                   },
                 ),
                 CupertinoDialogAction(
-                  child: const Text('访问网站'),
+                  child: Text(context.l10n.coreVisitWebsite),
                   onPressed: () async {
                     await launchUrlString(
                       'https://celechron.top',

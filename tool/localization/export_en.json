@@ -1,0 +1,189 @@
+{
+  "exportReminder": "Reminder",
+  "exportConfirm": "OK",
+  "exportSchedule": "Export schedule",
+  "exportChooseMethod": "Choose an export option",
+  "exportCurrentSemester": "Export current semester",
+  "exportChooseSemester": "Choose semester",
+  "exportCancel": "Cancel",
+  "exportNotice": "Notice",
+  "exportNoData": "No schedule data to export",
+  "exportChooseSemesterMessage": "Choose a semester to export",
+  "exportAllSemesters": "Export all semesters",
+  "exportSuccess": "Success",
+  "exportError": "Error",
+  "exportNotSignedIn": "Sign in before exporting your schedule",
+  "exportShared": "Schedule exported. Choose where to save or share it.",
+  "exportShareDescription": "Schedule exported from Celechron. You can import it into another calendar app.",
+  "exportAllShareDescription": "Complete schedule exported from Celechron, including all semesters.",
+  "exportSemesterShareDescription": "{semester} schedule exported from Celechron.",
+  "@exportSemesterShareDescription": {
+    "placeholders": {
+      "semester": {
+        "type": "String"
+      }
+    }
+  },
+  "exportCalendarName": "ZJU Schedule",
+  "exportCalendarSemesterName": "ZJU Schedule — {semester}",
+  "@exportCalendarSemesterName": {
+    "placeholders": {
+      "semester": {
+        "type": "String"
+      }
+    }
+  },
+  "exportCalendarFullName": "ZJU Schedule — All Semesters",
+  "exportCalendarAllName": "Schedule — All Semesters",
+  "exportSemesterSchedule": "{semester} Schedule",
+  "@exportSemesterSchedule": {
+    "placeholders": {
+      "semester": {
+        "type": "String"
+      }
+    }
+  },
+  "exportExportedSemester": "{semester} schedule exported",
+  "@exportExportedSemester": {
+    "placeholders": {
+      "semester": {
+        "type": "String"
+      }
+    }
+  },
+  "exportFullExported": "Complete schedule exported",
+  "exportFailed": "Export failed: {error}",
+  "@exportFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "exportSyncOptions": "Calendar sync options",
+  "exportChooseSyncAction": "Choose a calendar sync action",
+  "exportUpdateCurrent": "Update current schedule",
+  "exportChooseSemesterSync": "Sync a semester",
+  "exportChooseSemesterToSync": "Choose a semester to sync",
+  "exportSyncAllSemesters": "Sync all semesters",
+  "exportPermissionFailed": "Permission denied",
+  "exportPermissionInstruction": "Enable calendar access in system settings",
+  "exportResyncSuccess": "Resynced successfully",
+  "exportResyncFailed": "Resync failed",
+  "exportSyncSuccess": "Synced successfully",
+  "exportSyncFailed": "Sync failed",
+  "exportResyncedCount": "Resynced {courses} courses and {events} events",
+  "@exportResyncedCount": {
+    "placeholders": {
+      "courses": {
+        "type": "String"
+      },
+      "events": {
+        "type": "String"
+      }
+    }
+  },
+  "exportSyncedCount": "Synced {courses} courses and {events} events",
+  "@exportSyncedCount": {
+    "placeholders": {
+      "courses": {
+        "type": "String"
+      },
+      "events": {
+        "type": "String"
+      }
+    }
+  },
+  "exportSyncedSemesterCount": "Synced {courses} courses and {events} events for {semester}",
+  "@exportSyncedSemesterCount": {
+    "placeholders": {
+      "courses": {
+        "type": "String"
+      },
+      "events": {
+        "type": "String"
+      },
+      "semester": {
+        "type": "String"
+      }
+    }
+  },
+  "exportSyncedAllCount": "Synced {courses} courses and {events} events from all semesters",
+  "@exportSyncedAllCount": {
+    "placeholders": {
+      "courses": {
+        "type": "String"
+      },
+      "events": {
+        "type": "String"
+      }
+    }
+  },
+  "exportNoResync": "Could not resync courses to the system calendar",
+  "exportResyncError": "Error while resyncing: {error}",
+  "@exportResyncError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "exportSemesterMissing": "Semester not found",
+  "exportNoSyncSemester": "No semester data to sync. Sign in first.",
+  "exportNoSyncSemesterCourses": "Could not sync courses for {semester}",
+  "@exportNoSyncSemesterCourses": {
+    "placeholders": {
+      "semester": {
+        "type": "String"
+      }
+    }
+  },
+  "exportNoSyncAll": "Could not sync courses from all semesters",
+  "exportSyncError": "Error while syncing: {error}",
+  "@exportSyncError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "exportUnsupported": "Not supported",
+  "exportMacUnsupported": "Calendar sync is not supported on macOS",
+  "exportSignInToSync": "Sign in before enabling calendar sync",
+  "exportIosSyncFailure": "Could not sync courses to the system calendar. Remove the Google account from Calendar and try again.",
+  "exportSyncFailure": "Could not sync courses to the system calendar. Check calendar access and your connection.",
+  "exportDisabled": "Calendar sync is off, and the schedule and Celechron calendar were deleted",
+  "exportDisabledDeleteIssue": "Calendar sync is off, but deleting the calendar encountered a problem",
+  "exportDisabledDeleteError": "Calendar sync is off, but deleting the calendar failed: {error}",
+  "@exportDisabledDeleteError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "exportInstructor": "Instructor: {name}",
+  "exportFinalExam": "Final exam",
+  "exportMidtermExam": "Midterm exam",
+  "exportExamDescription": "{name} - {type}\nSeat: {seat}",
+  "@exportInstructor": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@exportExamDescription": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "type": {
+        "type": "String"
+      },
+      "seat": {
+        "type": "String"
+      }
+    }
+  }
+}

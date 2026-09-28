@@ -100,7 +100,7 @@ enum ECardBalanceFormatter {
     /// balance 单位为分；负值表示待刷新
     static func string(from balance: Int) -> String {
         if balance < 0 {
-            return "待刷新"
+            return NativeLanguage.text("待刷新", "Refresh")
         }
         let yuan = Double(balance) / 100.0
         let fraction = (balance % 10 == 0) ? 1 : 2
@@ -109,7 +109,7 @@ enum ECardBalanceFormatter {
                 .precision(.fractionLength(fraction))
                 .locale(Locale.current)
         )
-        return "\(formatted)元"
+        return NativeLanguage.code == "en" ? "¥\(formatted)" : "\(formatted)元"
     }
 
     /// 紧凑显示，适合圆形表盘：18.97 / 待刷新

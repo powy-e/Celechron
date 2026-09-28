@@ -1,5 +1,6 @@
 // Official packages
 import 'package:celechron/page/scholar/todo/todo_card.dart';
+import 'package:celechron/l10n/l10n.dart';
 import 'package:celechron/http/zjuServices/exceptions.dart';
 import 'package:celechron/utils/platform_features.dart';
 import 'package:extended_sliver/extended_sliver.dart';
@@ -38,9 +39,12 @@ Future<void> showRefreshResultDialog(
       .toList(growable: false);
   if (!context.mounted) return;
   final summaryLines = messages.map((error) {
-    final compact =
-        shortErrorText(error).replaceAll(RegExp(r'\s+'), ' ').trim();
-    final prefix = isDegradedRefreshText(error) ? '降级：' : '失败：';
+    final compact = displayText(shortErrorText(error))
+        .replaceAll(RegExp(r'\s+'), ' ')
+        .trim();
+    final prefix = isDegradedRefreshText(error)
+        ? '${context.l10n.academicDegraded}: '
+        : '${context.l10n.academicFailure}: ';
     final line = '$prefix$compact';
     return line.length <= 100 ? line : '${line.substring(0, 100)}…';
   }).toList();
@@ -49,31 +53,31 @@ Future<void> showRefreshResultDialog(
     context: context,
     builder: (dialogContext) => CupertinoAlertDialog(
       title: Text(
-        '刷新遇到问题：${degraded.length} 项降级，${failures.length} 项失败',
+        context.l10n.academicRefreshProblem(degraded.length, failures.length),
       ),
       content: Text(summaryLines.join('\n')),
       actions: [
         if (messages.isNotEmpty)
           CupertinoDialogAction(
-            child: const Text('查看详情'),
+            child: Text(context.l10n.academicViewDetails),
             onPressed: () {
               Navigator.of(dialogContext).pop();
               showCupertinoDialog<void>(
                 context: context,
                 builder: (detailContext) => CupertinoAlertDialog(
-                  title: const Text('刷新详情'),
+                  title: Text(context.l10n.academicRefreshDetails),
                   content: SingleChildScrollView(
                     child: Text(
                       messages.map((error) {
-                        final short = shortErrorText(error);
-                        final details = detailedErrorText(error);
+                        final short = displayText(shortErrorText(error));
+                        final details = displayText(detailedErrorText(error));
                         return details == short ? short : '$short\n$details';
                       }).join('\n\n'),
                     ),
                   ),
                   actions: [
                     CupertinoDialogAction(
-                      child: const Text('确定'),
+                      child: Text(context.l10n.academicOK),
                       onPressed: () => Navigator.of(detailContext).pop(),
                     ),
                   ],
@@ -82,7 +86,7 @@ Future<void> showRefreshResultDialog(
             },
           ),
         CupertinoDialogAction(
-          child: const Text('确定'),
+          child: Text(context.l10n.academicOK),
           onPressed: () => Navigator.of(dialogContext).pop(),
         ),
       ],
@@ -107,7 +111,7 @@ class ScholarErrorHandler extends StatelessWidget {
           header: Container(
             padding: const EdgeInsets.only(left: 16, right: 16),
             child: Text(
-              '获取数据时遇到问题。请检查网络连接情况，并尝试重新获取数据。\n注意：你需要完成所有的教学评价才能获取成绩信息。',
+              context.l10n.academicFetchProblem,
               style: TextStyle(
                   color: CupertinoDynamicColor.resolve(
                       CupertinoColors.secondaryLabel, context),
@@ -123,7 +127,7 @@ class ScholarErrorHandler extends StatelessWidget {
                   await showRefreshResultDialog(context, results);
                 }
               },
-              child: const Text('重新获取数据'),
+              child: Text(context.l10n.academicRetry),
             ),
           ],
         ),
@@ -196,7 +200,7 @@ class ScholarPage extends StatelessWidget {
                                   Padding(
                                       padding: const EdgeInsets.only(
                                           left: 6, top: 6, bottom: 6),
-                                      child: Text('成绩',
+                                      child: Text(context.l10n.academicGrades,
                                           style: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
@@ -236,8 +240,13 @@ class ScholarPage extends StatelessWidget {
                                                       .durationToLastUpdateGrade
                                                       .inMinutes >
                                                   10000000
-                                              ? '获取数据时遇到问题'
-                                              : '更新于 ${_scholarController.durationToLastUpdateGrade.inMinutes} 分钟前',
+                                              ? context.l10n
+                                                  .academicFetchProblemShort
+                                              : context.l10n
+                                                  .academicUpdatedMinutesAgo(
+                                                      _scholarController
+                                                          .durationToLastUpdateGrade
+                                                          .inMinutes),
                                           style: TextStyle(
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold,
@@ -259,7 +268,7 @@ class ScholarPage extends StatelessWidget {
                                   children: [
                                     Expanded(
                                       child: Obx(() => TwoLineCard(
-                                          title: '五分制',
+                                          title: context.l10n.academicFivePoint,
                                           content: maskGPA(_scholarController
                                               .gpa[0]
                                               .toStringAsFixed(2)),
@@ -270,7 +279,8 @@ class ScholarPage extends StatelessWidget {
                                     const SizedBox(width: 8),
                                     Expanded(
                                       child: Obx(() => TwoLineCard(
-                                          title: '获得学分',
+                                          title: context
+                                              .l10n.academicEarnedCredits,
                                           content: maskGPA(_scholarController
                                               .scholar.credit
                                               .toStringAsFixed(1)),
@@ -281,7 +291,7 @@ class ScholarPage extends StatelessWidget {
                                     const SizedBox(width: 8),
                                     Expanded(
                                       child: Obx(() => TwoLineCard(
-                                          title: '四分制',
+                                          title: context.l10n.academicFourPoint,
                                           content: maskGPA(_scholarController
                                               .gpa[1]
                                               .toStringAsFixed(2)),
@@ -299,7 +309,7 @@ class ScholarPage extends StatelessWidget {
                                   children: [
                                     Expanded(
                                       child: Obx(() => TwoLineCard(
-                                          title: '主修均绩',
+                                          title: context.l10n.academicMajorGpa,
                                           content: maskGPA(_scholarController
                                               .scholar.majorGpaAndCredit[0]
                                               .toStringAsFixed(2)),
@@ -310,7 +320,8 @@ class ScholarPage extends StatelessWidget {
                                     const SizedBox(width: 8),
                                     Expanded(
                                       child: Obx(() => TwoLineCard(
-                                          title: '主修学分',
+                                          title: context
+                                              .l10n.academicMajorCreditsShort,
                                           content: maskGPA(_scholarController
                                               .scholar.majorGpaAndCredit[1]
                                               .toStringAsFixed(1)),
@@ -321,7 +332,8 @@ class ScholarPage extends StatelessWidget {
                                     const SizedBox(width: 8),
                                     Expanded(
                                       child: Obx(() => TwoLineCard(
-                                          title: '百分制',
+                                          title:
+                                              context.l10n.academicPercentage,
                                           content: maskGPA(_scholarController
                                               .gpa[3]
                                               .toStringAsFixed(2)),
@@ -367,7 +379,7 @@ class ScholarPage extends StatelessWidget {
                               Padding(
                                   padding: const EdgeInsets.only(
                                       left: 6, top: 6, bottom: 6),
-                                  child: Text('课程',
+                                  child: Text(context.l10n.academicCourses,
                                       style: TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold,
@@ -400,8 +412,13 @@ class ScholarPage extends StatelessWidget {
                                                   .durationToLastUpdateCourse
                                                   .inMinutes >
                                               10000000
-                                          ? '获取数据时遇到问题'
-                                          : '更新于 ${_scholarController.durationToLastUpdateCourse.inMinutes} 分钟前',
+                                          ? context
+                                              .l10n.academicFetchProblemShort
+                                          : context.l10n
+                                              .academicUpdatedMinutesAgo(
+                                                  _scholarController
+                                                      .durationToLastUpdateCourse
+                                                      .inMinutes),
                                       style: TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
@@ -446,7 +463,11 @@ class ScholarPage extends StatelessWidget {
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold)),
                               ],
-                              titles: const ['课程', '学分', '考试'],
+                              titles: [
+                                context.l10n.academicCourses,
+                                context.l10n.academicCredits,
+                                context.l10n.academicExams
+                              ],
                               onTaps: [
                                 () => Navigator.of(context, rootNavigator: true)
                                     .push(CupertinoPageRoute(
@@ -454,7 +475,7 @@ class ScholarPage extends StatelessWidget {
                                             initialSemesterName:
                                                 _scholarController
                                                     .selectedSemester.name),
-                                        title: '课程')),
+                                        title: context.l10n.academicCourses)),
                                 null,
                                 () => Navigator.of(context, rootNavigator: true)
                                     .push(CupertinoPageRoute(
@@ -462,7 +483,7 @@ class ScholarPage extends StatelessWidget {
                                             initialSemesterName:
                                                 _scholarController
                                                     .selectedSemester.name),
-                                        title: '考试'))
+                                        title: context.l10n.academicExams))
                               ],
                             ),
                             const SizedBox(height: 16),
@@ -472,8 +493,8 @@ class ScholarPage extends StatelessWidget {
                                   child: TwoLineCard(
                                       animate: true,
                                       // With CupertinoPageTransition
-                                      onTap: () => Navigator.of(context,
-                                                  rootNavigator: true)
+                                      onTap: () =>
+                                          Navigator.of(context, rootNavigator: true)
                                               .push(
                                             CupertinoPageRoute(
                                               builder: (context) =>
@@ -482,13 +503,18 @@ class ScholarPage extends StatelessWidget {
                                                           .selectedSemester
                                                           .name,
                                                       true),
-                                              title: '课表',
+                                              title:
+                                                  context.l10n.academicSchedule,
                                             ),
                                           ),
-                                      title:
-                                          '${_scholarController.selectedSemester.firstHalfName}学期课时',
-                                      content:
-                                          '${_scholarController.selectedSemester.firstHalfSessionCount}节/两周',
+                                      title: context.l10n.academicSemesterHours(
+                                          displayText(_scholarController
+                                              .selectedSemester.firstHalfName)),
+                                      content: context.l10n
+                                          .academicSessionsPerTwoWeeks(
+                                              _scholarController
+                                                  .selectedSemester
+                                                  .firstHalfSessionCount),
                                       backgroundColor: _scholarController
                                                   .selectedSemester.name[9] ==
                                               '春'
@@ -500,8 +526,8 @@ class ScholarPage extends StatelessWidget {
                                 Expanded(
                                   child: TwoLineCard(
                                       animate: true,
-                                      onTap: () => Navigator.of(context,
-                                                  rootNavigator: true)
+                                      onTap: () =>
+                                          Navigator.of(context, rootNavigator: true)
                                               .push(
                                             CupertinoPageRoute(
                                               builder: (context) =>
@@ -510,13 +536,19 @@ class ScholarPage extends StatelessWidget {
                                                           .selectedSemester
                                                           .name,
                                                       false),
-                                              title: '课表',
+                                              title:
+                                                  context.l10n.academicSchedule,
                                             ),
                                           ),
-                                      title:
-                                          '${_scholarController.selectedSemester.secondHalfName}学期课时',
-                                      content:
-                                          '${_scholarController.selectedSemester.secondHalfSessionCount}节/两周',
+                                      title: context.l10n.academicSemesterHours(
+                                          displayText(_scholarController
+                                              .selectedSemester
+                                              .secondHalfName)),
+                                      content: context.l10n
+                                          .academicSessionsPerTwoWeeks(
+                                              _scholarController
+                                                  .selectedSemester
+                                                  .secondHalfSessionCount),
                                       backgroundColor: _scholarController
                                                   .selectedSemester.name[9] ==
                                               '春'
@@ -561,7 +593,7 @@ class ScholarPage extends StatelessWidget {
                               Padding(
                                   padding: const EdgeInsets.only(
                                       left: 6, top: 6, bottom: 6),
-                                  child: Text('作业',
+                                  child: Text(context.l10n.academicAssignment,
                                       style: TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold,
@@ -594,8 +626,12 @@ class ScholarPage extends StatelessWidget {
                                                   .durationToLastUpdateHomework
                                                   .inMinutes >
                                               10000000
-                                          ? '获取数据时遇到问题'
-                                          : '更新于 ${_scholarController.durationToLastUpdateHomework.inMinutes} 分钟前',
+                                          ? context
+                                              .l10n.academicFetchProblemShort
+                                          : context.l10n.academicUpdatedMinutesAgo(
+                                              _scholarController
+                                                  .durationToLastUpdateHomework
+                                                  .inMinutes),
                                       style: TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
@@ -635,7 +671,11 @@ class ScholarPage extends StatelessWidget {
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold)),
                               ],
-                              titles: const ["总计", "一天内", "本周截止"],
+                              titles: [
+                                context.l10n.academicTotal,
+                                context.l10n.academicDueToday,
+                                context.l10n.academicDueThisWeek
+                              ],
                               onTaps: [() {}, () {}, () {}],
                             ),
                             const SizedBox(height: 16),
@@ -692,7 +732,7 @@ class ScholarPage extends StatelessWidget {
                               Padding(
                                   padding: const EdgeInsets.only(
                                       left: 6, top: 6, bottom: 6),
-                                  child: Text('实践',
+                                  child: Text(context.l10n.academicPractice,
                                       style: TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold,
@@ -718,7 +758,9 @@ class ScholarPage extends StatelessWidget {
                                 Padding(
                                     padding: const EdgeInsets.only(
                                         left: 4, top: 4, bottom: 4, right: 16),
-                                    child: Text('获取实践记点时遇到问题',
+                                    child: Text(
+                                        context
+                                            .l10n.academicPracticeFetchProblem,
                                         style: TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.bold,
@@ -746,6 +788,7 @@ class ScholarPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final narrowSearch = MediaQuery.sizeOf(context).width < 360;
     return CupertinoPageScaffold(
         /*backgroundColor: CupertinoDynamicColor.resolve(
             CupertinoColors.systemGroupedBackground, context),*/
@@ -779,7 +822,7 @@ class ScholarPage extends StatelessWidget {
                   children: [
                     const SizedBox(width: 2),
                     Text(
-                      '学业',
+                      context.l10n.academicAcademics,
                       style: CupertinoTheme.of(context)
                           .textTheme
                           .navLargeTitleTextStyle
@@ -787,36 +830,42 @@ class ScholarPage extends StatelessWidget {
                     ),
                     const SizedBox(width: 12),
                     Expanded(
-                      child: CupertinoSearchTextField(
-                        placeholder: '搜索课程、事项...',
-                        placeholderStyle: CupertinoTheme.of(context)
-                            .textTheme
-                            .textStyle
-                            .copyWith(
-                                color: CupertinoColors.systemGrey,
-                                height: 1.25,
-                                fontSize: 18),
-                        style: CupertinoTheme.of(context)
-                            .textTheme
-                            .textStyle
-                            .copyWith(height: 1.25, fontSize: 18),
-                        borderRadius: BorderRadius.circular(12),
-                        itemColor: CupertinoColors.systemGrey,
-                        itemSize: 20,
-                        suffixInsets:
-                            const EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
-                        prefixInsets:
-                            const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 6, vertical: 8),
-                        onTap: () async {
-                          FocusManager.instance.primaryFocus?.unfocus();
-                          Navigator.of(context, rootNavigator: true).push(
-                              CupertinoPageRoute(
-                                  builder: (context) => SearchPage()));
-                        },
-                        focusNode: AlwaysDisabledFocusNode(),
-                        // Do not popup the keyboard
+                      child: Semantics(
+                        label: context.l10n.academicSearchCoursesTasks,
+                        button: true,
+                        child: CupertinoSearchTextField(
+                          placeholder: narrowSearch
+                              ? ''
+                              : context.l10n.academicSearchShort,
+                          placeholderStyle: CupertinoTheme.of(context)
+                              .textTheme
+                              .textStyle
+                              .copyWith(
+                                  color: CupertinoColors.systemGrey,
+                                  height: 1.25,
+                                  fontSize: 18),
+                          style: CupertinoTheme.of(context)
+                              .textTheme
+                              .textStyle
+                              .copyWith(height: 1.25, fontSize: 18),
+                          borderRadius: BorderRadius.circular(12),
+                          itemColor: CupertinoColors.systemGrey,
+                          itemSize: 20,
+                          suffixInsets:
+                              const EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
+                          prefixInsets:
+                              const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 6, vertical: 8),
+                          onTap: () async {
+                            FocusManager.instance.primaryFocus?.unfocus();
+                            Navigator.of(context, rootNavigator: true).push(
+                                CupertinoPageRoute(
+                                    builder: (context) => SearchPage()));
+                          },
+                          focusNode: AlwaysDisabledFocusNode(),
+                          // Do not popup the keyboard
+                        ),
                       ),
                     ),
                     if (PlatformFeatures.isDesktop)
@@ -903,8 +952,8 @@ class ScholarPage extends StatelessWidget {
                 // 移动端的状态文案由下方 CupertinoSliverRefreshControl 的 builder 展示
                 if (PlatformFeatures.isDesktop)
                   Obx(() {
-                    final message =
-                        _scholarController.refreshStatusMessage.value;
+                    final message = displayText(
+                        _scholarController.refreshStatusMessage.value ?? '');
                     return AnimatedSize(
                       duration: const Duration(milliseconds: 250),
                       curve: Curves.easeInOut,
@@ -913,7 +962,7 @@ class ScholarPage extends StatelessWidget {
                       // 而不是内容瞬间消失
                       child: AnimatedSwitcher(
                         duration: const Duration(milliseconds: 200),
-                        child: message == null
+                        child: message.isEmpty
                             ? const SizedBox(
                                 key: ValueKey('refreshStatusStripEmpty'),
                                 width: double.infinity)
@@ -955,7 +1004,8 @@ class ScholarPage extends StatelessWidget {
                       pulledExtent: pulledExtent,
                       refreshTriggerPullDistance: refreshTriggerPullDistance,
                       refreshIndicatorExtent: refreshIndicatorExtent,
-                      message: _scholarController.refreshStatusMessage.value,
+                      message: displayText(
+                          _scholarController.refreshStatusMessage.value ?? ''),
                     )),
             onRefresh: () async {
               final results = await _scholarController.fetchData();
@@ -1039,15 +1089,15 @@ class ScholarPage extends StatelessWidget {
                         const SizedBox(height: 12),
                         Text(
                             _scholarController.scholar.isLogan
-                                ? '下拉刷新以获取数据'
-                                : '未登录',
+                                ? context.l10n.academicPullToRefresh
+                                : context.l10n.academicNotLoggedIn,
                             style:
                                 CupertinoTheme.of(context).textTheme.textStyle),
                         if (_scholarController.scholar.isLogan)
                           Padding(
                             padding: const EdgeInsets.only(top: 8),
                             child: Text(
-                              '离线数据将在同步失败时自动使用',
+                              context.l10n.academicOfflineCacheNote,
                               style: TextStyle(
                                 fontSize: 13,
                                 color: CupertinoDynamicColor.resolve(

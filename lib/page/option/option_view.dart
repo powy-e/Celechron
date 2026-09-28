@@ -1,3 +1,4 @@
+import 'package:celechron/l10n/l10n.dart';
 import 'package:celechron/utils/platform_features.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +35,9 @@ class OptionPage extends StatelessWidget {
 
   OptionPage({super.key});
 
+  Widget _settingTitle(String label) =>
+      Text(label, maxLines: 2, overflow: TextOverflow.ellipsis);
+
   @override
   Widget build(BuildContext context) {
     var trailingTextStyle = TextStyle(
@@ -54,8 +58,8 @@ class OptionPage extends StatelessWidget {
         child: SafeArea(
             child: CustomScrollView(
           slivers: [
-            const CupertinoSliverNavigationBar(
-              largeTitle: Text('设置'),
+            CupertinoSliverNavigationBar(
+              largeTitle: Text(context.l10n.coreSettings),
               backgroundColor: CupertinoColors.systemGroupedBackground,
               border: null,
             ),
@@ -66,23 +70,25 @@ class OptionPage extends StatelessWidget {
                     additionalDividerMargin: 2,
                     header: Container(
                         padding: const EdgeInsets.only(left: 16),
-                        child: Text('教务', style: headerFooterTextStyle)),
+                        child: Text(context.l10n.coreAcademicPortal,
+                            style: headerFooterTextStyle)),
                     footer: (_optionController.pushOnGradeChange ||
                                 _optionController.pushOnDdlReminder) &&
                             _optionController.scholar.value.isLogan
                         ? Padding(
                             padding: const EdgeInsets.only(left: 16),
                             child: Text(
-                                'Celechron 将不定期自动运行以刷新数据。请开启通知权限，且不要将 Celechron 从后台中移除。',
+                                context.l10n.coreBackgroundRefreshExplanation,
                                 style: headerFooterTextStyle))
                         : null,
                     children: <CupertinoListTile>[
                       if (_optionController.scholar.value.isLogan) ...{
                         CupertinoListTile(
-                            title: Text(
-                                '已登录: ${_optionController.scholar.value.username}'),
+                            title: _settingTitle(context.l10n.coreLoggedIn('')),
+                            subtitle: Text(
+                                _optionController.scholar.value.username ?? ''),
                             trailing: BackChervonRow(
-                                child: Text('退出',
+                                child: Text(context.l10n.coreLogOut,
                                     style: TextStyle(
                                         color: CupertinoDynamicColor.resolve(
                                             CupertinoColors.secondaryLabel,
@@ -93,18 +99,19 @@ class OptionPage extends StatelessWidget {
                                   context: context,
                                   builder: (BuildContext dialogContext) {
                                     return CupertinoAlertDialog(
-                                      title: const Text('退出登录'),
-                                      content: const Text('确定要退出当前账号吗？'),
+                                      title: Text(context.l10n.coreLogOutTitle),
+                                      content:
+                                          Text(context.l10n.coreConfirmLogOut),
                                       actions: [
                                         CupertinoDialogAction(
-                                          child: const Text('取消'),
+                                          child: Text(context.l10n.coreCancel),
                                           onPressed: () {
                                             Navigator.of(dialogContext).pop();
                                           },
                                         ),
                                         CupertinoDialogAction(
                                           isDestructiveAction: true,
-                                          child: const Text('退出'),
+                                          child: Text(context.l10n.coreLogOut),
                                           onPressed: () async {
                                             Navigator.of(dialogContext).pop();
                                             await _optionController.logout();
@@ -115,28 +122,18 @@ class OptionPage extends StatelessWidget {
                                   });
                             }),
                         CupertinoListTile(
-                          title: const Text('重修绩点计算'),
-                          trailing: CupertinoSlidingSegmentedControl(
-                            children: {
-                              GpaStrategy.first: Text('取首次',
-                                  style: CupertinoTheme.of(context)
-                                      .textTheme
-                                      .textStyle
-                                      .copyWith(fontSize: 16)),
-                              GpaStrategy.best: Text('取最高',
-                                  style: CupertinoTheme.of(context)
-                                      .textTheme
-                                      .textStyle
-                                      .copyWith(fontSize: 16)),
-                            },
-                            groupValue: _optionController.gpaStrategy,
-                            onValueChanged: (value) {
-                              _optionController.gpaStrategy = value!;
-                            },
+                          title: _settingTitle(
+                              context.l10n.coreRetakeGpaCalculation),
+                          subtitle: Text(
+                            _optionController.gpaStrategy == GpaStrategy.first
+                                ? context.l10n.coreUseFirstAttempt
+                                : context.l10n.coreUseHighestAttempt,
                           ),
+                          trailing: const BackChervonRow(),
+                          onTap: () => _showGpaStrategyPicker(context),
                         ),
                         CupertinoListTile(
-                            title: const Text('隐藏绩点'),
+                            title: Text(context.l10n.coreHideGpa),
                             trailing: Obx(() => CupertinoSwitch(
                                   value: _optionController.hideHomeGpa,
                                   onChanged: (value) async {
@@ -144,7 +141,8 @@ class OptionPage extends StatelessWidget {
                                   },
                                 ))),
                         CupertinoListTile(
-                          title: const Text('自定义课程代码映射'),
+                          title: _settingTitle(
+                              context.l10n.coreCustomCourseCodeMapping),
                           trailing: const BackChervonRow(),
                           onTap: () async {
                             Navigator.of(context, rootNavigator: true).push(
@@ -154,7 +152,7 @@ class OptionPage extends StatelessWidget {
                           },
                         ),
                         CupertinoListTile(
-                            title: const Text('异步刷新'),
+                            title: _settingTitle(context.l10n.coreAsyncRefresh),
                             trailing: Obx(() => CupertinoSwitch(
                                   value: _optionController.asyncRefresh,
                                   onChanged: (value) async {
@@ -162,7 +160,8 @@ class OptionPage extends StatelessWidget {
                                   },
                                 ))),
                         CupertinoListTile(
-                            title: const Text('推送成绩变动'),
+                            title: _settingTitle(
+                                context.l10n.coreGradeChangeNotifications),
                             trailing: CupertinoSwitch(
                               value: _optionController.pushOnGradeChange,
                               onChanged: PlatformFeatures.hasBackgroundRefresh
@@ -173,7 +172,8 @@ class OptionPage extends StatelessWidget {
                                   : null,
                             )),
                         CupertinoListTile(
-                            title: const Text('推送作业截止提醒'),
+                            title: _settingTitle(
+                                context.l10n.coreDeadlineNotifications),
                             trailing: CupertinoSwitch(
                               value: _optionController.pushOnDdlReminder,
                               onChanged: PlatformFeatures.hasBackgroundRefresh
@@ -185,7 +185,7 @@ class OptionPage extends StatelessWidget {
                             )),
                       } else ...{
                         CupertinoListTile(
-                          title: const Text('点击登录',
+                          title: Text(context.l10n.coreTapToLogIn,
                               style:
                                   TextStyle(color: CupertinoColors.activeBlue)),
                           trailing: const BackChervonRow(
@@ -211,10 +211,11 @@ class OptionPage extends StatelessWidget {
                     margin: _defaultMargin,
                     header: Container(
                         padding: const EdgeInsets.only(left: 16),
-                        child: Text('时间规划', style: headerFooterTextStyle)),
+                        child: Text(context.l10n.coreTimePlanning,
+                            style: headerFooterTextStyle)),
                     children: <CupertinoListTile>[
                   CupertinoListTile(
-                    title: const Text('工作段时间长度'),
+                    title: _settingTitle(context.l10n.coreWorkDuration),
                     trailing: BackChervonRow(
                         child: Obx(() => Text(
                             durationToString(_optionController.workTime),
@@ -228,8 +229,8 @@ class OptionPage extends StatelessWidget {
                           context: context,
                           builder: (BuildContext context) {
                             return CupertinoAlertDialog(
-                              title: const Text(
-                                '工作段时间长度',
+                              title: Text(
+                                context.l10n.coreWorkDuration,
                               ),
                               content: SizedBox(
                                 width: double.maxFinite,
@@ -257,7 +258,7 @@ class OptionPage extends StatelessWidget {
                               ),
                               actions: [
                                 CupertinoDialogAction(
-                                  child: const Text('确定'),
+                                  child: Text(context.l10n.coreConfirm),
                                   onPressed: () async {
                                     Navigator.of(context).pop();
                                   },
@@ -269,7 +270,7 @@ class OptionPage extends StatelessWidget {
                     },
                   ),
                   CupertinoListTile(
-                    title: const Text('休息段时间长度'),
+                    title: _settingTitle(context.l10n.coreBreakDuration),
                     trailing: BackChervonRow(
                         child: Obx(() => Text(
                             durationToString(_optionController.restTime),
@@ -280,8 +281,8 @@ class OptionPage extends StatelessWidget {
                           context: context,
                           builder: (BuildContext context) {
                             return CupertinoAlertDialog(
-                              title: const Text(
-                                '休息段时间长度',
+                              title: Text(
+                                context.l10n.coreBreakDuration,
                               ),
                               content: SizedBox(
                                 width: double.maxFinite,
@@ -302,7 +303,7 @@ class OptionPage extends StatelessWidget {
                               ),
                               actions: [
                                 CupertinoDialogAction(
-                                  child: const Text('确定'),
+                                  child: Text(context.l10n.coreConfirm),
                                   onPressed: () async {
                                     Navigator.of(context).pop();
                                   },
@@ -314,10 +315,11 @@ class OptionPage extends StatelessWidget {
                     },
                   ),
                   CupertinoListTile(
-                    title: const Text('可用的工作时段'),
+                    title: _settingTitle(context.l10n.coreAvailableWorkPeriods),
                     trailing: BackChervonRow(
                         child: Obx(() => Text(
-                            '${_optionController.allowTimeLength} 个时段',
+                            context.l10n.corePeriodCount(
+                                _optionController.allowTimeLength.value),
                             style: trailingTextStyle))),
                     onTap: () async {
                       await Navigator.of(context, rootNavigator: true)
@@ -334,10 +336,12 @@ class OptionPage extends StatelessWidget {
                         margin: _defaultMargin,
                         header: Container(
                             padding: const EdgeInsets.only(left: 16),
-                            child: Text('日程', style: headerFooterTextStyle)),
+                            child: Text(context.l10n.coreCalendar,
+                                style: headerFooterTextStyle)),
                         children: [
                       CupertinoListTile(
-                        title: const Text('同步到系统日历'),
+                        title:
+                            _settingTitle(context.l10n.coreSyncSystemCalendar),
                         trailing: CupertinoAsyncSwitch(
                           value: _optionController.calendarSyncEnabled &&
                               _optionController.hasCalendarPermission,
@@ -349,7 +353,7 @@ class OptionPage extends StatelessWidget {
                       ),
                       CupertinoListTile(
                         title: Text(
-                          '课表同步选项',
+                          context.l10n.coreScheduleSyncOptions,
                           style: TextStyle(
                             color: _optionController.calendarSyncEnabled
                                 ? null // 使用默认颜色
@@ -357,13 +361,8 @@ class OptionPage extends StatelessWidget {
                                     CupertinoColors.quaternaryLabel, context),
                           ),
                         ),
-                        trailing: BackChervonRow(
-                            child: Text('选择学期',
-                                style: TextStyle(
-                                    color: CupertinoDynamicColor.resolve(
-                                        CupertinoColors.secondaryLabel,
-                                        context),
-                                    fontSize: 16))),
+                        subtitle: Text(context.l10n.coreSelectSemester),
+                        trailing: const BackChervonRow(),
                         onTap: _optionController.calendarSyncEnabled
                             ? () {
                                 _optionController
@@ -372,7 +371,7 @@ class OptionPage extends StatelessWidget {
                             : null, // 禁用点击
                       ),
                       CupertinoListTile(
-                        title: const Text('导出为iCal文件'),
+                        title: Text(context.l10n.coreExportIcal),
                         trailing: const BackChervonRow(),
                         onTap: () =>
                             _optionController.showExportDialog(context),
@@ -385,25 +384,38 @@ class OptionPage extends StatelessWidget {
                     margin: _defaultMargin,
                     header: Container(
                         padding: const EdgeInsets.only(left: 16),
-                        child: Text('工具', style: headerFooterTextStyle)),
+                        child: Text(context.l10n.coreTools,
+                            style: headerFooterTextStyle)),
                     children: <Widget>[
                   CupertinoListTile(
-                    title: const Text('暗色模式'),
+                    title: Text(context.l10n.coreDarkMode),
                     trailing: BackChervonRow(
                         child: Obx(() => Text(
                               _optionController.brightnessMode ==
                                       BrightnessMode.system
-                                  ? "跟随系统设置"
+                                  ? context.l10n.coreFollowSystem
                                   : _optionController.brightnessMode ==
                                           BrightnessMode.light
-                                      ? "亮色模式"
-                                      : "暗色模式",
+                                      ? context.l10n.coreLightMode
+                                      : context.l10n.coreDarkMode,
                               style: trailingTextStyle,
                             ))),
                     onTap: () => _showBrightnessPicker(context),
                   ),
                   CupertinoListTile(
-                    title: const Text('付款码'),
+                    title: Text(context.l10n.coreLanguage),
+                    trailing: BackChervonRow(
+                      child: Obx(() => Text(
+                            _optionController.languageCode == 'en'
+                                ? 'English'
+                                : '简体中文',
+                            style: trailingTextStyle,
+                          )),
+                    ),
+                    onTap: () => _showLanguagePicker(context),
+                  ),
+                  CupertinoListTile(
+                    title: Text(context.l10n.corePaymentCode),
                     trailing: const BackChervonRow(),
                     onTap: () async {
                       Navigator.of(context, rootNavigator: true)
@@ -418,12 +430,13 @@ class OptionPage extends StatelessWidget {
                 margin: _defaultMargin,
                 header: Container(
                   padding: const EdgeInsets.only(left: 16),
-                  child: Text('诊断与测试', style: headerFooterTextStyle),
+                  child: Text(context.l10n.coreDiagnostics,
+                      style: headerFooterTextStyle),
                 ),
                 children: [
                   CupertinoListTile(
-                    title: const Text('测试日志'),
-                    subtitle: const Text('查看、复制或导出脱敏 TXT'),
+                    title: Text(context.l10n.coreTestLogs),
+                    subtitle: Text(context.l10n.coreDiagnosticLogsDescription),
                     trailing: const BackChervonRow(),
                     onTap: () {
                       Navigator.of(context, rootNavigator: true).push(
@@ -445,10 +458,11 @@ class OptionPage extends StatelessWidget {
                   margin: _defaultMargin,
                   header: Container(
                       padding: const EdgeInsets.only(left: 16),
-                      child: Text('关于', style: headerFooterTextStyle)),
+                      child: Text(context.l10n.coreAbout,
+                          style: headerFooterTextStyle)),
                   children: <CupertinoListTile>[
                     CupertinoListTile(
-                      title: const Text('关于 Celechron'),
+                      title: Text(context.l10n.coreAboutCelechron),
                       trailing: BackChervonRow(
                         child: Text(_optionController.celechronVersion,
                             style: trailingTextStyle),
@@ -462,7 +476,7 @@ class OptionPage extends StatelessWidget {
                       },
                     ),
                     CupertinoListTile(
-                      title: const Text('服务条款'),
+                      title: Text(context.l10n.coreTermsOfService),
                       trailing: const BackChervonRow(),
                       onTap: () async {
                         Navigator.of(context, rootNavigator: true).push(
@@ -472,7 +486,7 @@ class OptionPage extends StatelessWidget {
                       },
                     ),
                     CupertinoListTile(
-                      title: const Text('前往项目网站'),
+                      title: Text(context.l10n.coreProjectWebsite),
                       trailing: BackChervonRow(
                         child: Obx(() {
                           if (_optionController.hasNewVersion) {
@@ -485,7 +499,8 @@ class OptionPage extends StatelessWidget {
                                     color: CupertinoColors.systemRed,
                                     borderRadius: BorderRadius.circular(4)),
                               ),
-                              Text('有新版本可用', style: trailingTextStyle)
+                              Text(context.l10n.coreNewVersionAvailable,
+                                  style: trailingTextStyle)
                             ]);
                           } else {
                             return const Text('');
@@ -516,29 +531,83 @@ class OptionPage extends StatelessWidget {
                 _optionController.brightnessMode = BrightnessMode.system;
                 Navigator.pop(context);
               },
-              child: const Text('跟随系统设置'),
+              child: Text(context.l10n.coreFollowSystem),
             ),
             CupertinoActionSheetAction(
               onPressed: () {
                 _optionController.brightnessMode = BrightnessMode.light;
                 Navigator.pop(context);
               },
-              child: const Text('亮色模式'),
+              child: Text(context.l10n.coreLightMode),
             ),
             CupertinoActionSheetAction(
               onPressed: () {
                 _optionController.brightnessMode = BrightnessMode.dark;
                 Navigator.pop(context);
               },
-              child: const Text('暗色模式'),
+              child: Text(context.l10n.coreDarkMode),
             ),
           ],
           cancelButton: CupertinoActionSheetAction(
             onPressed: () => Navigator.pop(context),
-            child: const Text('取消'),
+            child: Text(context.l10n.coreCancel),
           ),
         );
       },
+    );
+  }
+
+  void _showLanguagePicker(BuildContext context) {
+    showCupertinoModalPopup<void>(
+      context: context,
+      builder: (sheetContext) => CupertinoActionSheet(
+        title: Text(context.l10n.coreLanguage),
+        actions: [
+          CupertinoActionSheetAction(
+            onPressed: () async {
+              Navigator.pop(sheetContext);
+              await AppLanguage.select('zh');
+            },
+            child: const Text('简体中文'),
+          ),
+          CupertinoActionSheetAction(
+            onPressed: () async {
+              Navigator.pop(sheetContext);
+              await AppLanguage.select('en');
+            },
+            child: const Text('English'),
+          ),
+        ],
+        cancelButton: CupertinoActionSheetAction(
+          onPressed: () => Navigator.pop(sheetContext),
+          child: Text(context.l10n.coreCancel),
+        ),
+      ),
+    );
+  }
+
+  void _showGpaStrategyPicker(BuildContext context) {
+    showCupertinoModalPopup<void>(
+      context: context,
+      builder: (sheetContext) => CupertinoActionSheet(
+        title: Text(context.l10n.coreRetakeGpaCalculation),
+        actions: [
+          for (final strategy in GpaStrategy.values)
+            CupertinoActionSheetAction(
+              onPressed: () {
+                _optionController.gpaStrategy = strategy;
+                Navigator.pop(sheetContext);
+              },
+              child: Text(strategy == GpaStrategy.first
+                  ? context.l10n.coreUseFirstAttempt
+                  : context.l10n.coreUseHighestAttempt),
+            ),
+        ],
+        cancelButton: CupertinoActionSheetAction(
+          onPressed: () => Navigator.pop(sheetContext),
+          child: Text(context.l10n.coreCancel),
+        ),
+      ),
     );
   }
 

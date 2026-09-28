@@ -1,3 +1,4 @@
+import 'package:celechron/l10n/l10n.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -8,11 +9,11 @@ DateTime dateOnly(DateTime date, {int? hour, int? minute}) {
 String durationToString(Duration duration) {
   String str = '';
   if (duration.inHours != 0) {
-    str = '${duration.inHours} 小时';
+    str = appL10n.sharedHours(duration.inHours);
   }
   if (duration.inMinutes % 60 != 0 || duration.inHours == 0) {
     if (str != '') str = '$str ';
-    str = '$str${duration.inMinutes % 60} 分钟';
+    str = '$str${appL10n.sharedMinutes(duration.inMinutes % 60)}';
   }
   return str;
 }

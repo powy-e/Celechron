@@ -1,3 +1,4 @@
+import 'package:celechron/l10n/l10n.dart';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:celechron/design/persistent_headers.dart';
@@ -116,7 +117,7 @@ class _CreditsPageState extends State<CreditsPage> {
       child: SafeArea(
         child: CustomScrollView(
           slivers: [
-            const CelechronSliverTextHeader(subtitle: '关于'),
+            CelechronSliverTextHeader(subtitle: context.l10n.coreAbout),
             SliverToBoxAdapter(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -144,7 +145,7 @@ class _CreditsPageState extends State<CreditsPage> {
                             ),
                           ),
                           Text(
-                            '${widget.version} 版本',
+                            context.l10n.coreVersion(widget.version),
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                               fontSize: 12,
@@ -157,8 +158,8 @@ class _CreditsPageState extends State<CreditsPage> {
                   const SizedBox(
                     height: 24,
                   ),
-                  const Text(
-                    '制作人员',
+                  Text(
+                    context.l10n.coreCredits,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -168,8 +169,8 @@ class _CreditsPageState extends State<CreditsPage> {
                   const SizedBox(
                     height: 24,
                   ),
-                  const Text(
-                    '🎨设计',
+                  Text(
+                    context.l10n.coreDesign,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 18,
@@ -179,7 +180,7 @@ class _CreditsPageState extends State<CreditsPage> {
                   const SizedBox(
                     height: 16,
                   ),
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.symmetric(horizontal: 32),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -195,7 +196,7 @@ class _CreditsPageState extends State<CreditsPage> {
                         ),
                         Expanded(
                           child: Text(
-                            '空之探险队的 Kate',
+                            context.l10n.coreContributorKate,
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -205,8 +206,8 @@ class _CreditsPageState extends State<CreditsPage> {
                   const SizedBox(
                     height: 24,
                   ),
-                  const Text(
-                    '🧑‍💻开发',
+                  Text(
+                    context.l10n.coreDevelopment,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 18,
@@ -226,7 +227,7 @@ class _CreditsPageState extends State<CreditsPage> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    '本程序采用 GPLv3 协议开源',
+                    context.l10n.coreGplNotice,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontSize: 12,

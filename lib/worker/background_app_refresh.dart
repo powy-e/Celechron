@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:celechron/http/zjuServices/exceptions.dart';
+import 'package:celechron/l10n/l10n.dart';
 import 'package:celechron/model/scholar.dart';
 import 'package:celechron/services/diagnostic_log_service.dart';
 import 'package:celechron/services/refresh_coordinator.dart';
@@ -27,6 +28,7 @@ void callbackDispatcher() {
 }
 
 Future<void> refreshScholar() async {
+  await AppLanguage.initializeBackground();
   if (await RefreshCoordinator.shouldYieldBackground()) {
     DiagnosticLogService.instance.record(
       module: 'refresh',
@@ -52,10 +54,10 @@ Future<void> refreshScholar() async {
   await flutterLocalNotificationsPlugin.initialize(initializationSettings);
 
   // 成绩变动通知 channel
-  const gradeNotificationDetails = NotificationDetails(
+  final gradeNotificationDetails = NotificationDetails(
     android: AndroidNotificationDetails(
       'top.celechron.celechron.gradeChange',
-      '成绩变动提醒',
+      appL10n.notificationGradeChannel,
       importance: Importance.max,
       priority: Priority.high,
       showWhen: false,
@@ -71,10 +73,10 @@ Future<void> refreshScholar() async {
   );
 
   // DDL 截止提醒 channel
-  const ddlNotificationDetails = NotificationDetails(
+  final ddlNotificationDetails = NotificationDetails(
     android: AndroidNotificationDetails(
       'top.celechron.celechron.ddlReminder',
-      '作业截止提醒',
+      appL10n.notificationDeadlineChannel,
       importance: Importance.max,
       priority: Priority.high,
       showWhen: false,
@@ -131,8 +133,8 @@ Future<void> refreshScholar() async {
       if (pushOnGradeChangeFuse == null) {
         await flutterLocalNotificationsPlugin.show(
             0,
-            '首次成绩推送',
-            '若有新出分的课程，Celechron 将会通知您。若不需要此功能，可在 Celechron 的设置页面中关闭。',
+            appL10n.notificationFirstGradeTitle,
+            appL10n.notificationFirstGradeBody,
             gradeNotificationDetails);
         await secureStorage.write(
             key: 'pushOnGradeChangeFuse',
@@ -140,8 +142,11 @@ Future<void> refreshScholar() async {
             iOptions: secureStorageIOSOptions);
       } else if (scholar.gpa[0] != double.tryParse(oldGpa) ||
           scholar.gradedCourseCount != int.tryParse(gradedCourseCount)) {
-        await flutterLocalNotificationsPlugin.show(0, '成绩变动提醒',
-            '有新出分的课程，可在 Celechron 的学业页面中刷新查看。', gradeNotificationDetails);
+        await flutterLocalNotificationsPlugin.show(
+            0,
+            appL10n.notificationGradeTitle,
+            appL10n.notificationGradeBody,
+            gradeNotificationDetails);
       }
       await secureStorage.write(
           key: 'gpa',
@@ -178,11 +183,14 @@ Future<void> refreshScholar() async {
         var notificationId = 1000; // DDL 通知从 1000 开始
         for (var todo in upcomingTodos) {
           var hoursLeft = todo.endTime!.difference(now).inHours;
-          var timeDesc = hoursLeft > 0 ? '$hoursLeft 小时后' : '即将';
+          var timeDesc = hoursLeft > 0
+              ? appL10n.notificationHoursUntil(hoursLeft)
+              : appL10n.notificationSoon;
           await flutterLocalNotificationsPlugin.show(
               notificationId++,
-              '作业截止提醒',
-              '「${todo.course}」的作业「${todo.name}」将于$timeDesc截止',
+              appL10n.notificationDeadlineTitle,
+              appL10n.notificationDeadlineBody(
+                  todo.course, todo.name, timeDesc),
               ddlNotificationDetails);
           notifiedDdlIds.add(todo.id);
         }

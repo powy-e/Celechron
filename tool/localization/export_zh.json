@@ -1,0 +1,189 @@
+{
+  "exportReminder": "提醒",
+  "exportConfirm": "确定",
+  "exportSchedule": "导出课程表",
+  "exportChooseMethod": "选择导出方式",
+  "exportCurrentSemester": "导出当前学期",
+  "exportChooseSemester": "选择学期",
+  "exportCancel": "取消",
+  "exportNotice": "提示",
+  "exportNoData": "没有可导出的课程表数据",
+  "exportChooseSemesterMessage": "选择要导出的学期",
+  "exportAllSemesters": "导出所有学期",
+  "exportSuccess": "成功",
+  "exportError": "错误",
+  "exportNotSignedIn": "请先登录后再导出课程表",
+  "exportShared": "课程表已导出，请选择保存位置或分享",
+  "exportShareDescription": "从 Celechron 导出的课程表文件，可导入到其他日历应用中使用。",
+  "exportAllShareDescription": "从 Celechron 导出的完整课程表文件，包含所有学期。",
+  "exportSemesterShareDescription": "从 Celechron 导出的 {semester} 课程表文件。",
+  "@exportSemesterShareDescription": {
+    "placeholders": {
+      "semester": {
+        "type": "String"
+      }
+    }
+  },
+  "exportCalendarName": "浙大课程表",
+  "exportCalendarSemesterName": "浙大课程表-{semester}",
+  "@exportCalendarSemesterName": {
+    "placeholders": {
+      "semester": {
+        "type": "String"
+      }
+    }
+  },
+  "exportCalendarFullName": "浙大课程表-完整版",
+  "exportCalendarAllName": "课程表-完整版",
+  "exportSemesterSchedule": "{semester} 课程表",
+  "@exportSemesterSchedule": {
+    "placeholders": {
+      "semester": {
+        "type": "String"
+      }
+    }
+  },
+  "exportExportedSemester": "{semester} 课程表已导出",
+  "@exportExportedSemester": {
+    "placeholders": {
+      "semester": {
+        "type": "String"
+      }
+    }
+  },
+  "exportFullExported": "完整课程表已导出",
+  "exportFailed": "导出失败: {error}",
+  "@exportFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "exportSyncOptions": "同步日历选项",
+  "exportChooseSyncAction": "选择日历同步操作",
+  "exportUpdateCurrent": "更新当前课表",
+  "exportChooseSemesterSync": "选择学期同步",
+  "exportChooseSemesterToSync": "选择要同步的学期",
+  "exportSyncAllSemesters": "同步所有学期",
+  "exportPermissionFailed": "权限获取失败",
+  "exportPermissionInstruction": "请在系统设置中手动开启日历权限",
+  "exportResyncSuccess": "重新同步成功",
+  "exportResyncFailed": "重新同步失败",
+  "exportSyncSuccess": "同步成功",
+  "exportSyncFailed": "同步失败",
+  "exportResyncedCount": "已重新同步 {courses} 门课程，共计 {events} 个日程",
+  "@exportResyncedCount": {
+    "placeholders": {
+      "courses": {
+        "type": "String"
+      },
+      "events": {
+        "type": "String"
+      }
+    }
+  },
+  "exportSyncedCount": "已同步 {courses} 门课程，共计 {events} 个日程",
+  "@exportSyncedCount": {
+    "placeholders": {
+      "courses": {
+        "type": "String"
+      },
+      "events": {
+        "type": "String"
+      }
+    }
+  },
+  "exportSyncedSemesterCount": "已同步 {semester} 的 {courses} 门课程，共计 {events} 个日程",
+  "@exportSyncedSemesterCount": {
+    "placeholders": {
+      "semester": {
+        "type": "String"
+      },
+      "courses": {
+        "type": "String"
+      },
+      "events": {
+        "type": "String"
+      }
+    }
+  },
+  "exportSyncedAllCount": "已同步所有学期的 {courses} 门课程，共计 {events} 个日程",
+  "@exportSyncedAllCount": {
+    "placeholders": {
+      "courses": {
+        "type": "String"
+      },
+      "events": {
+        "type": "String"
+      }
+    }
+  },
+  "exportNoResync": "无法重新同步课程到系统日历",
+  "exportResyncError": "重新同步时出错: {error}",
+  "@exportResyncError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "exportSemesterMissing": "未找到指定的学期",
+  "exportNoSyncSemester": "没有可同步的学期数据，请先登录",
+  "exportNoSyncSemesterCourses": "无法同步 {semester} 的课程",
+  "@exportNoSyncSemesterCourses": {
+    "placeholders": {
+      "semester": {
+        "type": "String"
+      }
+    }
+  },
+  "exportNoSyncAll": "无法同步所有学期的课程",
+  "exportSyncError": "同步时出错: {error}",
+  "@exportSyncError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "exportUnsupported": "暂不支持",
+  "exportMacUnsupported": "macOS 系统暂不支持日历同步功能",
+  "exportSignInToSync": "请先登录后再开启日历同步功能",
+  "exportIosSyncFailure": "无法同步课程到系统日历，从日历中移除Google账户后重试",
+  "exportSyncFailure": "无法同步课程到系统日历，请检查权限和网络连接",
+  "exportDisabled": "日历同步功能已关闭，已删除课表数据和Celechron日历",
+  "exportDisabledDeleteIssue": "日历同步功能已关闭，但删除日历时遇到问题",
+  "exportDisabledDeleteError": "日历同步功能已关闭，但删除日历时出错: {error}",
+  "@exportDisabledDeleteError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "exportInstructor": "教师: {name}",
+  "exportFinalExam": "期末考试",
+  "exportMidtermExam": "期中考试",
+  "exportExamDescription": "{name} - {type}\n座位号：{seat}",
+  "@exportInstructor": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@exportExamDescription": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "type": {
+        "type": "String"
+      },
+      "seat": {
+        "type": "String"
+      }
+    }
+  }
+}

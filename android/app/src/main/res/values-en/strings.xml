@@ -1,0 +1,9 @@
+<resources>
+    <string name="ecard_widget_name">Campus Card</string>
+    <string name="ecard_balance">Card balance</string>
+    <string name="ecard_updated_at">Updated %1$s</string>
+    <string name="ecard_pending">Refresh</string>
+    <string name="ecard_card_icon">Campus card</string>
+    <string name="ecard_refresh_icon">Refresh balance</string>
+    <string name="ecard_qr_icon">Open payment code</string>
+</resources>

@@ -1,3 +1,4 @@
+import 'package:celechron/l10n/l10n.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:celechron/model/course.dart';
@@ -57,8 +58,9 @@ class CourseBriefCard extends StatelessWidget {
                           ),
                           Text(
                               course.credit > 0
-                                  ? '  ${course.credit.toStringAsFixed(1)} 学分'
-                                  : '  待更新',
+                                  ? context.l10n.academicCourseCreditValue(
+                                      course.credit.toStringAsFixed(1))
+                                  : '  ${context.l10n.academicPendingUpdate}',
                               style: CupertinoTheme.of(context)
                                   .textTheme
                                   .textStyle
@@ -81,7 +83,9 @@ class CourseBriefCard extends StatelessWidget {
                               .withValues(alpha: 0.5),
                         ),
                         Expanded(
-                            child: Text(' 课号：${course.realId}',
+                            child: Text(
+                                context.l10n
+                                    .academicCourseIdValue(course.realId),
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
@@ -104,7 +108,9 @@ class CourseBriefCard extends StatelessWidget {
                               .withValues(alpha: 0.5),
                         ),
                         Expanded(
-                            child: Text(' 教师：${course.teacher ?? '未知'}',
+                            child: Text(
+                                context.l10n.academicTeacherValue(
+                                    displayText(course.teacher ?? '未知')),
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
@@ -127,7 +133,14 @@ class CourseBriefCard extends StatelessWidget {
                           ),
                           Text(
                               // grs is 90 / 100, ugrs is 4.0 / 5.0
-                              ' 成绩：${course.grade!.original == "" ? course.grade!.hundredPoint : course.grade!.original}  / ${course.grade!.original == "" ? 100 : course.grade!.fivePoint.toStringAsFixed(1)}',
+                              context.l10n.academicGradeValue(
+                                  course.grade!.original == ""
+                                      ? course.grade!.hundredPoint.toString()
+                                      : course.grade!.original,
+                                  course.grade!.original == ""
+                                      ? '100'
+                                      : course.grade!.fivePoint
+                                          .toStringAsFixed(1)),
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.normal,
@@ -155,7 +168,7 @@ class CourseBriefCard extends StatelessWidget {
                                   .color!
                                   .withValues(alpha: 0.5),
                             ),
-                            Text(' 线上课程',
+                            Text(context.l10n.academicOnlineCourse,
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
@@ -178,7 +191,7 @@ class CourseBriefCard extends StatelessWidget {
                                   .color!
                                   .withValues(alpha: 0.5),
                             ),
-                            Text(' ${course.type}',
+                            Text(' ${displayText(course.type!)}',
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,

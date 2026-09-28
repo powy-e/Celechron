@@ -1,3 +1,4 @@
+import 'package:celechron/l10n/l10n.dart';
 import 'package:extended_sliver/extended_sliver.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -67,7 +68,7 @@ class _ExamListPageState extends State<ExamListPage> {
                           const SizedBox(width: 8.0),
                           Expanded(
                               child: Text(
-                                  '${exams[0].name}${exams[0].type == ExamType.midterm ? "（期中）" : ""}',
+                                  '${exams[0].name}${exams[0].type == ExamType.midterm ? context.l10n.academicMidterm : ""}',
                                   style: CupertinoTheme.of(context)
                                       .textTheme
                                       .textStyle
@@ -90,7 +91,9 @@ class _ExamListPageState extends State<ExamListPage> {
                               .withValues(alpha: 0.5),
                         ),
                         Expanded(
-                            child: Text(' 时间：${exams[0].chineseTime}',
+                            child: Text(
+                                context.l10n.academicTimeLabel(
+                                    displayText(exams[0].chineseTime)),
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
@@ -113,7 +116,10 @@ class _ExamListPageState extends State<ExamListPage> {
                               .withValues(alpha: 0.5),
                         ),
                         Expanded(
-                            child: Text(' 地点：${exams[0].location ?? '未知'}',
+                            child: Text(
+                                context.l10n.academicLocationLabel(displayText(
+                                    exams[0].location ??
+                                        context.l10n.academicUnknown)),
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
@@ -136,7 +142,10 @@ class _ExamListPageState extends State<ExamListPage> {
                               .withValues(alpha: 0.5),
                         ),
                         Expanded(
-                            child: Text(' 座位：${exams[0].seat ?? '未知'}',
+                            child: Text(
+                                context.l10n.academicSeatLabel(displayText(
+                                    exams[0].seat ??
+                                        context.l10n.academicUnknown)),
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
@@ -176,7 +185,7 @@ class _ExamListPageState extends State<ExamListPage> {
                             const SizedBox(width: 8.0),
                             Expanded(
                                 child: Text(
-                                    '${exams[i].name}${exams[i].type == ExamType.midterm ? "（期中）" : ""}',
+                                    '${exams[i].name}${exams[i].type == ExamType.midterm ? context.l10n.academicMidterm : ""}',
                                     style: CupertinoTheme.of(context)
                                         .textTheme
                                         .textStyle
@@ -199,7 +208,9 @@ class _ExamListPageState extends State<ExamListPage> {
                                 .withValues(alpha: 0.5),
                           ),
                           Expanded(
-                              child: Text(' 时间：${exams[i].chineseTime}',
+                              child: Text(
+                                  context.l10n.academicTimeLabel(
+                                      displayText(exams[i].chineseTime)),
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.normal,
@@ -222,7 +233,10 @@ class _ExamListPageState extends State<ExamListPage> {
                                 .withValues(alpha: 0.5),
                           ),
                           Expanded(
-                              child: Text(' 地点：${exams[i].location ?? '未知'}',
+                              child: Text(
+                                  context.l10n.academicLocationLabel(
+                                      displayText(exams[i].location ??
+                                          context.l10n.academicUnknown)),
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.normal,
@@ -245,7 +259,10 @@ class _ExamListPageState extends State<ExamListPage> {
                                 .withValues(alpha: 0.5),
                           ),
                           Expanded(
-                              child: Text(' 座位：${exams[i].seat ?? '未知'}',
+                              child: Text(
+                                  context.l10n.academicSeatLabel(displayText(
+                                      exams[i].seat ??
+                                          context.l10n.academicUnknown)),
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.normal,
@@ -268,7 +285,7 @@ class _ExamListPageState extends State<ExamListPage> {
 
   Widget _semesterPicker(BuildContext context) {
     return RoundRectangleCardWithForehead(
-        forehead: const Row(children: [
+        forehead: Row(children: [
           // alert icon
           Padding(
             padding: EdgeInsets.only(left: 12, top: 4, bottom: 4),
@@ -280,7 +297,7 @@ class _ExamListPageState extends State<ExamListPage> {
           ),
           Padding(
               padding: EdgeInsets.only(left: 4, top: 4, bottom: 4),
-              child: Text('请务必前往教务网核对',
+              child: Text(context.l10n.academicCheckPortal,
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
@@ -329,8 +346,8 @@ class _ExamListPageState extends State<ExamListPage> {
           CupertinoColors.systemGroupedBackground, context),
       child: CustomScrollView(
         slivers: [
-          const CelechronSliverTextHeader(
-            subtitle: '考试',
+          CelechronSliverTextHeader(
+            subtitle: context.l10n.academicExams,
           ),
           SliverPinnedToBoxAdapter(
             child: Padding(

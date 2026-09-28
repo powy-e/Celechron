@@ -1,0 +1,398 @@
+{
+  "academicAcademics": "学业",
+  "academicActivityEnd": "活动结束时间",
+  "academicActivityStart": "活动开始时间",
+  "academicArtPassed": "美育：{status}",
+  "@academicArtPassed": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "academicArts": "美育",
+  "academicAssignment": "作业",
+  "academicBack": "返回",
+  "academicBasicInfo": "基本信息",
+  "academicBySemester": "按学期",
+  "academicCachedDetails": "项目明细为缓存或上一次结果。",
+  "academicCachedPoints": "当前记点使用缓存或项目合计，请在网络恢复后刷新。",
+  "academicCheckPortal": "请务必前往教务网核对",
+  "academicChooseCourse": "要查看哪一个？",
+  "academicClassSessions": "课时",
+  "academicClassroomCategory": "课堂类别",
+  "academicClassroomPointsLong": "四课记点",
+  "academicClassroomPointsMid": "三课记点",
+  "academicClassroomPointsShort": "二课记点",
+  "academicConflictCourse": "冲突课程",
+  "academicCountedTowardTotal": "已计入总分",
+  "academicCourseCode": "课号：{code}",
+  "@academicCourseCode": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "academicCourseCredit": "课程",
+  "academicCourseCreditValue": "{credits} 学分",
+  "@academicCourseCreditValue": {
+    "placeholders": {
+      "credits": {
+        "type": "String"
+      }
+    }
+  },
+  "academicCourseDetails": "课程详情",
+  "academicCourseIdValue": "课号：{code}",
+  "@academicCourseIdValue": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "academicCourses": "课程",
+  "academicCredits": "学分",
+  "academicDegraded": "降级",
+  "academicDescription": "情况说明",
+  "academicDetailsSource": "项目明细来源：{source}",
+  "@academicDetailsSource": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  },
+  "academicDueThisWeek": "本周截止",
+  "academicDueToday": "一天内",
+  "academicEarnedCredits": "获得学分",
+  "academicExamTime": "时间：{time}",
+  "@academicExamTime": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "academicExams": "考试",
+  "academicFailure": "失败",
+  "academicFetchProblem": "获取数据时遇到问题。请检查网络连接情况，并尝试重新获取数据。\n注意：你需要完成所有的教学评价才能获取成绩信息。",
+  "academicFetchProblemShort": "获取数据时遇到问题",
+  "academicFivePoint": "五分制",
+  "academicFourPoint": "四分制",
+  "academicFourthClassroom": "第四课堂",
+  "academicFriday": "五",
+  "academicGrade": "成绩：{grade} / {scale}",
+  "@academicGrade": {
+    "placeholders": {
+      "grade": {
+        "type": "String"
+      },
+      "scale": {
+        "type": "String"
+      }
+    }
+  },
+  "academicGradeCredit": "{id} / {credits} 学分",
+  "@academicGradeCredit": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      },
+      "credits": {
+        "type": "String"
+      }
+    }
+  },
+  "academicGradeValue": "成绩：{grade} / {scale}",
+  "@academicGradeValue": {
+    "placeholders": {
+      "grade": {
+        "type": "String"
+      },
+      "scale": {
+        "type": "String"
+      }
+    }
+  },
+  "academicGrades": "成绩",
+  "academicHideCourseInfo": "隐藏课程信息",
+  "academicIncludedExcludedCounts": "已计入 {includedCount} 项 · 未计入 {excludedCount} 项",
+  "@academicIncludedExcludedCounts": {
+    "placeholders": {
+      "includedCount": {
+        "type": "int"
+      },
+      "excludedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "academicLabor": "劳育",
+  "academicLaborPassed": "劳育：{status}",
+  "@academicLaborPassed": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "academicLastUpdated": "最近更新时间",
+  "academicLegacyPracticeOnly": "当前仅获取到旧实践汇总，暂无 getSqjl 项目明细。",
+  "academicLocation": "地点：{location}",
+  "@academicLocation": {
+    "placeholders": {
+      "location": {
+        "type": "String"
+      }
+    }
+  },
+  "academicLocationLabel": "地点：{location}",
+  "@academicLocationLabel": {
+    "placeholders": {
+      "location": {
+        "type": "String"
+      }
+    }
+  },
+  "academicLongPressClear": "长按清空",
+  "academicMajorCredits": "学年主修学分",
+  "academicMajorCreditsShort": "主修学分",
+  "academicMajorFourPoint": "学年主修四分制",
+  "academicMajorGpa": "主修均绩",
+  "academicMidterm": "（期中）",
+  "academicMonday": "一",
+  "academicNoCountedProjects": "暂无已计入总分的项目",
+  "academicNoEndTime": "无",
+  "academicNoPendingProjects": "暂无审核中或未计入的项目",
+  "academicNotCounted": "未计入总分",
+  "academicNotCountedNotice": "该项目当前未计入总分。",
+  "academicNotFilled": "未填写",
+  "academicNotLoggedIn": "未登录",
+  "academicNotPassed": "未通过",
+  "academicOK": "确定",
+  "academicOfficialPointsTotal": "正式汇总记点",
+  "academicOfflineCacheNote": "离线数据将在同步失败时自动使用",
+  "academicOnlineCourse": "线上课程",
+  "academicPassed": "已通过",
+  "academicPendingOrExcluded": "审核中或未计入",
+  "academicPendingUpdate": "待更新",
+  "academicPercentage": "百分制",
+  "academicPointsEarned": "获得记点",
+  "academicPointsMayDiffer": "正式汇总与项目记录可能不完全一致，项目明细仍按 getSqjl 原样展示。",
+  "academicPointsSource": "记点来源：{source}",
+  "@academicPointsSource": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  },
+  "academicPractice": "实践",
+  "academicPracticeClassroom": "实践课堂",
+  "academicPracticeDetails": "实践项目详情",
+  "academicPracticeDetailsUnavailable": "当前 getSqjl 项目明细不可用，请稍后刷新。",
+  "academicPracticeFetchProblem": "获取实践记点时遇到问题",
+  "academicPracticeProjects": "{category}项目",
+  "@academicPracticeProjects": {
+    "placeholders": {
+      "category": {
+        "type": "String"
+      }
+    }
+  },
+  "academicProjectCategory": "项目类别",
+  "academicProjectName": "项目名称",
+  "academicPullToRefresh": "下拉刷新以获取数据",
+  "academicQualityCategory": "素质类别",
+  "academicRefreshDetails": "刷新详情",
+  "academicRefreshProblem": "刷新遇到问题：{degradedCount} 项降级，{failureCount} 项失败",
+  "@academicRefreshProblem": {
+    "placeholders": {
+      "degradedCount": {
+        "type": "int"
+      },
+      "failureCount": {
+        "type": "int"
+      }
+    }
+  },
+  "academicReset": "重置",
+  "academicRetry": "重新获取数据",
+  "academicReviewStatus": "审核状态",
+  "academicRoleOrReason": "参与身份或得分原因",
+  "academicSaturday": "六",
+  "academicSchedule": "课表",
+  "academicSchoolYearCredits": "学年学分",
+  "academicSchoolYearFourPoint": "学年四分制",
+  "academicSchoolYearGpa": "学年均绩",
+  "academicSearchCoursesTasks": "搜索课程、事项...",
+  "academicSearchShort": "搜索",
+  "academicSeat": "座位：{seat}",
+  "@academicSeat": {
+    "placeholders": {
+      "seat": {
+        "type": "String"
+      }
+    }
+  },
+  "academicSeatLabel": "座位：{seat}",
+  "@academicSeatLabel": {
+    "placeholders": {
+      "seat": {
+        "type": "String"
+      }
+    }
+  },
+  "academicSecondClassroom": "第二课堂",
+  "academicSectionCount": "{title}（{count}）",
+  "@academicSectionCount": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "academicSelectAll": "全选",
+  "academicSelectedCredits": "已选学分",
+  "academicSelectedFivePoint": "已选五分制",
+  "academicSelectedFourPoint": "已选四分制",
+  "academicSelectedPercentage": "已选百分制",
+  "academicSemesterHours": "{semester}学期课时",
+  "@academicSemesterHours": {
+    "placeholders": {
+      "semester": {
+        "type": "String"
+      }
+    }
+  },
+  "academicSemesterSuffix": "{semester}学期课时",
+  "@academicSemesterSuffix": {
+    "placeholders": {
+      "semester": {
+        "type": "String"
+      }
+    }
+  },
+  "academicSessionCount": "{count}节/两周",
+  "@academicSessionCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "academicSessionsPerTwoWeeks": "{count}节/两周",
+  "@academicSessionsPerTwoWeeks": {
+    "placeholders": {
+      "count": {
+        "type": "double"
+      }
+    }
+  },
+  "academicSunday": "日",
+  "academicTeacher": "教师：{teacher}",
+  "@academicTeacher": {
+    "placeholders": {
+      "teacher": {
+        "type": "String"
+      }
+    }
+  },
+  "academicTeacherValue": "教师：{teacher}",
+  "@academicTeacherValue": {
+    "placeholders": {
+      "teacher": {
+        "type": "String"
+      }
+    }
+  },
+  "academicThirdClassroom": "第三课堂",
+  "academicThursday": "四",
+  "academicTimeLabel": "时间：{time}",
+  "@academicTimeLabel": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "academicTotal": "总计",
+  "academicTuesday": "二",
+  "academicUnknown": "未知",
+  "academicUnselectedFivePoint": "未选五分制",
+  "academicUnselectedFourPoint": "未选四分制",
+  "academicUpdatedAt": "更新时间：{time}",
+  "@academicUpdatedAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "academicUpdatedAtShort": "更新于 {time}",
+  "@academicUpdatedAtShort": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "academicUpdatedMinutesAgo": "更新于 {minutes} 分钟前",
+  "@academicUpdatedMinutesAgo": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "academicViewDetails": "查看详情",
+  "academicWednesday": "三",
+  "academicWeight": "加权比例",
+  "academicWeightedCredits": "加权学分",
+  "academicWeightedFivePoint": "加权五分制",
+  "academicWeightedGrades": "加权成绩",
+  "academicRefreshingCalendar": "正在同步校历...",
+  "academicFetchingSchedule": "正在获取课表...",
+  "academicParsingExams": "正在解析考试安排...",
+  "academicWaitingGrades": "正在等待成绩数据...",
+  "academicCheckingMajorGrades": "正在核对主修成绩...",
+  "academicSyncingAssignments": "正在同步作业列表...",
+  "academicCountingPracticeCredits": "正在统计实践学分...",
+  "academicParsingUndergraduateExams": "正在解析本科生考试...",
+  "academicWaitingUndergraduateGrades": "正在等待本科生成绩...",
+  "academicParsingGraduateExams": "正在解析研究生考试...",
+  "academicWaitingGraduateGrades": "正在等待研究生成绩...",
+  "academicCalendarUpdated": "校历已更新",
+  "academicScheduleFetched": "成功获取课表",
+  "academicExamsFetched": "成功获取考试安排",
+  "academicGradesFetched": "成功获取考试成绩",
+  "academicMajorGradesUpdated": "主修成绩已更新",
+  "academicAssignmentsFetched": "成功获取作业列表",
+  "academicActivityCreditsUpdated": "实践学分已更新",
+  "academicConfigUpdated": "校历已更新",
+  "academicUndergraduateExamsFetched": "成功获取本科生考试",
+  "academicUndergraduateGradesFetched": "成功获取本科生成绩",
+  "academicGraduateExamsFetched": "成功获取研究生考试",
+  "academicGraduateGradesFetched": "成功获取研究生成绩",
+  "academicCalendarFetchFailed": "校历获取失败",
+  "academicScheduleFetchFailed": "课表获取失败",
+  "academicExamsFetchFailed": "考试安排获取失败",
+  "academicGradesFetchFailed": "成绩获取失败",
+  "academicMajorGradesFetchFailed": "主修成绩获取失败",
+  "academicAssignmentsFetchFailed": "作业获取失败",
+  "academicActivityCreditsFetchFailed": "实践学分获取失败",
+  "academicConfigFetchFailed": "校历配置获取失败",
+  "academicUndergraduateExamsFetchFailed": "本科生考试获取失败",
+  "academicUndergraduateGradesFetchFailed": "本科生成绩获取失败",
+  "academicGraduateExamsFetchFailed": "研究生考试获取失败",
+  "academicGraduateGradesFetchFailed": "研究生成绩获取失败",
+  "academicSyncingData": "正在同步教务数据...",
+  "academicWaitingServer": "正在等待服务器响应...",
+  "academicStillFetching": "仍在努力获取中...",
+  "academicFinishingRefresh": "正在完成刷新..."
+}

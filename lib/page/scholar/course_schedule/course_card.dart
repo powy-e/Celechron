@@ -1,3 +1,4 @@
+import 'package:celechron/l10n/l10n.dart';
 import 'package:celechron/page/scholar/course_detail/course_detail_view.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -59,9 +60,10 @@ class _SessionCardState extends State<SessionCard>
     if (!widget.hideInfomation) {
       if (widget.sessionList.length == 1) {
         sessionName = widget.sessionList[0].name;
-        sessionLocation = widget.sessionList[0].location ?? '未知地点';
+        sessionLocation =
+            widget.sessionList[0].location ?? context.l10n.academicUnknown;
       } else {
-        sessionName = "冲突课程\n";
+        sessionName = "${context.l10n.academicConflictCourse}\n";
         for (var i in widget.sessionList) {
           sessionName =
               '$sessionName\n${i.time.first}-${i.time.last}: ${i.name}';
@@ -100,8 +102,8 @@ class _SessionCardState extends State<SessionCard>
             context: context,
             builder: (BuildContext context) {
               return CupertinoAlertDialog(
-                title: const Text(
-                  '要查看哪一个？',
+                title: Text(
+                  context.l10n.academicChooseCourse,
                 ),
                 content: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -131,7 +133,7 @@ class _SessionCardState extends State<SessionCard>
                 ),
                 actions: [
                   CupertinoDialogAction(
-                    child: const Text('返回'),
+                    child: Text(context.l10n.academicBack),
                     onPressed: () async {
                       Navigator.of(context).pop();
                     },

@@ -1,3 +1,4 @@
+import 'package:celechron/l10n/l10n.dart';
 import 'package:celechron/model/task.dart';
 import 'package:celechron/utils/utils.dart';
 import 'package:get/get.dart';
@@ -25,17 +26,25 @@ class CalendarController extends GetxController {
   String dayDescription(DateTime day) {
     var semester = scholar.value.semesters.firstWhereOrNull(
         (e) => !day.isBefore(e.firstDay) && !day.isAfter(e.lastDay));
-    if (semester == null) return '考试周/假期';
+    if (semester == null) return appL10n.coreExamWeekOrBreak;
 
     var toFirstWeek = day.difference(semester.firstDay).inDays ~/ 7;
     if (toFirstWeek < 8) {
-      return '${semester.name[9]}${numToChinese[toFirstWeek]}周';
+      if (AppLanguage.isEnglish) {
+        return appL10n.coreSeasonWeek(
+            displayText(semester.firstHalfName), toFirstWeek + 1);
+      }
+      return displayText('${semester.name[9]}${numToChinese[toFirstWeek]}周');
     }
     var toLastWeek = 7 - semester.lastDay.difference(day).inDays ~/ 7;
     if (toLastWeek < 8) {
-      return '${semester.name[10]}${numToChinese[toLastWeek]}周';
+      if (AppLanguage.isEnglish) {
+        return appL10n.coreSeasonWeek(
+            displayText(semester.secondHalfName), toLastWeek + 1);
+      }
+      return displayText('${semester.name[10]}${numToChinese[toLastWeek]}周');
     }
-    return '考试周/假期';
+    return appL10n.coreExamWeekOrBreak;
   }
 
   @override
@@ -105,13 +114,17 @@ class CalendarController extends GetxController {
 
   String getCurrentSemesterDisplayName() {
     final semester = getCurrentSemester();
-    if (semester == null) return '无学期信息';
+    if (semester == null) return appL10n.coreNoSemesterInfo;
 
     final isFirstHalf = isFirstHalfSemester(semester);
     final semesterName =
         '${semester.name.substring(2, 5)}${semester.name.substring(7, 11)}';
     final halfName =
         isFirstHalf ? semester.firstHalfName : semester.secondHalfName;
-    return '$semesterName $halfName学期';
+    if (AppLanguage.isEnglish) {
+      return appL10n.coreSemesterDisplay(
+          semester.name.substring(0, 9), displayText(halfName));
+    }
+    return displayText('$semesterName $halfName学期');
   }
 }

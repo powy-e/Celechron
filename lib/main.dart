@@ -1,3 +1,4 @@
+import 'package:celechron/l10n/l10n.dart';
 import 'dart:async';
 import 'dart:io';
 
@@ -32,6 +33,7 @@ void main() async {
   await Hive.initFlutter();
   var db = Get.put(DatabaseHelper(), tag: 'db');
   await db.init();
+  await AppLanguage.initialize(db);
 
   // 注入数据观察项（相当于事件总线，更新这些变量将导致Widget重绘
   Get.put((await db.getScholar()).obs, tag: 'scholar');
@@ -144,7 +146,9 @@ class _CelechronAppState extends State<CelechronApp>
   @override
   Widget build(BuildContext context) {
     var brightnessMode = Get.find<Option>(tag: 'option').brightnessMode;
-    return Obx(() => GetCupertinoApp(
+    return ValueListenableBuilder<Locale>(
+      valueListenable: AppLanguage.locale,
+      builder: (context, locale, _) => Obx(() => GetCupertinoApp(
           theme: CupertinoThemeData(
             brightness: brightnessMode.value == BrightnessMode.system
                 ? null
@@ -155,6 +159,7 @@ class _CelechronAppState extends State<CelechronApp>
             barBackgroundColor: CupertinoColors.systemBackground,
           ),
           localizationsDelegates: const [
+            AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
@@ -163,7 +168,7 @@ class _CelechronAppState extends State<CelechronApp>
             Locale('zh'),
             Locale('en'),
           ],
-          locale: const Locale('zh'),
+          locale: locale,
           builder: (context, child) => MediaQuery(
             data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
             child: child!,
@@ -176,7 +181,8 @@ class _CelechronAppState extends State<CelechronApp>
           },
           debugShowCheckedModeBanner: false,
           navigatorKey: navigatorKey,
-        ));
+        )),
+    );
   }
 
   void _initAppLinks() {

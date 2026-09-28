@@ -1,3 +1,4 @@
+import 'package:celechron/l10n/l10n.dart';
 import 'package:celechron/design/custom_colors.dart';
 import 'package:celechron/utils/tuple.dart';
 import 'package:celechron/model/grade.dart';
@@ -67,7 +68,7 @@ class GradeDetailPage extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Obx(() => TwoLineCard(
-                                title: '学年学分',
+                                title: context.l10n.academicSchoolYearCredits,
                                 content: getYearStats(_gradeDetailController
                                         .semesterIndex.value)
                                     .item2
@@ -78,7 +79,7 @@ class GradeDetailPage extends StatelessWidget {
                           const SizedBox(width: 8),
                           Expanded(
                             child: Obx(() => TwoLineCard(
-                                title: '学年均绩',
+                                title: context.l10n.academicSchoolYearGpa,
                                 content: getYearStats(_gradeDetailController
                                         .semesterIndex.value)
                                     .item1[0]
@@ -89,7 +90,7 @@ class GradeDetailPage extends StatelessWidget {
                           const SizedBox(width: 8),
                           Expanded(
                             child: Obx(() => TwoLineCard(
-                                title: '学年四分制',
+                                title: context.l10n.academicSchoolYearFourPoint,
                                 content: getYearStats(_gradeDetailController
                                         .semesterIndex.value)
                                     .item1[1]
@@ -109,7 +110,7 @@ class GradeDetailPage extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Obx(() => TwoLineCard(
-                                title: '学年主修学分',
+                                title: context.l10n.academicMajorCredits,
                                 content: _gradeDetailController
                                     .getYearMajorGpa(_gradeDetailController
                                         .semesterIndex.value)
@@ -121,7 +122,7 @@ class GradeDetailPage extends StatelessWidget {
                           const SizedBox(width: 8),
                           Expanded(
                             child: Obx(() => TwoLineCard(
-                                title: '学年主修均绩',
+                                title: context.l10n.academicMajorGpa,
                                 content: _gradeDetailController
                                     .getYearMajorGpa(_gradeDetailController
                                         .semesterIndex.value)
@@ -133,7 +134,7 @@ class GradeDetailPage extends StatelessWidget {
                           const SizedBox(width: 8),
                           Expanded(
                             child: Obx(() => TwoLineCard(
-                                title: '学年主修四分制',
+                                title: context.l10n.academicMajorFourPoint,
                                 content: _gradeDetailController
                                     .getYearMajorGpa(_gradeDetailController
                                         .semesterIndex.value)
@@ -189,7 +190,7 @@ class GradeDetailPage extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Obx(() => TwoLineCard(
-                                title: '已选学分',
+                                title: context.l10n.academicSelectedCredits,
                                 content: inGpa.item2.toStringAsFixed(1),
                                 backgroundColor:
                                     CustomCupertinoDynamicColors.sand)),
@@ -197,7 +198,7 @@ class GradeDetailPage extends StatelessWidget {
                           const SizedBox(width: 8),
                           Expanded(
                             child: Obx(() => TwoLineCard(
-                                title: '已选五分制',
+                                title: context.l10n.academicSelectedFivePoint,
                                 content: inGpa.item1[0].toStringAsFixed(2),
                                 backgroundColor:
                                     CustomCupertinoDynamicColors.sakura)),
@@ -205,7 +206,7 @@ class GradeDetailPage extends StatelessWidget {
                           const SizedBox(width: 8),
                           Expanded(
                             child: Obx(() => TwoLineCard(
-                                title: '已选四分制',
+                                title: context.l10n.academicSelectedFourPoint,
                                 content: inGpa.item1[1].toStringAsFixed(2),
                                 extraContent: inGpa.item1[2].toStringAsFixed(2),
                                 backgroundColor:
@@ -218,7 +219,7 @@ class GradeDetailPage extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Obx(() => TwoLineCard(
-                                title: '已选百分制',
+                                title: context.l10n.academicSelectedPercentage,
                                 content: inGpa.item1[3].toStringAsFixed(2),
                                 backgroundColor:
                                     CustomCupertinoDynamicColors.peach)),
@@ -226,7 +227,7 @@ class GradeDetailPage extends StatelessWidget {
                           const SizedBox(width: 8),
                           Expanded(
                             child: Obx(() => TwoLineCard(
-                                title: '未选五分制',
+                                title: context.l10n.academicUnselectedFivePoint,
                                 content: notGpa.item1[0].toStringAsFixed(2),
                                 backgroundColor:
                                     CustomCupertinoDynamicColors.cyan)),
@@ -234,7 +235,7 @@ class GradeDetailPage extends StatelessWidget {
                           const SizedBox(width: 8),
                           Expanded(
                             child: Obx(() => TwoLineCard(
-                                title: '未选四分制',
+                                title: context.l10n.academicUnselectedFourPoint,
                                 content: notGpa.item1[1].toStringAsFixed(2),
                                 extraContent:
                                     notGpa.item1[2].toStringAsFixed(2),
@@ -358,7 +359,7 @@ class GradeDetailPage extends StatelessWidget {
       child: CustomScrollView(
         slivers: [
           CelechronSliverTextHeader(
-            subtitle: '成绩',
+            subtitle: context.l10n.academicGrades,
             right: Obx(
               () => Padding(
                 padding: const EdgeInsets.only(right: 18),
@@ -371,7 +372,7 @@ class GradeDetailPage extends StatelessWidget {
                       GestureDetector(
                         child: CupertinoButton(
                           padding: EdgeInsets.zero,
-                          child: const Text('长按清空'),
+                          child: Text(context.l10n.academicLongPressClear),
                           onPressed: () {},
                         ),
                         onLongPress: () {

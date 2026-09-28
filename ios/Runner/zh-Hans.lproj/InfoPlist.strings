@@ -1,0 +1,3 @@
+"NSCalendarsFullAccessUsageDescription" = "Celechron需要完整访问您的日历来同步课程表信息";
+"NSCalendarsUsageDescription" = "Celechron需要访问您的日历来同步课程表信息";
+"NSContactsUsageDescription" = "Celechron需要访问通讯录来设置事件参与者";

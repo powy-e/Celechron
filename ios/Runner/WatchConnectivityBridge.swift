@@ -41,6 +41,7 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate {
         #endif
         let defaults = UserDefaults(suiteName: suiteName)
         var payload: [String: Any] = [:]
+        payload[NativeLanguage.key] = NativeLanguage.code
         if let flowData = defaults?.data(forKey: "flowList") {
             payload["flowList"] = flowData
             payload["flowListBase64"] = flowData.base64EncodedString()
@@ -72,6 +73,10 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate {
             "flowList": data,
             "flowListBase64": data.base64EncodedString(),
         ])
+    }
+
+    func syncLanguageToWatch() {
+        push(payload: [NativeLanguage.key: NativeLanguage.code])
     }
 
     /// 同步校园卡余额（单位：分；-1 表示待刷新）

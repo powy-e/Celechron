@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:device_calendar/device_calendar.dart';
+import 'package:celechron/l10n/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:timezone/timezone.dart' as tz;
@@ -30,6 +31,18 @@ import 'package:celechron/model/semester.dart';
 class CalendarToSystemManager {
   static const String celechronCalendarName = 'Celechron课表';
   static const String calendarDescription = '由Celechron自动同步的浙大课程表';
+  static const String englishCalendarName = 'Celechron Schedule';
+
+  /// Existing calendars keep their IDs when the app language changes.
+  static bool isCelechronCalendarName(String? name) =>
+      name == celechronCalendarName || name == englishCalendarName;
+
+  static Calendar? findExistingCalendar(Iterable<Calendar> calendars) {
+    for (final calendar in calendars) {
+      if (isCelechronCalendarName(calendar.name)) return calendar;
+    }
+    return null;
+  }
 
   final DeviceCalendarPlugin _deviceCalendarPlugin = DeviceCalendarPlugin();
 
@@ -119,8 +132,7 @@ class CalendarToSystemManager {
       // 查找是否已存在同名日历
       var calendarsResult = await _deviceCalendarPlugin.retrieveCalendars();
       if (calendarsResult.isSuccess) {
-        var existingCalendar = calendarsResult.data!
-            .firstWhereOrNull((cal) => cal.name == celechronCalendarName);
+        var existingCalendar = findExistingCalendar(calendarsResult.data!);
 
         if (existingCalendar != null) {
           _celechronCalendarId = existingCalendar.id;
@@ -129,8 +141,8 @@ class CalendarToSystemManager {
       }
 
       // 创建新的Celechron日历
-      var createResult =
-          await _deviceCalendarPlugin.createCalendar(celechronCalendarName);
+      var createResult = await _deviceCalendarPlugin.createCalendar(
+          AppLanguage.isEnglish ? englishCalendarName : celechronCalendarName);
       if (createResult.isSuccess && createResult.data != null) {
         _celechronCalendarId = createResult.data;
         return _celechronCalendarId;
@@ -233,7 +245,7 @@ class CalendarToSystemManager {
 
     // 设置基本信息
     event.title = period.summary;
-    event.description = period.description;
+    event.description = period.localizedCalendarDescription;
     event.start =
         tz.TZDateTime.from(period.startTime, tz.getLocation('Asia/Shanghai'));
     event.end =
@@ -334,8 +346,7 @@ class CalendarToSystemManager {
       if (_celechronCalendarId == null) {
         var calendarsResult = await _deviceCalendarPlugin.retrieveCalendars();
         if (calendarsResult.isSuccess) {
-          var existingCalendar = calendarsResult.data!
-              .firstWhereOrNull((cal) => cal.name == celechronCalendarName);
+          var existingCalendar = findExistingCalendar(calendarsResult.data!);
           if (existingCalendar != null) {
             _celechronCalendarId = existingCalendar.id;
           }
@@ -373,7 +384,8 @@ class CalendarToSystemManager {
       'syncedCourseCount': _syncedCourseCount, // 课程数量
       'syncedEventCount': _syncedEventCount, // 日程数量
       'calendarId': _celechronCalendarId,
-      'calendarName': celechronCalendarName,
+      'calendarName':
+          AppLanguage.isEnglish ? englishCalendarName : celechronCalendarName,
     };
   }
 
@@ -384,11 +396,11 @@ class CalendarToSystemManager {
       showCupertinoDialog(
         context: context,
         builder: (BuildContext context) => CupertinoAlertDialog(
-          title: Text(title),
-          content: Text(message),
+          title: Text(displayText(title)),
+          content: Text(displayText(message)),
           actions: [
             CupertinoDialogAction(
-              child: const Text('确定'),
+              child: Text(appL10n.exportConfirm),
               onPressed: () => Get.back(),
             ),
           ],
@@ -493,27 +505,27 @@ class CalendarToSystemManager {
       context: context,
       builder: (BuildContext actionSheetContext) {
         return CupertinoActionSheet(
-          title: const Text('同步日历选项'),
-          message: const Text('选择日历同步操作'),
+          title: Text(appL10n.exportSyncOptions),
+          message: Text(appL10n.exportChooseSyncAction),
           actions: <Widget>[
             CupertinoActionSheetAction(
               onPressed: () {
                 Navigator.pop(actionSheetContext);
                 resyncCalendarEvents(context);
               },
-              child: const Text('更新当前课表'),
+              child: Text(appL10n.exportUpdateCurrent),
             ),
             CupertinoActionSheetAction(
               onPressed: () {
                 Navigator.pop(actionSheetContext);
                 _showSemesterSelectionDialog(context);
               },
-              child: const Text('选择学期同步'),
+              child: Text(appL10n.exportChooseSemesterSync),
             ),
           ],
           cancelButton: CupertinoActionSheetAction(
             onPressed: () => Navigator.pop(actionSheetContext),
-            child: const Text('取消'),
+            child: Text(appL10n.exportCancel),
           ),
         );
       },
@@ -533,27 +545,27 @@ class CalendarToSystemManager {
       context: context,
       builder: (BuildContext actionSheetContext) {
         return CupertinoActionSheet(
-          title: const Text('选择学期'),
-          message: const Text('选择要同步的学期'),
+          title: Text(appL10n.exportChooseSemester),
+          message: Text(appL10n.exportChooseSemesterToSync),
           actions: [
             ...semesters.map((semester) => CupertinoActionSheetAction(
                   onPressed: () {
                     Navigator.pop(actionSheetContext);
                     syncSpecificSemester(context, semester);
                   },
-                  child: Text(semester),
+                  child: Text(displayText(semester)),
                 )),
             CupertinoActionSheetAction(
               onPressed: () {
                 Navigator.pop(actionSheetContext);
                 syncAllSemesters(context);
               },
-              child: const Text('同步所有学期'),
+              child: Text(appL10n.exportSyncAllSemesters),
             ),
           ],
           cancelButton: CupertinoActionSheetAction(
             onPressed: () => Navigator.pop(actionSheetContext),
-            child: const Text('取消'),
+            child: Text(appL10n.exportCancel),
           ),
         );
       },
@@ -580,8 +592,7 @@ class CalendarToSystemManager {
 
       var calendarsResult = await _deviceCalendarPlugin.retrieveCalendars();
       if (calendarsResult.isSuccess) {
-        var existingCalendar = calendarsResult.data!
-            .firstWhereOrNull((cal) => cal.name == celechronCalendarName);
+        var existingCalendar = findExistingCalendar(calendarsResult.data!);
 
         if (existingCalendar != null) {
           // 如果找到了Celechron日历，说明之前可能开启过同步

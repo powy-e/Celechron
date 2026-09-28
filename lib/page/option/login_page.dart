@@ -1,3 +1,4 @@
+import 'package:celechron/l10n/l10n.dart';
 import 'package:celechron/utils/platform_features.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -39,7 +40,7 @@ class LoginForm extends StatelessWidget {
                 padding: const EdgeInsets.only(
                     left: 16, right: 16, bottom: 8, top: 16),
                 child: Text(
-                  '统一身份认证登录',
+                  context.l10n.coreCampusLogin,
                   style: CupertinoTheme.of(context).textTheme.navTitleTextStyle,
                 ),
               ),
@@ -54,7 +55,7 @@ class LoginForm extends StatelessWidget {
                           keyboardType: TextInputType.number,
                           prefix: Container(
                               padding: const EdgeInsets.only(left: 12),
-                              child: Text('学号',
+                              child: Text(context.l10n.coreStudentId,
                                   style: CupertinoTheme.of(context)
                                       .textTheme
                                       .textStyle)),
@@ -74,7 +75,7 @@ class LoginForm extends StatelessWidget {
                           obscureText: true,
                           prefix: Container(
                             padding: const EdgeInsets.only(left: 12),
-                            child: Text('密码',
+                            child: Text(context.l10n.corePassword,
                                 style: CupertinoTheme.of(context)
                                     .textTheme
                                     .textStyle),
@@ -113,14 +114,16 @@ class LoginForm extends StatelessWidget {
                                     context: context,
                                     builder: (context) {
                                       return CupertinoAlertDialog(
-                                        title: const Text('登录失败'),
+                                        title:
+                                            Text(context.l10n.coreLoginFailed),
                                         content: Text(value
                                             .where((e) => e != null)
                                             .fold('', (p, v) => '$p\n$v')
                                             .trim()),
                                         actions: [
                                           CupertinoDialogAction(
-                                            child: const Text('确定'),
+                                            child:
+                                                Text(context.l10n.coreConfirm),
                                             onPressed: () async {
                                               Navigator.of(context).pop();
                                             },
@@ -142,7 +145,7 @@ class LoginForm extends StatelessWidget {
                           child: Center(
                               child: buttonPressed.value
                                   ? const CupertinoActivityIndicator()
-                                  : const Text('登录',
+                                  : Text(context.l10n.coreLogin,
                                       style: TextStyle(
                                           color: CupertinoColors.white))),
                         ))),

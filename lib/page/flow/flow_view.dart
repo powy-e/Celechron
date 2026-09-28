@@ -1,3 +1,4 @@
+import 'package:celechron/l10n/l10n.dart';
 import 'dart:async';
 import 'dart:math';
 import 'package:celechron/design/custom_colors.dart';
@@ -151,7 +152,7 @@ class FlowPage extends StatelessWidget {
                                             CrossAxisAlignment.end,
                                         children: [
                                           Text(
-                                            '离结束还有',
+                                            context.l10n.coreTimeUntilEnd,
                                             style: TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.normal,
@@ -184,7 +185,7 @@ class FlowPage extends StatelessWidget {
                                             CrossAxisAlignment.end,
                                         children: [
                                           Text(
-                                            '开始还有',
+                                            context.l10n.coreTimeUntilStart,
                                             style: TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.normal,
@@ -386,7 +387,7 @@ class FlowPage extends StatelessWidget {
                           if (period.startTime.isBefore(DateTime.now()) &&
                               period.endTime.isAfter(DateTime.now()))
                             Text(
-                              '结束还有\n${durationToString(period.endTime.difference(DateTime.now()))}',
+                              context.l10n.coreEndsIn(durationToString(period.endTime.difference(DateTime.now()))),
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.normal,
@@ -400,7 +401,7 @@ class FlowPage extends StatelessWidget {
                             )
                           else
                             Text(
-                              '开始还有\n${durationToString(period.startTime.difference(DateTime.now()))}',
+                              context.l10n.coreStartsIn(durationToString(period.startTime.difference(DateTime.now()))),
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.normal,
@@ -429,8 +430,8 @@ class FlowPage extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return CupertinoAlertDialog(
-          title: const Text(
-            '开始规划',
+          title: Text(
+            context.l10n.coreStartPlanning,
           ),
           content: StatefulBuilder(
             builder: (BuildContext context, StateSetter setState) {
@@ -443,8 +444,8 @@ class FlowPage extends StatelessWidget {
                     const SizedBox(
                       height: 8,
                     ),
-                    const Text(
-                      '点击修改开始时间',
+                    Text(
+                      context.l10n.coreTapToChangeStartTime,
                     ),
                     CupertinoButton(
                       onPressed: () async {
@@ -476,7 +477,9 @@ class FlowPage extends StatelessWidget {
                       child: Text(TimeHelper.chineseDateTime(newTime)),
                     ),
                     Text(
-                      '工作 ${durationToString(db.getWorkTime())} - 休息 ${durationToString(db.getRestTime())}',
+                      context.l10n.coreWorkBreakSummary(
+                          durationToString(db.getWorkTime()),
+                          durationToString(db.getRestTime())),
                     ),
                   ],
                 ),
@@ -486,7 +489,7 @@ class FlowPage extends StatelessWidget {
           actions: [
             CupertinoDialogAction(
               onPressed: () => navigator!.pop(),
-              child: const Text('返回'),
+              child: Text(context.l10n.coreBack),
             ),
             CupertinoDialogAction(
               onPressed: () {
@@ -497,14 +500,13 @@ class FlowPage extends StatelessWidget {
                       context: context,
                       builder: (BuildContext context) {
                         return CupertinoAlertDialog(
-                          title: const Text(
-                            '时间不够了！',
+                          title: Text(
+                            context.l10n.coreNotEnoughTime,
                           ),
-                          content: const Text(
-                              '即使是完全不休息也有任务无法完成。请压缩任务的预期时间，或者检查是否有任务在规划开始时间之前就结束。'),
+                          content: Text(context.l10n.coreTasksDoNotFit),
                           actions: [
                             CupertinoDialogAction(
-                              child: const Text('确定'),
+                              child: Text(context.l10n.coreConfirm),
                               onPressed: () async {
                                 Navigator.of(context).pop();
                               },
@@ -519,14 +521,14 @@ class FlowPage extends StatelessWidget {
                       context: context,
                       builder: (BuildContext context) {
                         return CupertinoAlertDialog(
-                          title: const Text(
-                            '休息时间已压缩',
+                          title: Text(
+                            context.l10n.coreBreakTimeShortened,
                           ),
-                          content: Text(
-                              '因为任务过多，你需要把休息时间压缩到 ${durationToString(Duration(minutes: ret))}才能完成任务。'),
+                          content: Text(context.l10n.coreBreaksMustShrink(
+                              durationToString(Duration(minutes: ret)))),
                           actions: [
                             CupertinoDialogAction(
-                              child: const Text('确定'),
+                              child: Text(context.l10n.coreConfirm),
                               onPressed: () async {
                                 Navigator.of(context).pop();
                               },
@@ -543,13 +545,13 @@ class FlowPage extends StatelessWidget {
                     context: context,
                     builder: (BuildContext context) {
                       return CupertinoAlertDialog(
-                        title: const Text(
-                          '开始时间必须晚于现在',
+                        title: Text(
+                          context.l10n.coreStartTimeMustBeFuture,
                         ),
-                        content: const Text('请调整开始时间。'),
+                        content: Text(context.l10n.coreAdjustStartTime),
                         actions: [
                           CupertinoDialogAction(
-                            child: const Text('确定'),
+                            child: Text(context.l10n.coreConfirm),
                             onPressed: () async {
                               Navigator.of(context).pop();
                             },
@@ -560,7 +562,7 @@ class FlowPage extends StatelessWidget {
                   );
                 }
               },
-              child: const Text('创建'),
+              child: Text(context.l10n.coreCreate),
             ),
           ],
         );
@@ -576,7 +578,7 @@ class FlowPage extends StatelessWidget {
           // Allow the list to shrink wrap around the top and bottom bars.
           slivers: [
             CupertinoSliverNavigationBar(
-              largeTitle: const Text('接下来'),
+              largeTitle: Text(context.l10n.coreUpNext),
               stretch: true,
               border: null,
               trailing: // Two buttons in the nav bar.
@@ -604,7 +606,7 @@ class FlowPage extends StatelessWidget {
                     backgroundColor: CupertinoDynamicColor.resolve(
                         CupertinoColors.secondarySystemBackground, context),
                     dividerColor: Colors.transparent,
-                    content: const Text('规划方案已过期'),
+                    content: Text(context.l10n.corePlanExpired),
                     contentTextStyle: TextStyle(
                       fontSize: 16,
                       color:
@@ -614,7 +616,7 @@ class FlowPage extends StatelessWidget {
                         const Icon(CupertinoIcons.exclamationmark_triangle),
                     actions: [
                       CupertinoButton(
-                        child: const Text('忽略'),
+                        child: Text(context.l10n.coreIgnore),
                         onPressed: () {
                           _flowController.updateDeadlineListTime();
                         },
@@ -624,7 +626,7 @@ class FlowPage extends StatelessWidget {
                           await newFlowList(context);
                           _flowController.flowList.refresh();
                         },
-                        child: const Text('重新规划'),
+                        child: Text(context.l10n.coreReplan),
                       ),
                     ],
                   );
@@ -641,7 +643,7 @@ class FlowPage extends StatelessWidget {
                       child: Column(
                         children: [
                           const Spacer(),
-                          Text('今日无事可做',
+                          Text(context.l10n.coreNothingToDoToday,
                               style: CupertinoTheme.of(context)
                                   .textTheme
                                   .textStyle),
@@ -676,14 +678,16 @@ class FlowPage extends StatelessWidget {
                                 index == 0
                                     ? (_flowController
                                             .flowList[index].hasStarted
-                                        ? '正在进行'
-                                        : '即将开始')
+                                        ? context.l10n.coreInProgress
+                                        : context.l10n.coreStartingSoon)
                                     : null,
                               )
                             : createCard(
                                 context,
                                 _flowController.flowList[index],
-                                index == lastWaitingFlowIndex ? '之后的安排' : null),
+                                index == lastWaitingFlowIndex
+                                    ? context.l10n.coreLaterPlans
+                                    : null),
                       );
 
                       return container;

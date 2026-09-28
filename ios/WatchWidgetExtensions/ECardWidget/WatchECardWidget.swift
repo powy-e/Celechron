@@ -58,8 +58,8 @@ struct WatchECardWidget: Widget {
                 }
                 .widgetURL(WatchAccessoryKind.ecard.deepLink)
         }
-        .configurationDisplayName("付款码")
-        .description("显示校园卡余额并打开付款码")
+        .configurationDisplayName(NativeLanguage.text("付款码", "Pay code"))
+        .description(NativeLanguage.text("显示校园卡余额并打开付款码", "Show card balance and open pay code"))
         .supportedFamilies([
             .accessoryCircular,
             .accessoryRectangular,
@@ -79,25 +79,25 @@ struct WatchECardWidgetView: View {
 
 // MARK: - Previews（四种复杂功能族）
 
-#Preview("付款码 · 圆形", as: .accessoryCircular) {
+#Preview("Pay code · Circular", as: .accessoryCircular) {
     WatchECardWidget()
 } timeline: {
     WatchECardEntry(date: Date(), balance: 5_235)
 }
 
-#Preview("付款码 · 矩形", as: .accessoryRectangular) {
+#Preview("Pay code · Rectangular", as: .accessoryRectangular) {
     WatchECardWidget()
 } timeline: {
     WatchECardEntry(date: Date(), balance: 5_235)
 }
 
-#Preview("付款码 · 行内", as: .accessoryInline) {
+#Preview("Pay code · Inline", as: .accessoryInline) {
     WatchECardWidget()
 } timeline: {
     WatchECardEntry(date: Date(), balance: 5_235)
 }
 
-#Preview("付款码 · 角位", as: .accessoryCorner) {
+#Preview("Pay code · Corner", as: .accessoryCorner) {
     WatchECardWidget()
 } timeline: {
     WatchECardEntry(date: Date(), balance: 5_235)

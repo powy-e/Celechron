@@ -15,16 +15,16 @@ enum WatchAccessoryKind {
 
     var title: String {
         switch self {
-        case .flow: return "日程"
-        case .ecard: return "付款码"
+        case .flow: return NativeLanguage.text("日程", "Schedule")
+        case .ecard: return NativeLanguage.text("付款码", "Pay code")
         }
     }
 
     /// 矩形族副标题（固定文案，非业务数据）
     var subtitle: String {
         switch self {
-        case .flow: return "今日课表"
-        case .ecard: return "校园卡"
+        case .flow: return NativeLanguage.text("今日课表", "Today’s schedule")
+        case .ecard: return NativeLanguage.text("校园卡", "Campus card")
         }
     }
 
@@ -37,8 +37,8 @@ enum WatchAccessoryKind {
 
     var accessibilityLabel: String {
         switch self {
-        case .flow: return "打开日程"
-        case .ecard: return "打开付款码"
+        case .flow: return NativeLanguage.text("打开日程", "Open schedule")
+        case .ecard: return NativeLanguage.text("打开付款码", "Open pay code")
         }
     }
 
@@ -170,9 +170,11 @@ struct WatchECardAccessoryView: View {
 
     private var accessibilityText: String {
         if balance < 0 {
-            return "校园卡余额待刷新，打开付款码"
+            return NativeLanguage.text("校园卡余额待刷新，打开付款码", "Card balance needs refresh. Open pay code.")
         }
-        return "校园卡余额\(fullBalance)，打开付款码"
+        return NativeLanguage.code == "en"
+            ? "Card balance \(fullBalance). Open pay code."
+            : "校园卡余额\(fullBalance)，打开付款码"
     }
 
     var body: some View {
@@ -225,7 +227,7 @@ struct WatchECardAccessoryView: View {
             .layoutPriority(1)
 
             VStack(alignment: .leading, spacing: 0) {
-                Text("校园卡余额")
+                Text(NativeLanguage.text("校园卡余额", "Card balance"))
                     .font(.caption2)
                     .foregroundStyle(.secondary)
                     .lineLimit(1)
@@ -244,7 +246,8 @@ struct WatchECardAccessoryView: View {
 
     private var inlineBody: some View {
         Label {
-            Text(balance < 0 ? "校园卡余额待刷新" : "校园卡 \(fullBalance)")
+            Text(balance < 0 ? NativeLanguage.text("校园卡余额待刷新", "Card balance needs refresh")
+                : (NativeLanguage.code == "en" ? "Card \(fullBalance)" : "校园卡 \(fullBalance)"))
                 .monospacedDigit()
                 .lineLimit(1)
         } icon: {
@@ -261,7 +264,7 @@ struct WatchECardAccessoryView: View {
             .widgetAccentable()
             .widgetLabel {
                 Label {
-                    Text("付款码")
+                    Text(NativeLanguage.text("付款码", "Pay code"))
                 } icon: {
                     Image(systemName: "qrcode")
                 }

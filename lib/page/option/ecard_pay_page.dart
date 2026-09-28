@@ -1,3 +1,4 @@
+import 'package:celechron/l10n/l10n.dart';
 import 'dart:io';
 import 'dart:math';
 
@@ -62,7 +63,7 @@ class ECardPayPage extends StatelessWidget {
       child: SafeArea(
         child: CustomScrollView(
           slivers: [
-            const CelechronSliverTextHeader(subtitle: '付款码'),
+            CelechronSliverTextHeader(subtitle: context.l10n.corePaymentCode),
             SliverFillRemaining(
                 child: Column(
               children: [
@@ -104,10 +105,12 @@ class ECardPayPage extends StatelessWidget {
                 ),
                 Obx(() {
                   if (_loading.value) {
-                    return const Text('加载中...');
+                    return Text(context.l10n.coreLoading);
                   }
-                  return Text(
-                      '付款码：${_barcode.value.isNotEmpty ? _barcode.value : '加载失败'}');
+                  return Text(context.l10n.corePaymentCodeStatus(
+                      _barcode.value.isNotEmpty
+                          ? _barcode.value
+                          : context.l10n.coreLoadFailed));
                 }),
                 const SizedBox(
                   height: 30,
@@ -130,7 +133,7 @@ class ECardPayPage extends StatelessWidget {
                         _barcode.value = value ?? '';
                       });
                     },
-                    child: const Row(
+                    child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Icon(
@@ -140,7 +143,7 @@ class ECardPayPage extends StatelessWidget {
                         ),
                         SizedBox(width: 8),
                         Text(
-                          '刷新二维码',
+                          context.l10n.coreRefreshQrCode,
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,

@@ -1,3 +1,4 @@
+import 'package:celechron/l10n/l10n.dart';
 import 'package:celechron/design/multiple_columns.dart';
 import 'package:celechron/model/practice_score_item.dart';
 import 'package:celechron/model/scholar.dart';
@@ -32,9 +33,13 @@ class PracticeScoreColumns extends StatelessWidget {
 
     final passed = <String>[
       if (scholar.practiceMyPassed != null)
-        '美育：${scholar.practiceMyPassed! ? '已通过' : '未通过'}',
+        context.l10n.academicArtPassed(scholar.practiceMyPassed!
+            ? context.l10n.academicPassed
+            : context.l10n.academicNotPassed),
       if (scholar.practiceLyPassed != null)
-        '劳育：${scholar.practiceLyPassed! ? '已通过' : '未通过'}',
+        context.l10n.academicLaborPassed(scholar.practiceLyPassed!
+            ? context.l10n.academicPassed
+            : context.l10n.academicNotPassed),
     ];
     return Column(
       children: [
@@ -44,7 +49,11 @@ class PracticeScoreColumns extends StatelessWidget {
             score(2, scholar.pt3),
             score(3, scholar.pt4),
           ],
-          titles: const ['二课记点', '三课记点', '四课记点'],
+          titles: [
+            context.l10n.academicClassroomPointsShort,
+            context.l10n.academicClassroomPointsMid,
+            context.l10n.academicClassroomPointsLong
+          ],
           onTaps: [
             () => open(1),
             () => open(2),
@@ -77,15 +86,14 @@ class PracticeScorePage extends StatelessWidget {
     required this.categoryId,
   });
 
-  String get _categoryName => switch (categoryId) {
-        1 => '第二课堂',
-        2 => '第三课堂',
-        3 => '第四课堂',
-        _ => '实践课堂',
-      };
-
   @override
   Widget build(BuildContext context) {
+    final categoryName = switch (categoryId) {
+      1 => context.l10n.academicSecondClassroom,
+      2 => context.l10n.academicThirdClassroom,
+      3 => context.l10n.academicFourthClassroom,
+      _ => context.l10n.academicPracticeClassroom,
+    };
     final items = scholar.practiceScoreItems
         .where((item) => item.categoryId == categoryId)
         .toList()
@@ -97,7 +105,7 @@ class PracticeScorePage extends StatelessWidget {
 
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
-        middle: Text('$_categoryName项目'),
+        middle: Text(context.l10n.academicPracticeProjects(categoryName)),
       ),
       backgroundColor: CupertinoDynamicColor.resolve(
         CupertinoColors.systemGroupedBackground,
@@ -108,7 +116,7 @@ class PracticeScorePage extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
           children: [
             _SummaryCard(
-              categoryName: _categoryName,
+              categoryName: categoryName,
               total: switch (categoryId) {
                 1 => scholar.pt2,
                 2 => scholar.pt3,
@@ -127,9 +135,11 @@ class PracticeScorePage extends StatelessWidget {
             if (!scholar.practiceDetailsAvailable)
               _NoDetailsCard(source: scholar.practiceDataSource)
             else ...[
-              _SectionTitle(title: '已计入总分', count: included.length),
+              _SectionTitle(
+                  title: context.l10n.academicCountedTowardTotal,
+                  count: included.length),
               if (included.isEmpty)
-                const _EmptyGroup(text: '暂无已计入总分的项目')
+                _EmptyGroup(text: context.l10n.academicNoCountedProjects)
               else
                 ...included.map(
                   (item) => _PracticeItemCard(
@@ -138,9 +148,11 @@ class PracticeScorePage extends StatelessWidget {
                   ),
                 ),
               const SizedBox(height: 12),
-              _SectionTitle(title: '审核中或未计入', count: excluded.length),
+              _SectionTitle(
+                  title: context.l10n.academicPendingOrExcluded,
+                  count: excluded.length),
               if (excluded.isEmpty)
-                const _EmptyGroup(text: '暂无审核中或未计入的项目')
+                _EmptyGroup(text: context.l10n.academicNoPendingProjects)
               else
                 ...excluded.map(
                   (item) => _PracticeItemCard(
@@ -175,20 +187,31 @@ class PracticeScoreDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final rows = <(String, String)>[
-      ('项目名称', item.projectName),
-      ('获得记点', _score(item)),
-      ('课堂类别', item.categoryName),
-      ('审核状态', item.statusLabel),
-      ('项目类别', item.projectType),
-      ('素质类别', item.qualityType),
-      ('参与身份或得分原因', item.role ?? '未填写'),
-      ('情况说明', item.remark ?? '未填写'),
-      ('活动开始时间', _dateTime(item.activityStart)),
-      ('活动结束时间', _dateTime(item.activityEnd)),
-      ('最近更新时间', _dateTime(item.updatedAt)),
+      (context.l10n.academicProjectName, item.projectName),
+      (context.l10n.academicPointsEarned, _score(item)),
+      (context.l10n.academicClassroomCategory, displayText(item.categoryName)),
+      (context.l10n.academicReviewStatus, displayText(item.statusLabel)),
+      (context.l10n.academicProjectCategory, displayText(item.projectType)),
+      (context.l10n.academicQualityCategory, displayText(item.qualityType)),
+      (
+        context.l10n.academicRoleOrReason,
+        item.role == null
+            ? context.l10n.academicNotFilled
+            : displayText(item.role!)
+      ),
+      (
+        context.l10n.academicDescription,
+        item.remark == null
+            ? context.l10n.academicNotFilled
+            : displayText(item.remark!)
+      ),
+      (context.l10n.academicActivityStart, _dateTime(item.activityStart)),
+      (context.l10n.academicActivityEnd, _dateTime(item.activityEnd)),
+      (context.l10n.academicLastUpdated, _dateTime(item.updatedAt)),
     ];
     return CupertinoPageScaffold(
-      navigationBar: const CupertinoNavigationBar(middle: Text('实践项目详情')),
+      navigationBar: CupertinoNavigationBar(
+          middle: Text(context.l10n.academicPracticeDetails)),
       backgroundColor: CupertinoDynamicColor.resolve(
         CupertinoColors.systemGroupedBackground,
         context,
@@ -209,8 +232,8 @@ class PracticeScoreDetailPage extends StatelessWidget {
             ),
             if (!item.countsTowardTotal) ...[
               const SizedBox(height: 12),
-              const Text(
-                '该项目当前未计入总分。',
+              Text(
+                context.l10n.academicNotCountedNotice,
                 style: TextStyle(
                   color: CupertinoColors.systemOrange,
                   fontSize: 14,
@@ -258,8 +281,8 @@ class _SummaryCard extends StatelessWidget {
             style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 8),
-          const Text(
-            '正式汇总记点',
+          Text(
+            context.l10n.academicOfficialPointsTotal,
             style: TextStyle(color: CupertinoColors.secondaryLabel),
           ),
           const SizedBox(height: 4),
@@ -268,39 +291,40 @@ class _SummaryCard extends StatelessWidget {
             style: const TextStyle(fontSize: 34, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 12),
-          Text('已计入 $includedCount 项 · 未计入 $excludedCount 项'),
+          Text(context.l10n
+              .academicIncludedExcludedCounts(includedCount, excludedCount)),
           const SizedBox(height: 6),
           Text(
-            '记点来源：${source.label}',
+            context.l10n.academicPointsSource(displayText(source.label)),
             style: const TextStyle(color: CupertinoColors.secondaryLabel),
           ),
           const SizedBox(height: 4),
           Text(
-            '项目明细来源：${detailSource.label}',
+            context.l10n.academicDetailsSource(displayText(detailSource.label)),
             style: const TextStyle(color: CupertinoColors.secondaryLabel),
           ),
           const SizedBox(height: 4),
           Text(
-            '更新时间：${_dateTime(updatedAt)}',
+            context.l10n.academicUpdatedAt(_dateTime(updatedAt)),
             style: const TextStyle(color: CupertinoColors.secondaryLabel),
           ),
           if (stale) ...[
             const SizedBox(height: 10),
-            const Text(
-              '当前记点使用缓存或项目合计，请在网络恢复后刷新。',
+          Text(
+            context.l10n.academicCachedPoints,
               style: TextStyle(color: CupertinoColors.systemOrange),
             ),
           ],
           if (detailsStale) ...[
             const SizedBox(height: 6),
-            const Text(
-              '项目明细为缓存或上一次结果。',
+            Text(
+              context.l10n.academicCachedDetails,
               style: TextStyle(color: CupertinoColors.systemOrange),
             ),
           ],
           const SizedBox(height: 10),
-          const Text(
-            '正式汇总与项目记录可能不完全一致，项目明细仍按 getSqjl 原样展示。',
+          Text(
+            context.l10n.academicPointsMayDiffer,
             style: TextStyle(
               color: CupertinoColors.secondaryLabel,
               fontSize: 13,
@@ -324,7 +348,9 @@ class _NoDetailsCard extends StatelessWidget {
         source == PracticeDataSource.zdbkCache;
     return _Card(
       child: Text(
-        zdbkOnly ? '当前仅获取到旧实践汇总，暂无 getSqjl 项目明细。' : '当前 getSqjl 项目明细不可用，请稍后刷新。',
+        zdbkOnly
+            ? context.l10n.academicLegacyPracticeOnly
+            : context.l10n.academicPracticeDetailsUnavailable,
         key: const ValueKey('practice-no-details'),
         style: const TextStyle(
           color: CupertinoColors.secondaryLabel,
@@ -368,8 +394,8 @@ class _PracticeItemCard extends StatelessWidget {
                     const SizedBox(height: 8),
                     Text(
                       counted
-                          ? item.statusLabel
-                          : '${item.statusLabel} · 未计入总分',
+                          ? displayText(item.statusLabel)
+                          : '${displayText(item.statusLabel)} · ${context.l10n.academicNotCounted}',
                       style: TextStyle(
                         color: counted
                             ? CupertinoColors.systemGreen
@@ -379,7 +405,7 @@ class _PracticeItemCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 6),
                     Text(
-                      '${item.projectType} · ${item.qualityType}',
+                      '${displayText(item.projectType)} · ${displayText(item.qualityType)}',
                       style: const TextStyle(
                         color: CupertinoColors.secondaryLabel,
                         fontSize: 13,
@@ -387,7 +413,8 @@ class _PracticeItemCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      '更新于 ${_dateTime(item.updatedAt)}',
+                      context.l10n
+                          .academicUpdatedAtShort(_dateTime(item.updatedAt)),
                       style: const TextStyle(
                         color: CupertinoColors.tertiaryLabel,
                         fontSize: 12,
@@ -431,7 +458,7 @@ class _SectionTitle extends StatelessWidget {
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.fromLTRB(4, 4, 4, 10),
         child: Text(
-          '$title（$count）',
+          context.l10n.academicSectionCount(title, count),
           style: const TextStyle(
             color: CupertinoColors.secondaryLabel,
             fontSize: 14,
@@ -530,7 +557,7 @@ String _score(PracticeScoreItem item) => item.score.isFinite && item.score >= 0
     : '—';
 
 String _dateTime(DateTime? value) {
-  if (value == null) return '未知';
+  if (value == null) return appL10n.academicUnknown;
   String two(int number) => number.toString().padLeft(2, '0');
   return '${value.year}-${two(value.month)}-${two(value.day)} '
       '${two(value.hour)}:${two(value.minute)}';

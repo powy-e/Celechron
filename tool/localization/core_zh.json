@@ -1,0 +1,1052 @@
+{
+  "coreUpNext": "接下来",
+  "@coreUpNext": {
+    "description": "Core UI: coreUpNext"
+  },
+  "coreCalendar": "日程",
+  "@coreCalendar": {
+    "description": "Core UI: coreCalendar"
+  },
+  "coreTasks": "任务",
+  "@coreTasks": {
+    "description": "Core UI: coreTasks"
+  },
+  "coreAcademics": "学业",
+  "@coreAcademics": {
+    "description": "Core UI: coreAcademics"
+  },
+  "coreSettings": "设置",
+  "@coreSettings": {
+    "description": "Core UI: coreSettings"
+  },
+  "coreUpdateAvailable": "更新可用",
+  "@coreUpdateAvailable": {
+    "description": "Core UI: coreUpdateAvailable"
+  },
+  "coreIgnore": "忽略",
+  "@coreIgnore": {
+    "description": "Core UI: coreIgnore"
+  },
+  "coreVisitWebsite": "访问网站",
+  "@coreVisitWebsite": {
+    "description": "Core UI: coreVisitWebsite"
+  },
+  "coreTimeUntilEnd": "离结束还有",
+  "@coreTimeUntilEnd": {
+    "description": "Core UI: coreTimeUntilEnd"
+  },
+  "coreTimeUntilStart": "开始还有",
+  "@coreTimeUntilStart": {
+    "description": "Core UI: coreTimeUntilStart"
+  },
+  "coreStartPlanning": "开始规划",
+  "@coreStartPlanning": {
+    "description": "Core UI: coreStartPlanning"
+  },
+  "coreTapToChangeStartTime": "点击修改开始时间",
+  "@coreTapToChangeStartTime": {
+    "description": "Core UI: coreTapToChangeStartTime"
+  },
+  "coreBack": "返回",
+  "@coreBack": {
+    "description": "Core UI: coreBack"
+  },
+  "coreConfirm": "确定",
+  "@coreConfirm": {
+    "description": "Core UI: coreConfirm"
+  },
+  "coreBreakTimeShortened": "休息时间已压缩",
+  "@coreBreakTimeShortened": {
+    "description": "Core UI: coreBreakTimeShortened"
+  },
+  "coreStartTimeMustBeFuture": "开始时间必须晚于现在",
+  "@coreStartTimeMustBeFuture": {
+    "description": "Core UI: coreStartTimeMustBeFuture"
+  },
+  "coreAdjustStartTime": "请调整开始时间。",
+  "@coreAdjustStartTime": {
+    "description": "Core UI: coreAdjustStartTime"
+  },
+  "coreCreate": "创建",
+  "@coreCreate": {
+    "description": "Core UI: coreCreate"
+  },
+  "corePlanExpired": "规划方案已过期",
+  "@corePlanExpired": {
+    "description": "Core UI: corePlanExpired"
+  },
+  "coreReplan": "重新规划",
+  "@coreReplan": {
+    "description": "Core UI: coreReplan"
+  },
+  "coreNothingToDoToday": "今日无事可做",
+  "@coreNothingToDoToday": {
+    "description": "Core UI: coreNothingToDoToday"
+  },
+  "coreInProgress": "正在进行",
+  "@coreInProgress": {
+    "description": "Core UI: coreInProgress"
+  },
+  "coreStartingSoon": "即将开始",
+  "@coreStartingSoon": {
+    "description": "Core UI: coreStartingSoon"
+  },
+  "coreLaterPlans": "之后的安排",
+  "@coreLaterPlans": {
+    "description": "Core UI: coreLaterPlans"
+  },
+  "coreExamWeekOrBreak": "考试周/假期",
+  "@coreExamWeekOrBreak": {
+    "description": "Core UI: coreExamWeekOrBreak"
+  },
+  "coreNoSemesterInfo": "无学期信息",
+  "@coreNoSemesterInfo": {
+    "description": "Core UI: coreNoSemesterInfo"
+  },
+  "coreOutsideSemester": "当前不在学期内",
+  "@coreOutsideSemester": {
+    "description": "Core UI: coreOutsideSemester"
+  },
+  "coreToday": "今天",
+  "@coreToday": {
+    "description": "Core UI: coreToday"
+  },
+  "coreSwitchView": "切换视图",
+  "@coreSwitchView": {
+    "description": "Core UI: coreSwitchView"
+  },
+  "coreShowFullMonth": "显示整月",
+  "@coreShowFullMonth": {
+    "description": "Core UI: coreShowFullMonth"
+  },
+  "coreShowWeek": "显示一周",
+  "@coreShowWeek": {
+    "description": "Core UI: coreShowWeek"
+  },
+  "coreRepeatedEventUpcoming": "重复日程，接下来的时段：",
+  "@coreRepeatedEventUpcoming": {
+    "description": "Core UI: coreRepeatedEventUpcoming"
+  },
+  "coreEdit": "编辑",
+  "@coreEdit": {
+    "description": "Core UI: coreEdit"
+  },
+  "coreDelete": "删除",
+  "@coreDelete": {
+    "description": "Core UI: coreDelete"
+  },
+  "coreTimePlanning": "时间规划",
+  "@coreTimePlanning": {
+    "description": "Core UI: coreTimePlanning"
+  },
+  "coreExpectedDuration": "预期用时",
+  "@coreExpectedDuration": {
+    "description": "Core UI: coreExpectedDuration"
+  },
+  "coreHours": "小时",
+  "@coreHours": {
+    "description": "Core UI: coreHours"
+  },
+  "coreMinutes": "分钟",
+  "@coreMinutes": {
+    "description": "Core UI: coreMinutes"
+  },
+  "coreTimeSpent": "已经用时",
+  "@coreTimeSpent": {
+    "description": "Core UI: coreTimeSpent"
+  },
+  "coreAllowBreaks": "允许插入休息时间",
+  "@coreAllowBreaks": {
+    "description": "Core UI: coreAllowBreaks"
+  },
+  "coreEventSettings": "日程设置",
+  "@coreEventSettings": {
+    "description": "Core UI: coreEventSettings"
+  },
+  "coreRepeat": "重复",
+  "@coreRepeat": {
+    "description": "Core UI: coreRepeat"
+  },
+  "coreRepeatInterval": "重复周期",
+  "@coreRepeatInterval": {
+    "description": "Core UI: coreRepeatInterval"
+  },
+  "coreRepeatUntil": "重复截止日期",
+  "@coreRepeatUntil": {
+    "description": "Core UI: coreRepeatUntil"
+  },
+  "coreExcludeFromPlanning": "不在这个日程中安排任务",
+  "@coreExcludeFromPlanning": {
+    "description": "Core UI: coreExcludeFromPlanning"
+  },
+  "coreAdditionalInfo": "附加信息",
+  "@coreAdditionalInfo": {
+    "description": "Core UI: coreAdditionalInfo"
+  },
+  "coreLocation": "地点",
+  "@coreLocation": {
+    "description": "Core UI: coreLocation"
+  },
+  "coreDescription": "说明",
+  "@coreDescription": {
+    "description": "Core UI: coreDescription"
+  },
+  "coreDeleteTask": "删除任务",
+  "@coreDeleteTask": {
+    "description": "Core UI: coreDeleteTask"
+  },
+  "coreNotStarted": "未开始",
+  "@coreNotStarted": {
+    "description": "Core UI: coreNotStarted"
+  },
+  "coreEnded": "已结束",
+  "@coreEnded": {
+    "description": "Core UI: coreEnded"
+  },
+  "coreOngoing": "进行中",
+  "@coreOngoing": {
+    "description": "Core UI: coreOngoing"
+  },
+  "coreDeleteCompletedTasks": "删除已完成任务",
+  "@coreDeleteCompletedTasks": {
+    "description": "Core UI: coreDeleteCompletedTasks"
+  },
+  "coreDeleteExpiredTasks": "删除已过期任务",
+  "@coreDeleteExpiredTasks": {
+    "description": "Core UI: coreDeleteExpiredTasks"
+  },
+  "corePauseAllTasks": "暂停所有任务",
+  "@corePauseAllTasks": {
+    "description": "Core UI: corePauseAllTasks"
+  },
+  "coreResumeAllTasks": "继续所有任务",
+  "@coreResumeAllTasks": {
+    "description": "Core UI: coreResumeAllTasks"
+  },
+  "coreCancel": "取消",
+  "@coreCancel": {
+    "description": "Core UI: coreCancel"
+  },
+  "coreNoTasks": "没有任务",
+  "@coreNoTasks": {
+    "description": "Core UI: coreNoTasks"
+  },
+  "coreToDo": "待办",
+  "@coreToDo": {
+    "description": "Core UI: coreToDo"
+  },
+  "coreCompleted": "已完成",
+  "@coreCompleted": {
+    "description": "Core UI: coreCompleted"
+  },
+  "coreEventList": "日程列表",
+  "@coreEventList": {
+    "description": "Core UI: coreEventList"
+  },
+  "coreSearchPlaceholder": "搜索课程、事项...",
+  "@coreSearchPlaceholder": {
+    "description": "Core UI: coreSearchPlaceholder"
+  },
+  "coreSecurityVerification": "安全验证",
+  "@coreSecurityVerification": {
+    "description": "Core UI: coreSecurityVerification"
+  },
+  "coreTapImageToRefresh": "点击图片刷新",
+  "@coreTapImageToRefresh": {
+    "description": "Core UI: coreTapImageToRefresh"
+  },
+  "coreEnterCaptcha": "请输入验证码",
+  "@coreEnterCaptcha": {
+    "description": "Core UI: coreEnterCaptcha"
+  },
+  "coreCampusLogin": "统一身份认证登录",
+  "@coreCampusLogin": {
+    "description": "Core UI: coreCampusLogin"
+  },
+  "coreStudentId": "学号",
+  "@coreStudentId": {
+    "description": "Core UI: coreStudentId"
+  },
+  "corePassword": "密码",
+  "@corePassword": {
+    "description": "Core UI: corePassword"
+  },
+  "coreLoginFailed": "登录失败",
+  "@coreLoginFailed": {
+    "description": "Core UI: coreLoginFailed"
+  },
+  "coreLogin": "登录",
+  "@coreLogin": {
+    "description": "Core UI: coreLogin"
+  },
+  "corePaymentCode": "付款码",
+  "@corePaymentCode": {
+    "description": "Core UI: corePaymentCode"
+  },
+  "coreLoading": "加载中...",
+  "@coreLoading": {
+    "description": "Core UI: coreLoading"
+  },
+  "coreRefreshQrCode": "刷新二维码",
+  "@coreRefreshQrCode": {
+    "description": "Core UI: coreRefreshQrCode"
+  },
+  "coreOriginalCourseCode": "原课号",
+  "@coreOriginalCourseCode": {
+    "description": "Core UI: coreOriginalCourseCode"
+  },
+  "coreNewCourseCode": "新课号",
+  "@coreNewCourseCode": {
+    "description": "Core UI: coreNewCourseCode"
+  },
+  "coreDisplayName": "备注名",
+  "@coreDisplayName": {
+    "description": "Core UI: coreDisplayName"
+  },
+  "coreError": "错误",
+  "@coreError": {
+    "description": "Core UI: coreError"
+  },
+  "coreFillAllFields": "请填写所有字段",
+  "@coreFillAllFields": {
+    "description": "Core UI: coreFillAllFields"
+  },
+  "coreSave": "保存",
+  "@coreSave": {
+    "description": "Core UI: coreSave"
+  },
+  "coreCustomCourseCodeMapping": "自定义课程代码映射",
+  "@coreCustomCourseCodeMapping": {
+    "description": "Core UI: coreCustomCourseCodeMapping"
+  },
+  "coreAddMapping": "添加新的映射关系",
+  "@coreAddMapping": {
+    "description": "Core UI: coreAddMapping"
+  },
+  "coreAcademicPortal": "教务",
+  "@coreAcademicPortal": {
+    "description": "Core UI: coreAcademicPortal"
+  },
+  "coreBackgroundRefreshExplanation": "Celechron 将不定期自动运行以刷新数据。请开启通知权限，且不要将 Celechron 从后台中移除。",
+  "@coreBackgroundRefreshExplanation": {
+    "description": "Core UI: coreBackgroundRefreshExplanation"
+  },
+  "coreLogOut": "退出",
+  "@coreLogOut": {
+    "description": "Core UI: coreLogOut"
+  },
+  "coreLogOutTitle": "退出登录",
+  "@coreLogOutTitle": {
+    "description": "Core UI: coreLogOutTitle"
+  },
+  "coreConfirmLogOut": "确定要退出当前账号吗？",
+  "@coreConfirmLogOut": {
+    "description": "Core UI: coreConfirmLogOut"
+  },
+  "coreRetakeGpaCalculation": "重修绩点计算",
+  "@coreRetakeGpaCalculation": {
+    "description": "Core UI: coreRetakeGpaCalculation"
+  },
+  "coreUseFirstAttempt": "取首次",
+  "@coreUseFirstAttempt": {
+    "description": "Core UI: coreUseFirstAttempt"
+  },
+  "coreUseHighestAttempt": "取最高",
+  "@coreUseHighestAttempt": {
+    "description": "Core UI: coreUseHighestAttempt"
+  },
+  "coreHideGpa": "隐藏绩点",
+  "@coreHideGpa": {
+    "description": "Core UI: coreHideGpa"
+  },
+  "coreAsyncRefresh": "异步刷新",
+  "@coreAsyncRefresh": {
+    "description": "Core UI: coreAsyncRefresh"
+  },
+  "coreGradeChangeNotifications": "推送成绩变动",
+  "@coreGradeChangeNotifications": {
+    "description": "Core UI: coreGradeChangeNotifications"
+  },
+  "coreDeadlineNotifications": "推送作业截止提醒",
+  "@coreDeadlineNotifications": {
+    "description": "Core UI: coreDeadlineNotifications"
+  },
+  "coreTapToLogIn": "点击登录",
+  "@coreTapToLogIn": {
+    "description": "Core UI: coreTapToLogIn"
+  },
+  "coreWorkDuration": "工作段时间长度",
+  "@coreWorkDuration": {
+    "description": "Core UI: coreWorkDuration"
+  },
+  "coreBreakDuration": "休息段时间长度",
+  "@coreBreakDuration": {
+    "description": "Core UI: coreBreakDuration"
+  },
+  "coreAvailableWorkPeriods": "可用的工作时段",
+  "@coreAvailableWorkPeriods": {
+    "description": "Core UI: coreAvailableWorkPeriods"
+  },
+  "coreSyncSystemCalendar": "同步到系统日历",
+  "@coreSyncSystemCalendar": {
+    "description": "Core UI: coreSyncSystemCalendar"
+  },
+  "coreScheduleSyncOptions": "课表同步选项",
+  "@coreScheduleSyncOptions": {
+    "description": "Core UI: coreScheduleSyncOptions"
+  },
+  "coreSelectSemester": "选择学期",
+  "@coreSelectSemester": {
+    "description": "Core UI: coreSelectSemester"
+  },
+  "coreExportIcal": "导出为iCal文件",
+  "@coreExportIcal": {
+    "description": "Core UI: coreExportIcal"
+  },
+  "coreTools": "工具",
+  "@coreTools": {
+    "description": "Core UI: coreTools"
+  },
+  "coreDarkMode": "暗色模式",
+  "@coreDarkMode": {
+    "description": "Core UI: coreDarkMode"
+  },
+  "coreFollowSystem": "跟随系统设置",
+  "@coreFollowSystem": {
+    "description": "Core UI: coreFollowSystem"
+  },
+  "coreLightMode": "亮色模式",
+  "@coreLightMode": {
+    "description": "Core UI: coreLightMode"
+  },
+  "coreAbout": "关于",
+  "@coreAbout": {
+    "description": "Core UI: coreAbout"
+  },
+  "coreDiagnostics": "诊断与测试",
+  "@coreDiagnostics": {
+    "description": "Core UI: coreDiagnostics"
+  },
+  "coreTestLogs": "测试日志",
+  "@coreTestLogs": {
+    "description": "Core UI: coreTestLogs"
+  },
+  "coreDiagnosticLogsDescription": "查看、复制或导出脱敏 TXT",
+  "@coreDiagnosticLogsDescription": {
+    "description": "Core UI: coreDiagnosticLogsDescription"
+  },
+  "coreAboutCelechron": "关于 Celechron",
+  "@coreAboutCelechron": {
+    "description": "Core UI: coreAboutCelechron"
+  },
+  "coreTermsOfService": "服务条款",
+  "@coreTermsOfService": {
+    "description": "Core UI: coreTermsOfService"
+  },
+  "coreProjectWebsite": "前往项目网站",
+  "@coreProjectWebsite": {
+    "description": "Core UI: coreProjectWebsite"
+  },
+  "coreNewVersionAvailable": "有新版本可用",
+  "@coreNewVersionAvailable": {
+    "description": "Core UI: coreNewVersionAvailable"
+  },
+  "coreEditTask": "编辑任务",
+  "@coreEditTask": {
+    "description": "Core UI: coreEditTask"
+  },
+  "coreTaskName": "任务名",
+  "@coreTaskName": {
+    "description": "Core UI: coreTaskName"
+  },
+  "coreStartTime": "开始时间",
+  "@coreStartTime": {
+    "description": "Core UI: coreStartTime"
+  },
+  "coreEndTime": "结束时间",
+  "@coreEndTime": {
+    "description": "Core UI: coreEndTime"
+  },
+  "coreDueAt": "截止于",
+  "@coreDueAt": {
+    "description": "Core UI: coreDueAt"
+  },
+  "coreEndsAt": "结束于 {time}",
+  "@coreEndsAt": {
+    "description": "Core UI: coreEndsAt",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "coreStartsAt": "开始于 {time}",
+  "@coreStartsAt": {
+    "description": "Core UI: coreStartsAt",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "coreStartAfterEnd": "开始时间必须晚于结束时间",
+  "@coreStartAfterEnd": {
+    "description": "Core UI: coreStartAfterEnd"
+  },
+  "coreStartBeforeRepeatEnd": "开始时间不能晚于重复截止日期",
+  "@coreStartBeforeRepeatEnd": {
+    "description": "Core UI: coreStartBeforeRepeatEnd"
+  },
+  "coreRepeatedEventTooLong": "这个重复日程的持续时间太长",
+  "@coreRepeatedEventTooLong": {
+    "description": "Core UI: coreRepeatedEventTooLong"
+  },
+  "coreChangePeriod": "更改时段",
+  "@coreChangePeriod": {
+    "description": "Core UI: coreChangePeriod"
+  },
+  "coreChange": "更改",
+  "@coreChange": {
+    "description": "Core UI: coreChange"
+  },
+  "corePeriodsCannotOverlap": "时间段之间不能有重合或直接相邻",
+  "@corePeriodsCannotOverlap": {
+    "description": "Core UI: corePeriodsCannotOverlap"
+  },
+  "coreEditAvailablePeriods": "编辑可用工作时段",
+  "@coreEditAvailablePeriods": {
+    "description": "Core UI: coreEditAvailablePeriods"
+  },
+  "coreAvailablePeriodsList": "可用工作时段列表",
+  "@coreAvailablePeriodsList": {
+    "description": "Core UI: coreAvailablePeriodsList"
+  },
+  "coreAddPeriod": "添加一个时段",
+  "@coreAddPeriod": {
+    "description": "Core UI: coreAddPeriod"
+  },
+  "coreCredits": "制作人员",
+  "@coreCredits": {
+    "description": "Core UI: coreCredits"
+  },
+  "coreDesign": "🎨设计",
+  "@coreDesign": {
+    "description": "Core UI: coreDesign"
+  },
+  "coreDevelopment": "🧑‍💻开发",
+  "@coreDevelopment": {
+    "description": "Core UI: coreDevelopment"
+  },
+  "coreGplNotice": "本程序采用 GPLv3 协议开源",
+  "@coreGplNotice": {
+    "description": "Core UI: coreGplNotice"
+  },
+  "coreDisclaimer": "免责声明",
+  "@coreDisclaimer": {
+    "description": "Core UI: coreDisclaimer"
+  },
+  "coreWarrantyDisclaimer": "在适用的法律范围内，该程序不提供任何质量保证。除非另有书面说明，版权持有者和程序提供者应按照原样提供程序，并且不提供任何明示或者暗示的保证，包括但不限于适销性和特定用途适用性的暗示保证。使用该程序所产生的全部风险，比如程序的质量和性能问题，全部由你承担。如果程序出现缺陷，你将承担所有必要的修复和更正服务带来的损失。",
+  "@coreWarrantyDisclaimer": {
+    "description": "Core UI: coreWarrantyDisclaimer"
+  },
+  "coreLiabilityLimitation": "责任限制",
+  "@coreLiabilityLimitation": {
+    "description": "Core UI: coreLiabilityLimitation"
+  },
+  "coreLiabilityText": "除非有适用法律或书面协议要求，任何版权持有者，或该程序按照本协议可能存在的第三方修改和再发布者，都不对你的损失负有责任，包括由于使用或者不能使用该程序造成的任何一般的、特殊的、偶发的或重大的损失（包括但不限于数据丢失、数据失真、你或第三方的后续损失、该程序无法和其他程序协同工作等），即使他们声称会对此负责。",
+  "@coreLiabilityText": {
+    "description": "Core UI: coreLiabilityText"
+  },
+  "coreViewFullGpl": "查看 GPLv3 协议全文",
+  "@coreViewFullGpl": {
+    "description": "Core UI: coreViewFullGpl"
+  },
+  "coreDiagnosticDisplayMode": "诊断日志显示模式",
+  "@coreDiagnosticDisplayMode": {
+    "description": "Core UI: coreDiagnosticDisplayMode"
+  },
+  "coreReadableReport": "易读报告",
+  "@coreReadableReport": {
+    "description": "Core UI: coreReadableReport"
+  },
+  "coreRawLogs": "原始日志",
+  "@coreRawLogs": {
+    "description": "Core UI: coreRawLogs"
+  },
+  "coreNoReadableRefreshRecords": "暂无可读的刷新记录",
+  "@coreNoReadableRefreshRecords": {
+    "description": "Core UI: coreNoReadableRefreshRecords"
+  },
+  "coreRefreshRecordsHint": "执行一次刷新后，这里会显示刷新结果、模块状态和关键时间线。",
+  "@coreRefreshRecordsHint": {
+    "description": "Core UI: coreRefreshRecordsHint"
+  },
+  "coreTotalDuration": "总耗时",
+  "@coreTotalDuration": {
+    "description": "Core UI: coreTotalDuration"
+  },
+  "coreSuccess": "成功",
+  "@coreSuccess": {
+    "description": "Core UI: coreSuccess"
+  },
+  "coreDegraded": "降级",
+  "@coreDegraded": {
+    "description": "Core UI: coreDegraded"
+  },
+  "coreFailed": "失败",
+  "@coreFailed": {
+    "description": "Core UI: coreFailed"
+  },
+  "coreRelogged": "重新登录",
+  "@coreRelogged": {
+    "description": "Core UI: coreRelogged"
+  },
+  "coreRetried": "已重试",
+  "@coreRetried": {
+    "description": "Core UI: coreRetried"
+  },
+  "coreCacheFallback": "缓存回退",
+  "@coreCacheFallback": {
+    "description": "Core UI: coreCacheFallback"
+  },
+  "coreHideDetails": "收起详情",
+  "@coreHideDetails": {
+    "description": "Core UI: coreHideDetails"
+  },
+  "coreViewDetails": "查看详情",
+  "@coreViewDetails": {
+    "description": "Core UI: coreViewDetails"
+  },
+  "coreModuleStatus": "模块状态",
+  "@coreModuleStatus": {
+    "description": "Core UI: coreModuleStatus"
+  },
+  "coreKeyTimeline": "关键时间线",
+  "@coreKeyTimeline": {
+    "description": "Core UI: coreKeyTimeline"
+  },
+  "coreNoKeyEvents": "没有可展示的关键事件。",
+  "@coreNoKeyEvents": {
+    "description": "Core UI: coreNoKeyEvents"
+  },
+  "coreIssuesFound": "发现的问题",
+  "@coreIssuesFound": {
+    "description": "Core UI: coreIssuesFound"
+  },
+  "coreNoIssues": "未发现需要说明的问题。",
+  "@coreNoIssues": {
+    "description": "Core UI: coreNoIssues"
+  },
+  "coreReauthenticated": "已重新登录",
+  "@coreReauthenticated": {
+    "description": "Core UI: coreReauthenticated"
+  },
+  "coreCacheUpdatedAt": "缓存更新于 ",
+  "@coreCacheUpdatedAt": {
+    "description": "Core UI: coreCacheUpdatedAt"
+  },
+  "coreHideTechnicalDetails": "收起技术详情",
+  "@coreHideTechnicalDetails": {
+    "description": "Core UI: coreHideTechnicalDetails"
+  },
+  "coreViewTechnicalDetails": "查看技术详情",
+  "@coreViewTechnicalDetails": {
+    "description": "Core UI: coreViewTechnicalDetails"
+  },
+  "coreUtcTime": "UTC 时间",
+  "@coreUtcTime": {
+    "description": "Core UI: coreUtcTime"
+  },
+  "coreHttpStatus": "HTTP 状态码",
+  "@coreHttpStatus": {
+    "description": "Core UI: coreHttpStatus"
+  },
+  "coreRequestInterface": "请求接口",
+  "@coreRequestInterface": {
+    "description": "Core UI: coreRequestInterface"
+  },
+  "coreRedactedUrl": "已脱敏 URL",
+  "@coreRedactedUrl": {
+    "description": "Core UI: coreRedactedUrl"
+  },
+  "coreExceptionType": "异常类型",
+  "@coreExceptionType": {
+    "description": "Core UI: coreExceptionType"
+  },
+  "coreExceptionSummary": "异常摘要",
+  "@coreExceptionSummary": {
+    "description": "Core UI: coreExceptionSummary"
+  },
+  "coreHideStack": "隐藏堆栈",
+  "@coreHideStack": {
+    "description": "Core UI: coreHideStack"
+  },
+  "coreShowStack": "显示堆栈",
+  "@coreShowStack": {
+    "description": "Core UI: coreShowStack"
+  },
+  "coreAppBackgroundCoordination": "App 与后台协调",
+  "@coreAppBackgroundCoordination": {
+    "description": "Core UI: coreAppBackgroundCoordination"
+  },
+  "coreReadingLogs": "正在读取日志…",
+  "@coreReadingLogs": {
+    "description": "Core UI: coreReadingLogs"
+  },
+  "coreNoDiagnosticLogs": "暂无诊断日志。执行一次刷新后再试。",
+  "@coreNoDiagnosticLogs": {
+    "description": "Core UI: coreNoDiagnosticLogs"
+  },
+  "coreFullRawLogs": "完整原始日志",
+  "@coreFullRawLogs": {
+    "description": "Core UI: coreFullRawLogs"
+  },
+  "coreCopyRawLogs": "复制完整原始日志",
+  "@coreCopyRawLogs": {
+    "description": "Core UI: coreCopyRawLogs"
+  },
+  "coreExportShareTxt": "导出并分享 TXT",
+  "@coreExportShareTxt": {
+    "description": "Core UI: coreExportShareTxt"
+  },
+  "coreExportContents": "包含易读报告和完整原始日志",
+  "@coreExportContents": {
+    "description": "Core UI: coreExportContents"
+  },
+  "coreClearTestLogs": "清空测试日志",
+  "@coreClearTestLogs": {
+    "description": "Core UI: coreClearTestLogs"
+  },
+  "coreYes": "是",
+  "@coreYes": {
+    "description": "Core UI: coreYes"
+  },
+  "coreNo": "否",
+  "@coreNo": {
+    "description": "Core UI: coreNo"
+  },
+  "coreCopied": "已复制",
+  "@coreCopied": {
+    "description": "Core UI: coreCopied"
+  },
+  "coreRawLogsCopied": "完整原始日志已复制到剪贴板。",
+  "@coreRawLogsCopied": {
+    "description": "Core UI: coreRawLogsCopied"
+  },
+  "coreExportSucceeded": "导出成功",
+  "@coreExportSucceeded": {
+    "description": "Core UI: coreExportSucceeded"
+  },
+  "coreExportFailed": "导出失败",
+  "@coreExportFailed": {
+    "description": "Core UI: coreExportFailed"
+  },
+  "coreUnableExportLogs": "无法导出日志：",
+  "@coreUnableExportLogs": {
+    "description": "Core UI: coreUnableExportLogs"
+  },
+  "coreCleared": "已清空",
+  "@coreCleared": {
+    "description": "Core UI: coreCleared"
+  },
+  "coreLogsCleared": "测试日志已清空。",
+  "@coreLogsCleared": {
+    "description": "Core UI: coreLogsCleared"
+  },
+  "coreConfirmClearLogs": "确定清空测试日志？",
+  "@coreConfirmClearLogs": {
+    "description": "Core UI: coreConfirmClearLogs"
+  },
+  "coreClearLogsWarning": "清空后，当前保存的诊断记录将无法在 App 内恢复。",
+  "@coreClearLogsWarning": {
+    "description": "Core UI: coreClearLogsWarning"
+  },
+  "coreYearMonth": "{year} 年 {month} 月",
+  "@coreYearMonth": {
+    "description": "Core UI: coreYearMonth",
+    "placeholders": {
+      "year": {
+        "type": "int"
+      },
+      "month": {
+        "type": "int"
+      }
+    }
+  },
+  "coreWeekdayMon": "一",
+  "@coreWeekdayMon": {
+    "description": "Core UI: coreWeekdayMon"
+  },
+  "coreWeekdayTue": "二",
+  "@coreWeekdayTue": {
+    "description": "Core UI: coreWeekdayTue"
+  },
+  "coreWeekdayWed": "三",
+  "@coreWeekdayWed": {
+    "description": "Core UI: coreWeekdayWed"
+  },
+  "coreWeekdayThu": "四",
+  "@coreWeekdayThu": {
+    "description": "Core UI: coreWeekdayThu"
+  },
+  "coreWeekdayFri": "五",
+  "@coreWeekdayFri": {
+    "description": "Core UI: coreWeekdayFri"
+  },
+  "coreWeekdaySat": "六",
+  "@coreWeekdaySat": {
+    "description": "Core UI: coreWeekdaySat"
+  },
+  "coreWeekdaySun": "日",
+  "@coreWeekdaySun": {
+    "description": "Core UI: coreWeekdaySun"
+  },
+  "coreEndsIn": "结束还有{duration}",
+  "@coreEndsIn": {
+    "description": "Core UI: coreEndsIn",
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "coreStartsIn": "开始还有{duration}",
+  "@coreStartsIn": {
+    "description": "Core UI: coreStartsIn",
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "coreWorkBreakSummary": "工作 {work} - 休息 {breakDuration}",
+  "@coreWorkBreakSummary": {
+    "description": "Core UI: coreWorkBreakSummary",
+    "placeholders": {
+      "work": {
+        "type": "String"
+      },
+      "breakDuration": {
+        "type": "String"
+      }
+    }
+  },
+  "coreNotEnoughTime": "时间不够了！",
+  "@coreNotEnoughTime": {
+    "description": "Core UI: coreNotEnoughTime"
+  },
+  "coreTasksDoNotFit": "即使是完全不休息也有任务无法完成。请压缩任务的预期时间，或者检查是否有任务在规划开始时间之前就结束。",
+  "@coreTasksDoNotFit": {
+    "description": "Core UI: coreTasksDoNotFit"
+  },
+  "coreBreaksMustShrink": "因为任务过多，你需要把休息时间压缩到 {duration}才能完成任务。",
+  "@coreBreaksMustShrink": {
+    "description": "Core UI: coreBreaksMustShrink",
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "coreLocationValue": "地点：{value}",
+  "@coreLocationValue": {
+    "description": "Core UI: coreLocationValue",
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "coreDescriptionValue": "说明：{value}",
+  "@coreDescriptionValue": {
+    "description": "Core UI: coreDescriptionValue",
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "coreTimeValue": "时间：{value}",
+  "@coreTimeValue": {
+    "description": "Core UI: coreTimeValue",
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "coreLanguage": "语言",
+  "@coreLanguage": {
+    "description": "Settings language selector label"
+  },
+  "coreDueWithExpired": "截止于 {time}{expired, select, true{ - 已过期} other{}}",
+  "@coreDueWithExpired": {
+    "description": "Core UI: coreDueWithExpired",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      },
+      "expired": {
+        "type": "String"
+      }
+    }
+  },
+  "coreDays": "{count} 天",
+  "@coreDays": {
+    "description": "Core UI: coreDays",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "coreTaskProgress": "{percent}% 已完成：预期 {expected}，还要 {remaining}",
+  "@coreTaskProgress": {
+    "description": "Core UI: coreTaskProgress",
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      },
+      "expected": {
+        "type": "String"
+      },
+      "remaining": {
+        "type": "String"
+      }
+    }
+  },
+  "coreMarkIncomplete": "标记为未完成",
+  "@coreMarkIncomplete": {
+    "description": "Core UI: coreMarkIncomplete"
+  },
+  "coreMarkComplete": "标记为完成",
+  "@coreMarkComplete": {
+    "description": "Core UI: coreMarkComplete"
+  },
+  "corePause": "暂停",
+  "@corePause": {
+    "description": "Core UI: corePause"
+  },
+  "coreResume": "继续",
+  "@coreResume": {
+    "description": "Core UI: coreResume"
+  },
+  "coreLoggedIn": "已登录: {username}",
+  "@coreLoggedIn": {
+    "description": "Core UI: coreLoggedIn",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "corePeriodCount": "{count} 个时段",
+  "@corePeriodCount": {
+    "description": "Core UI: corePeriodCount",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "coreFileCreated": "已生成 {fileName}",
+  "@coreFileCreated": {
+    "description": "Core UI: coreFileCreated",
+    "placeholders": {
+      "fileName": {
+        "type": "String"
+      }
+    }
+  },
+  "coreDamagedLogLines": "有 {count} 行日志无法解析，已安全跳过。",
+  "@coreDamagedLogLines": {
+    "description": "Core UI: coreDamagedLogLines",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "coreExporting": "正在导出…",
+  "@coreExporting": {
+    "description": "Core UI: coreExporting"
+  },
+  "coreRawLogRetention": "原始日志继续使用 UTC 时间并保留完整脱敏技术字段；最多保留 2000 行和最近 10 个导出文件。",
+  "@coreRawLogRetention": {
+    "description": "Core UI: coreRawLogRetention"
+  },
+  "corePaymentCodeStatus": "付款码：{status}",
+  "@corePaymentCodeStatus": {
+    "description": "Core UI: corePaymentCodeStatus",
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "coreLoadFailed": "加载失败",
+  "@coreLoadFailed": {
+    "description": "Core UI: coreLoadFailed"
+  },
+  "coreVersion": "{version} 版本",
+  "@coreVersion": {
+    "description": "Core UI: coreVersion",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "coreContributorKate": "空之探险队的 Kate",
+  "@coreContributorKate": {
+    "description": "Core UI: coreContributorKate"
+  },
+  "coreStartValue": "开始：{time}",
+  "@coreStartValue": {
+    "description": "Core UI: coreStartValue",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "coreEndValue": "结束：{time}",
+  "@coreEndValue": {
+    "description": "Core UI: coreEndValue",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "coreStartMustBeBeforeEnd": "开始时间必须早于结束时间",
+  "@coreStartMustBeBeforeEnd": {
+    "description": "Core UI: coreStartMustBeBeforeEnd"
+  },
+  "coreClear": "清空",
+  "@coreClear": {
+    "description": "Core UI: coreClear"
+  },
+  "coreSeasonWeek": "{season}{week}周",
+  "@coreSeasonWeek": {
+    "placeholders": {
+      "season": {
+        "type": "String"
+      },
+      "week": {
+        "type": "int"
+      }
+    }
+  },
+  "coreSemesterDisplay": "{year} {season}学期",
+  "@coreSemesterDisplay": {
+    "placeholders": {
+      "year": {
+        "type": "String"
+      },
+      "season": {
+        "type": "String"
+      }
+    }
+  }
+}

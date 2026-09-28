@@ -1,3 +1,4 @@
+import 'package:celechron/l10n/l10n.dart';
 import 'package:extended_sliver/extended_sliver.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -64,7 +65,8 @@ class CourseListPage extends StatelessWidget {
           CupertinoColors.systemGroupedBackground, context),
       child: CustomScrollView(
         slivers: [
-          const CelechronSliverTextHeader(subtitle: '课程'),
+          CelechronSliverTextHeader(
+              subtitle: context.l10n.academicCourses),
           SliverPinnedToBoxAdapter(
             child: Padding(
                 padding: const EdgeInsets.only(left: 16, right: 16, bottom: 10),

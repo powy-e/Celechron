@@ -1,0 +1,137 @@
+{
+  "sharedLanguage": "语言",
+  "sharedConfirm": "确定",
+  "sharedCancel": "取消",
+  "sharedSpring": "春",
+  "sharedSummer": "夏",
+  "sharedAutumn": "秋",
+  "sharedWinter": "冬",
+  "sharedSpringSummer": "春夏",
+  "sharedAutumnWinter": "秋冬",
+  "sharedUnknownCourse": "未知课程",
+  "sharedUnknownTeacher": "未知教师",
+  "sharedUnknownLocation": "无地点",
+  "sharedUnknown": "未知",
+  "sharedGradeExcellent": "优秀",
+  "sharedGradeGood": "良好",
+  "sharedGradeAverage": "中等",
+  "sharedGradePass": "及格",
+  "sharedGradeFail": "不及格",
+  "sharedQualified": "合格",
+  "sharedUnqualified": "不合格",
+  "sharedWithdrawn": "弃修",
+  "sharedAbsent": "缺考",
+  "sharedDeferred": "缓考",
+  "sharedPendingGrade": "待录",
+  "sharedInvalid": "无效",
+  "sharedTaskDeadline": "DDL",
+  "sharedTaskEvent": "日程",
+  "sharedPastEvent": "过去日程",
+  "sharedRunning": "进行中",
+  "sharedPaused": "已暂停",
+  "sharedComplete": "完成",
+  "sharedExpired": "已过期",
+  "sharedDeleted": "已删除",
+  "sharedNoRepeat": "不重复",
+  "sharedRepeatDays": "每隔几天",
+  "sharedRepeatMonth": "每月的这一天",
+  "sharedRepeatYear": "每年的这一天",
+  "sharedTomorrow": "明天 ",
+  "sharedYesterday": "昨天 ",
+  "sharedDayAfterTomorrow": "后天 ",
+  "sharedDayBeforeYesterday": "前天 ",
+  "sharedNextDay": "次日 ",
+  "sharedLive": "实时成功",
+  "sharedCache": "使用缓存",
+  "sharedFallback": "使用默认配置",
+  "sharedUnavailable": "不可用",
+  "sharedApproved": "审核通过",
+  "sharedPendingReview": "待审核",
+  "sharedNotApproved": "审核未通过",
+  "sharedMidterm": "期中考试",
+  "sharedFinalExam": "期末考试",
+  "sharedAll": "全部",
+  "sharedNetworkFailed": "网络连接失败",
+  "sharedRequestTimeout": "请求超时",
+  "sharedRequestFailed": "请求失败",
+  "sharedStateError": "请求状态异常",
+  "sharedFormatError": "返回数据格式异常",
+  "sharedUnknownError": "未知错误",
+  "sharedCalendarUnavailable": "当前学期校历配置暂未发布",
+  "sharedGrades": "成绩",
+  "sharedAssignments": "作业",
+  "sharedSchedule": "课表",
+  "sharedExams": "考试",
+  "sharedRefresh": "刷新",
+  "sharedLogin": "登录",
+  "sharedCalendar": "校历",
+  "sharedPractice": "素质拓展",
+  "sharedGraduate": "研究生",
+  "sharedUndergraduate": "本科生",
+  "sharedExamDay": "考试周第 {day} 天",
+  "@sharedExamDay": {
+    "placeholders": {
+      "day": {
+        "type": "int"
+      }
+    }
+  },
+  "sharedDaysAgo": "{count} 天前 ",
+  "@sharedDaysAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sharedDaysLater": "{count} 天后 ",
+  "@sharedDaysLater": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sharedHours": "{count} 小时",
+  "@sharedHours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sharedMinutes": "{count} 分钟",
+  "@sharedMinutes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sharedSessionTime": "{week}周{day}第{periods}节",
+  "@sharedSessionTime": {
+    "placeholders": {
+      "week": {
+        "type": "String"
+      },
+      "day": {
+        "type": "String"
+      },
+      "periods": {
+        "type": "String"
+      }
+    }
+  },
+  "sharedOddWeek": "单 - ",
+  "sharedEvenWeek": "双 - ",
+  "sharedUnknownLocation2": "未知地点",
+  "sharedMidtermShort": "期中",
+  "sharedFinalShort": "期末",
+  "sharedMon": "一",
+  "sharedTue": "二",
+  "sharedWed": "三",
+  "sharedThu": "四",
+  "sharedFri": "五",
+  "sharedSat": "六",
+  "sharedSun": "日"
+}

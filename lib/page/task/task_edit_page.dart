@@ -1,3 +1,4 @@
+import 'package:celechron/l10n/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:celechron/model/task.dart';
 import 'package:celechron/utils/utils.dart';
@@ -21,12 +22,12 @@ class _TaskEditPageState extends State<TaskEditPage> {
         context: context,
         builder: (BuildContext context) {
           return CupertinoAlertDialog(
-            title: const Text(
-              '开始时间必须晚于结束时间',
+            title: Text(
+              context.l10n.coreStartAfterEnd,
             ),
             actions: [
               CupertinoDialogAction(
-                child: const Text('确定'),
+                child: Text(context.l10n.coreConfirm),
                 onPressed: () async {
                   Navigator.of(context).pop();
                 },
@@ -45,12 +46,12 @@ class _TaskEditPageState extends State<TaskEditPage> {
         context: context,
         builder: (BuildContext context) {
           return CupertinoAlertDialog(
-            title: const Text(
-              '开始时间不能晚于重复截止日期',
+            title: Text(
+              context.l10n.coreStartBeforeRepeatEnd,
             ),
             actions: [
               CupertinoDialogAction(
-                child: const Text('确定'),
+                child: Text(context.l10n.coreConfirm),
                 onPressed: () async {
                   Navigator.of(context).pop();
                 },
@@ -73,12 +74,12 @@ class _TaskEditPageState extends State<TaskEditPage> {
           context: context,
           builder: (BuildContext context) {
             return CupertinoAlertDialog(
-              title: const Text(
-                '这个重复日程的持续时间太长',
+              title: Text(
+                context.l10n.coreRepeatedEventTooLong,
               ),
               actions: [
                 CupertinoDialogAction(
-                  child: const Text('确定'),
+                  child: Text(context.l10n.coreConfirm),
                   onPressed: () async {
                     Navigator.of(context).pop();
                   },
@@ -137,7 +138,7 @@ class _TaskEditPageState extends State<TaskEditPage> {
           onPressed: exitWithoutSave,
           child: const Icon(CupertinoIcons.xmark),
         ),
-        middle: const Text('编辑任务'),
+        middle: Text(context.l10n.coreEditTask),
         trailing: CupertinoButton(
           padding: EdgeInsets.zero,
           onPressed: saveAndExit,
@@ -162,11 +163,11 @@ class _TaskEditPageState extends State<TaskEditPage> {
                     children: <TaskType, Widget>{
                       TaskType.deadline: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Text('${deadlineTypeName[TaskType.deadline]}'),
+                        child: Text(displayText(deadlineTypeName[TaskType.deadline] ?? '')),
                       ),
                       TaskType.fixed: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Text('${deadlineTypeName[TaskType.fixed]}'),
+                        child: Text(displayText(deadlineTypeName[TaskType.fixed] ?? '')),
                       ),
                     },
                     onValueChanged: (TaskType? value) {
@@ -184,7 +185,7 @@ class _TaskEditPageState extends State<TaskEditPage> {
                 CupertinoListSection.insetGrouped(
                   children: [
                     CupertinoTextFormFieldRow(
-                      placeholder: '任务名',
+                      placeholder: context.l10n.coreTaskName,
                       textAlign: TextAlign.left,
                       controller: TextEditingController(text: now.summary),
                       onChanged: (String value) {
@@ -193,11 +194,11 @@ class _TaskEditPageState extends State<TaskEditPage> {
                     ),
                     if (now.type == TaskType.fixed)
                       CupertinoTextFormFieldRow(
-                        placeholder: '开始时间',
+                        placeholder: context.l10n.coreStartTime,
                         textAlign: TextAlign.left,
                         controller: TextEditingController(
-                            text:
-                                '开始于 ${TimeHelper.chineseDateTime(now.startTime)}'),
+                            text: context.l10n.coreStartsAt(displayText(
+                                TimeHelper.chineseDateTime(now.startTime)))),
                         readOnly: true,
                         onTap: () async {
                           await showCupertinoModalPopup(
@@ -232,11 +233,11 @@ class _TaskEditPageState extends State<TaskEditPage> {
                         },
                       ),
                     CupertinoTextFormFieldRow(
-                      placeholder: '结束时间',
+                      placeholder: context.l10n.coreEndTime,
                       textAlign: TextAlign.left,
                       controller: TextEditingController(
                           text:
-                              '${now.type == TaskType.deadline ? '截止于' : '结束于'} ${TimeHelper.chineseDateTime(now.endTime)}'),
+                              '${now.type == TaskType.deadline ? context.l10n.coreDueAt : context.l10n.coreEndsAt} ${displayText(TimeHelper.chineseDateTime(now.endTime))}'),
                       readOnly: true,
                       onTap: () async {
                         await showCupertinoModalPopup(
@@ -275,10 +276,10 @@ class _TaskEditPageState extends State<TaskEditPage> {
                 ),
                 if (now.type == TaskType.deadline)
                   CupertinoListSection.insetGrouped(
-                    header: const Text('时间安排'),
+                    header: Text(context.l10n.coreTimePlanning),
                     children: [
                       CupertinoListTile(
-                        title: const Text('预期用时'),
+                        title: Text(context.l10n.coreExpectedDuration),
                         trailing: Text(durationToString(now.timeNeeded)),
                         onTap: () async {
                           await showCupertinoModalPopup(
@@ -327,7 +328,7 @@ class _TaskEditPageState extends State<TaskEditPage> {
                                             ),
                                           ),
                                         ),
-                                        const Text('小时'),
+                                        Text(context.l10n.coreHours),
                                         SizedBox(
                                           width: 150,
                                           child: CupertinoPicker(
@@ -360,7 +361,7 @@ class _TaskEditPageState extends State<TaskEditPage> {
                                             ),
                                           ),
                                         ),
-                                        const Text('分钟'),
+                                        Text(context.l10n.coreMinutes),
                                       ],
                                     ),
                                     // CupertinoTimerPicker(
@@ -385,7 +386,7 @@ class _TaskEditPageState extends State<TaskEditPage> {
                         },
                       ),
                       CupertinoListTile(
-                        title: const Text('已经用时'),
+                        title: Text(context.l10n.coreTimeSpent),
                         trailing: Text(durationToString(now.timeSpent)),
                         onTap: () async {
                           await showCupertinoModalPopup(
@@ -429,7 +430,7 @@ class _TaskEditPageState extends State<TaskEditPage> {
                                             ),
                                           ),
                                         ),
-                                        const Text('小时'),
+                                        Text(context.l10n.coreHours),
                                         SizedBox(
                                           width: 150,
                                           child: CupertinoPicker(
@@ -457,7 +458,7 @@ class _TaskEditPageState extends State<TaskEditPage> {
                                             ),
                                           ),
                                         ),
-                                        const Text('分钟'),
+                                        Text(context.l10n.coreMinutes),
                                       ],
                                     ),
                                     // child: CupertinoTimerPicker(
@@ -475,7 +476,7 @@ class _TaskEditPageState extends State<TaskEditPage> {
                         },
                       ),
                       CupertinoListTile(
-                        title: const Text('允许插入休息时间'),
+                        title: Text(context.l10n.coreAllowBreaks),
                         trailing: CupertinoSwitch(
                           value: now.isBreakable,
                           onChanged: (value) {
@@ -489,10 +490,10 @@ class _TaskEditPageState extends State<TaskEditPage> {
                   ),
                 if (now.type == TaskType.fixed) ...[
                   CupertinoListSection.insetGrouped(
-                    header: const Text('日程设置'),
+                    header: Text(context.l10n.coreEventSettings),
                     children: [
                       CupertinoListTile(
-                        title: const Text('重复'),
+                        title: Text(context.l10n.coreRepeat),
                         trailing: Text(deadlineRepeatTypeName[now.repeatType]!),
                         onTap: () async {
                           await showCupertinoModalPopup(
@@ -544,8 +545,9 @@ class _TaskEditPageState extends State<TaskEditPage> {
                       ),
                       if (now.repeatType == TaskRepeatType.days)
                         CupertinoListTile(
-                          title: const Text('重复周期'),
-                          trailing: Text('${now.repeatPeriod} 天'),
+                          title: Text(context.l10n.coreRepeatInterval),
+                          trailing:
+                              Text(context.l10n.coreDays(now.repeatPeriod)),
                           onTap: () async {
                             await showCupertinoModalPopup(
                                 context: context,
@@ -585,7 +587,7 @@ class _TaskEditPageState extends State<TaskEditPage> {
                         ),
                       if (now.repeatType != TaskRepeatType.norepeat)
                         CupertinoListTile(
-                          title: const Text('重复截止日期'),
+                          title: Text(context.l10n.coreRepeatUntil),
                           trailing:
                               Text(TimeHelper.chineseDate(now.repeatEndsTime)),
                           onTap: () async {
@@ -614,7 +616,7 @@ class _TaskEditPageState extends State<TaskEditPage> {
                           },
                         ),
                       CupertinoListTile(
-                        title: const Text('不在这个日程中安排任务'),
+                        title: Text(context.l10n.coreExcludeFromPlanning),
                         trailing: CupertinoSwitch(
                           value: now.blockArrangements,
                           onChanged: (value) {
@@ -638,10 +640,10 @@ class _TaskEditPageState extends State<TaskEditPage> {
                   // ),
                 ],
                 CupertinoListSection.insetGrouped(
-                  header: const Text('附加信息'),
+                  header: Text(context.l10n.coreAdditionalInfo),
                   children: [
                     CupertinoTextFormFieldRow(
-                      placeholder: '地点',
+                      placeholder: context.l10n.coreLocation,
                       textAlign: TextAlign.left,
                       controller: TextEditingController(text: now.location),
                       onChanged: (String value) {
@@ -649,7 +651,7 @@ class _TaskEditPageState extends State<TaskEditPage> {
                       },
                     ),
                     CupertinoTextFormFieldRow(
-                      placeholder: '说明',
+                      placeholder: context.l10n.coreDescription,
                       textAlign: TextAlign.left,
                       controller: TextEditingController(text: now.description),
                       onChanged: (String value) {
@@ -660,8 +662,8 @@ class _TaskEditPageState extends State<TaskEditPage> {
                 ),
                 CupertinoButton(
                   onPressed: removeAndExit,
-                  child: const Text(
-                    '删除任务',
+                  child: Text(
+                    context.l10n.coreDeleteTask,
                     style: TextStyle(
                       color: CupertinoColors.systemPink,
                     ),

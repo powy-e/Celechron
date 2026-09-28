@@ -6,6 +6,7 @@
                     android:targetCellHeight="1"
                     android:targetCellWidth="2"
                     android:previewImage="@drawable/ecard_widget_preview"
+                    android:previewLayout="@layout/ecard_widget_preview"
                     android:resizeMode="horizontal|vertical"
 >
 </appwidget-provider>

@@ -1,0 +1,1052 @@
+{
+  "coreUpNext": "Up Next",
+  "@coreUpNext": {
+    "description": "Core UI: coreUpNext"
+  },
+  "coreCalendar": "Calendar",
+  "@coreCalendar": {
+    "description": "Core UI: coreCalendar"
+  },
+  "coreTasks": "Tasks",
+  "@coreTasks": {
+    "description": "Core UI: coreTasks"
+  },
+  "coreAcademics": "Academics",
+  "@coreAcademics": {
+    "description": "Core UI: coreAcademics"
+  },
+  "coreSettings": "Settings",
+  "@coreSettings": {
+    "description": "Core UI: coreSettings"
+  },
+  "coreUpdateAvailable": "Update available",
+  "@coreUpdateAvailable": {
+    "description": "Core UI: coreUpdateAvailable"
+  },
+  "coreIgnore": "Ignore",
+  "@coreIgnore": {
+    "description": "Core UI: coreIgnore"
+  },
+  "coreVisitWebsite": "Visit website",
+  "@coreVisitWebsite": {
+    "description": "Core UI: coreVisitWebsite"
+  },
+  "coreTimeUntilEnd": "Ends in",
+  "@coreTimeUntilEnd": {
+    "description": "Core UI: coreTimeUntilEnd"
+  },
+  "coreTimeUntilStart": "Starts in",
+  "@coreTimeUntilStart": {
+    "description": "Core UI: coreTimeUntilStart"
+  },
+  "coreStartPlanning": "Start planning",
+  "@coreStartPlanning": {
+    "description": "Core UI: coreStartPlanning"
+  },
+  "coreTapToChangeStartTime": "Tap to change the start time",
+  "@coreTapToChangeStartTime": {
+    "description": "Core UI: coreTapToChangeStartTime"
+  },
+  "coreBack": "Back",
+  "@coreBack": {
+    "description": "Core UI: coreBack"
+  },
+  "coreConfirm": "OK",
+  "@coreConfirm": {
+    "description": "Core UI: coreConfirm"
+  },
+  "coreBreakTimeShortened": "Breaks shortened",
+  "@coreBreakTimeShortened": {
+    "description": "Core UI: coreBreakTimeShortened"
+  },
+  "coreStartTimeMustBeFuture": "Start time must be in the future",
+  "@coreStartTimeMustBeFuture": {
+    "description": "Core UI: coreStartTimeMustBeFuture"
+  },
+  "coreAdjustStartTime": "Please adjust the start time.",
+  "@coreAdjustStartTime": {
+    "description": "Core UI: coreAdjustStartTime"
+  },
+  "coreCreate": "Create",
+  "@coreCreate": {
+    "description": "Core UI: coreCreate"
+  },
+  "corePlanExpired": "Plan expired",
+  "@corePlanExpired": {
+    "description": "Core UI: corePlanExpired"
+  },
+  "coreReplan": "Replan",
+  "@coreReplan": {
+    "description": "Core UI: coreReplan"
+  },
+  "coreNothingToDoToday": "Nothing planned for today",
+  "@coreNothingToDoToday": {
+    "description": "Core UI: coreNothingToDoToday"
+  },
+  "coreInProgress": "In progress",
+  "@coreInProgress": {
+    "description": "Core UI: coreInProgress"
+  },
+  "coreStartingSoon": "Starting soon",
+  "@coreStartingSoon": {
+    "description": "Core UI: coreStartingSoon"
+  },
+  "coreLaterPlans": "Later",
+  "@coreLaterPlans": {
+    "description": "Core UI: coreLaterPlans"
+  },
+  "coreExamWeekOrBreak": "Exam period / break",
+  "@coreExamWeekOrBreak": {
+    "description": "Core UI: coreExamWeekOrBreak"
+  },
+  "coreNoSemesterInfo": "No semester information",
+  "@coreNoSemesterInfo": {
+    "description": "Core UI: coreNoSemesterInfo"
+  },
+  "coreOutsideSemester": "Outside the semester",
+  "@coreOutsideSemester": {
+    "description": "Core UI: coreOutsideSemester"
+  },
+  "coreToday": "Today",
+  "@coreToday": {
+    "description": "Core UI: coreToday"
+  },
+  "coreSwitchView": "Switch view",
+  "@coreSwitchView": {
+    "description": "Core UI: coreSwitchView"
+  },
+  "coreShowFullMonth": "Show full month",
+  "@coreShowFullMonth": {
+    "description": "Core UI: coreShowFullMonth"
+  },
+  "coreShowWeek": "Show week",
+  "@coreShowWeek": {
+    "description": "Core UI: coreShowWeek"
+  },
+  "coreRepeatedEventUpcoming": "Repeated event, upcoming occurrences:",
+  "@coreRepeatedEventUpcoming": {
+    "description": "Core UI: coreRepeatedEventUpcoming"
+  },
+  "coreEdit": "Edit",
+  "@coreEdit": {
+    "description": "Core UI: coreEdit"
+  },
+  "coreDelete": "Delete",
+  "@coreDelete": {
+    "description": "Core UI: coreDelete"
+  },
+  "coreTimePlanning": "Time planning",
+  "@coreTimePlanning": {
+    "description": "Core UI: coreTimePlanning"
+  },
+  "coreExpectedDuration": "Estimated duration",
+  "@coreExpectedDuration": {
+    "description": "Core UI: coreExpectedDuration"
+  },
+  "coreHours": "hours",
+  "@coreHours": {
+    "description": "Core UI: coreHours"
+  },
+  "coreMinutes": "minutes",
+  "@coreMinutes": {
+    "description": "Core UI: coreMinutes"
+  },
+  "coreTimeSpent": "Time spent",
+  "@coreTimeSpent": {
+    "description": "Core UI: coreTimeSpent"
+  },
+  "coreAllowBreaks": "Allow breaks",
+  "@coreAllowBreaks": {
+    "description": "Core UI: coreAllowBreaks"
+  },
+  "coreEventSettings": "Event settings",
+  "@coreEventSettings": {
+    "description": "Core UI: coreEventSettings"
+  },
+  "coreRepeat": "Repeat",
+  "@coreRepeat": {
+    "description": "Core UI: coreRepeat"
+  },
+  "coreRepeatInterval": "Repeat interval",
+  "@coreRepeatInterval": {
+    "description": "Core UI: coreRepeatInterval"
+  },
+  "coreRepeatUntil": "Repeat until",
+  "@coreRepeatUntil": {
+    "description": "Core UI: coreRepeatUntil"
+  },
+  "coreExcludeFromPlanning": "Exclude tasks from this event",
+  "@coreExcludeFromPlanning": {
+    "description": "Core UI: coreExcludeFromPlanning"
+  },
+  "coreAdditionalInfo": "Additional information",
+  "@coreAdditionalInfo": {
+    "description": "Core UI: coreAdditionalInfo"
+  },
+  "coreLocation": "Location",
+  "@coreLocation": {
+    "description": "Core UI: coreLocation"
+  },
+  "coreDescription": "Description",
+  "@coreDescription": {
+    "description": "Core UI: coreDescription"
+  },
+  "coreDeleteTask": "Delete task",
+  "@coreDeleteTask": {
+    "description": "Core UI: coreDeleteTask"
+  },
+  "coreNotStarted": "Not started",
+  "@coreNotStarted": {
+    "description": "Core UI: coreNotStarted"
+  },
+  "coreEnded": "Ended",
+  "@coreEnded": {
+    "description": "Core UI: coreEnded"
+  },
+  "coreOngoing": "Ongoing",
+  "@coreOngoing": {
+    "description": "Core UI: coreOngoing"
+  },
+  "coreDeleteCompletedTasks": "Delete completed tasks",
+  "@coreDeleteCompletedTasks": {
+    "description": "Core UI: coreDeleteCompletedTasks"
+  },
+  "coreDeleteExpiredTasks": "Delete expired tasks",
+  "@coreDeleteExpiredTasks": {
+    "description": "Core UI: coreDeleteExpiredTasks"
+  },
+  "corePauseAllTasks": "Pause all tasks",
+  "@corePauseAllTasks": {
+    "description": "Core UI: corePauseAllTasks"
+  },
+  "coreResumeAllTasks": "Resume all tasks",
+  "@coreResumeAllTasks": {
+    "description": "Core UI: coreResumeAllTasks"
+  },
+  "coreCancel": "Cancel",
+  "@coreCancel": {
+    "description": "Core UI: coreCancel"
+  },
+  "coreNoTasks": "No tasks",
+  "@coreNoTasks": {
+    "description": "Core UI: coreNoTasks"
+  },
+  "coreToDo": "To do",
+  "@coreToDo": {
+    "description": "Core UI: coreToDo"
+  },
+  "coreCompleted": "Completed",
+  "@coreCompleted": {
+    "description": "Core UI: coreCompleted"
+  },
+  "coreEventList": "Events",
+  "@coreEventList": {
+    "description": "Core UI: coreEventList"
+  },
+  "coreSearchPlaceholder": "Search courses and tasks...",
+  "@coreSearchPlaceholder": {
+    "description": "Core UI: coreSearchPlaceholder"
+  },
+  "coreSecurityVerification": "Security check",
+  "@coreSecurityVerification": {
+    "description": "Core UI: coreSecurityVerification"
+  },
+  "coreTapImageToRefresh": "Tap the image to refresh",
+  "@coreTapImageToRefresh": {
+    "description": "Core UI: coreTapImageToRefresh"
+  },
+  "coreEnterCaptcha": "Enter the verification code",
+  "@coreEnterCaptcha": {
+    "description": "Core UI: coreEnterCaptcha"
+  },
+  "coreCampusLogin": "Campus account login",
+  "@coreCampusLogin": {
+    "description": "Core UI: coreCampusLogin"
+  },
+  "coreStudentId": "Student ID",
+  "@coreStudentId": {
+    "description": "Core UI: coreStudentId"
+  },
+  "corePassword": "Password",
+  "@corePassword": {
+    "description": "Core UI: corePassword"
+  },
+  "coreLoginFailed": "Login failed",
+  "@coreLoginFailed": {
+    "description": "Core UI: coreLoginFailed"
+  },
+  "coreLogin": "Log in",
+  "@coreLogin": {
+    "description": "Core UI: coreLogin"
+  },
+  "corePaymentCode": "Payment code",
+  "@corePaymentCode": {
+    "description": "Core UI: corePaymentCode"
+  },
+  "coreLoading": "Loading...",
+  "@coreLoading": {
+    "description": "Core UI: coreLoading"
+  },
+  "coreRefreshQrCode": "Refresh QR code",
+  "@coreRefreshQrCode": {
+    "description": "Core UI: coreRefreshQrCode"
+  },
+  "coreOriginalCourseCode": "Original course code",
+  "@coreOriginalCourseCode": {
+    "description": "Core UI: coreOriginalCourseCode"
+  },
+  "coreNewCourseCode": "New course code",
+  "@coreNewCourseCode": {
+    "description": "Core UI: coreNewCourseCode"
+  },
+  "coreDisplayName": "Display name",
+  "@coreDisplayName": {
+    "description": "Core UI: coreDisplayName"
+  },
+  "coreError": "Error",
+  "@coreError": {
+    "description": "Core UI: coreError"
+  },
+  "coreFillAllFields": "Please fill in all fields",
+  "@coreFillAllFields": {
+    "description": "Core UI: coreFillAllFields"
+  },
+  "coreSave": "Save",
+  "@coreSave": {
+    "description": "Core UI: coreSave"
+  },
+  "coreCustomCourseCodeMapping": "Course code mapping",
+  "@coreCustomCourseCodeMapping": {
+    "description": "Core UI: coreCustomCourseCodeMapping"
+  },
+  "coreAddMapping": "Add a mapping",
+  "@coreAddMapping": {
+    "description": "Core UI: coreAddMapping"
+  },
+  "coreAcademicPortal": "Academic portal",
+  "@coreAcademicPortal": {
+    "description": "Core UI: coreAcademicPortal"
+  },
+  "coreBackgroundRefreshExplanation": "Celechron periodically refreshes data in the background. Enable notifications and keep Celechron running in the background.",
+  "@coreBackgroundRefreshExplanation": {
+    "description": "Core UI: coreBackgroundRefreshExplanation"
+  },
+  "coreLogOut": "Log out",
+  "@coreLogOut": {
+    "description": "Core UI: coreLogOut"
+  },
+  "coreLogOutTitle": "Log out",
+  "@coreLogOutTitle": {
+    "description": "Core UI: coreLogOutTitle"
+  },
+  "coreConfirmLogOut": "Are you sure you want to log out of this account?",
+  "@coreConfirmLogOut": {
+    "description": "Core UI: coreConfirmLogOut"
+  },
+  "coreRetakeGpaCalculation": "Retake GPA",
+  "@coreRetakeGpaCalculation": {
+    "description": "Core UI: coreRetakeGpaCalculation"
+  },
+  "coreUseFirstAttempt": "Use first attempt",
+  "@coreUseFirstAttempt": {
+    "description": "Core UI: coreUseFirstAttempt"
+  },
+  "coreUseHighestAttempt": "Use highest attempt",
+  "@coreUseHighestAttempt": {
+    "description": "Core UI: coreUseHighestAttempt"
+  },
+  "coreHideGpa": "Hide GPA",
+  "@coreHideGpa": {
+    "description": "Core UI: coreHideGpa"
+  },
+  "coreAsyncRefresh": "Refresh in background",
+  "@coreAsyncRefresh": {
+    "description": "Core UI: coreAsyncRefresh"
+  },
+  "coreGradeChangeNotifications": "Grade change notifications",
+  "@coreGradeChangeNotifications": {
+    "description": "Core UI: coreGradeChangeNotifications"
+  },
+  "coreDeadlineNotifications": "Deadline notifications",
+  "@coreDeadlineNotifications": {
+    "description": "Core UI: coreDeadlineNotifications"
+  },
+  "coreTapToLogIn": "Tap to log in",
+  "@coreTapToLogIn": {
+    "description": "Core UI: coreTapToLogIn"
+  },
+  "coreWorkDuration": "Work interval",
+  "@coreWorkDuration": {
+    "description": "Core UI: coreWorkDuration"
+  },
+  "coreBreakDuration": "Break interval",
+  "@coreBreakDuration": {
+    "description": "Core UI: coreBreakDuration"
+  },
+  "coreAvailableWorkPeriods": "Available work periods",
+  "@coreAvailableWorkPeriods": {
+    "description": "Core UI: coreAvailableWorkPeriods"
+  },
+  "coreSyncSystemCalendar": "Sync with system calendar",
+  "@coreSyncSystemCalendar": {
+    "description": "Core UI: coreSyncSystemCalendar"
+  },
+  "coreScheduleSyncOptions": "Schedule sync options",
+  "@coreScheduleSyncOptions": {
+    "description": "Core UI: coreScheduleSyncOptions"
+  },
+  "coreSelectSemester": "Select semester",
+  "@coreSelectSemester": {
+    "description": "Core UI: coreSelectSemester"
+  },
+  "coreExportIcal": "Export as iCal",
+  "@coreExportIcal": {
+    "description": "Core UI: coreExportIcal"
+  },
+  "coreTools": "Tools",
+  "@coreTools": {
+    "description": "Core UI: coreTools"
+  },
+  "coreDarkMode": "Appearance",
+  "@coreDarkMode": {
+    "description": "Core UI: coreDarkMode"
+  },
+  "coreFollowSystem": "System default",
+  "@coreFollowSystem": {
+    "description": "Core UI: coreFollowSystem"
+  },
+  "coreLightMode": "Light",
+  "@coreLightMode": {
+    "description": "Core UI: coreLightMode"
+  },
+  "coreAbout": "About",
+  "@coreAbout": {
+    "description": "Core UI: coreAbout"
+  },
+  "coreDiagnostics": "Diagnostics and tests",
+  "@coreDiagnostics": {
+    "description": "Core UI: coreDiagnostics"
+  },
+  "coreTestLogs": "Diagnostic logs",
+  "@coreTestLogs": {
+    "description": "Core UI: coreTestLogs"
+  },
+  "coreDiagnosticLogsDescription": "View, copy, or export redacted TXT logs",
+  "@coreDiagnosticLogsDescription": {
+    "description": "Core UI: coreDiagnosticLogsDescription"
+  },
+  "coreAboutCelechron": "About Celechron",
+  "@coreAboutCelechron": {
+    "description": "Core UI: coreAboutCelechron"
+  },
+  "coreTermsOfService": "Terms of service",
+  "@coreTermsOfService": {
+    "description": "Core UI: coreTermsOfService"
+  },
+  "coreProjectWebsite": "Project website",
+  "@coreProjectWebsite": {
+    "description": "Core UI: coreProjectWebsite"
+  },
+  "coreNewVersionAvailable": "A new version is available",
+  "@coreNewVersionAvailable": {
+    "description": "Core UI: coreNewVersionAvailable"
+  },
+  "coreEditTask": "Edit task",
+  "@coreEditTask": {
+    "description": "Core UI: coreEditTask"
+  },
+  "coreTaskName": "Task name",
+  "@coreTaskName": {
+    "description": "Core UI: coreTaskName"
+  },
+  "coreStartTime": "Start time",
+  "@coreStartTime": {
+    "description": "Core UI: coreStartTime"
+  },
+  "coreEndTime": "End time",
+  "@coreEndTime": {
+    "description": "Core UI: coreEndTime"
+  },
+  "coreDueAt": "Due",
+  "@coreDueAt": {
+    "description": "Core UI: coreDueAt"
+  },
+  "coreEndsAt": "Ends {time}",
+  "@coreEndsAt": {
+    "description": "Core UI: coreEndsAt",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "coreStartsAt": "Starts {time}",
+  "@coreStartsAt": {
+    "description": "Core UI: coreStartsAt",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "coreStartAfterEnd": "The start time must be before the end time",
+  "@coreStartAfterEnd": {
+    "description": "Core UI: coreStartAfterEnd"
+  },
+  "coreStartBeforeRepeatEnd": "The start time must be before the repeat end date",
+  "@coreStartBeforeRepeatEnd": {
+    "description": "Core UI: coreStartBeforeRepeatEnd"
+  },
+  "coreRepeatedEventTooLong": "This repeated event lasts too long",
+  "@coreRepeatedEventTooLong": {
+    "description": "Core UI: coreRepeatedEventTooLong"
+  },
+  "coreChangePeriod": "Change period",
+  "@coreChangePeriod": {
+    "description": "Core UI: coreChangePeriod"
+  },
+  "coreChange": "Change",
+  "@coreChange": {
+    "description": "Core UI: coreChange"
+  },
+  "corePeriodsCannotOverlap": "Periods cannot overlap or touch",
+  "@corePeriodsCannotOverlap": {
+    "description": "Core UI: corePeriodsCannotOverlap"
+  },
+  "coreEditAvailablePeriods": "Edit available work periods",
+  "@coreEditAvailablePeriods": {
+    "description": "Core UI: coreEditAvailablePeriods"
+  },
+  "coreAvailablePeriodsList": "Available work periods",
+  "@coreAvailablePeriodsList": {
+    "description": "Core UI: coreAvailablePeriodsList"
+  },
+  "coreAddPeriod": "Add a period",
+  "@coreAddPeriod": {
+    "description": "Core UI: coreAddPeriod"
+  },
+  "coreCredits": "Credits",
+  "@coreCredits": {
+    "description": "Core UI: coreCredits"
+  },
+  "coreDesign": "🎨 Design",
+  "@coreDesign": {
+    "description": "Core UI: coreDesign"
+  },
+  "coreDevelopment": "🧑‍💻 Development",
+  "@coreDevelopment": {
+    "description": "Core UI: coreDevelopment"
+  },
+  "coreGplNotice": "This app is open source under the GPLv3 license",
+  "@coreGplNotice": {
+    "description": "Core UI: coreGplNotice"
+  },
+  "coreDisclaimer": "Disclaimer",
+  "@coreDisclaimer": {
+    "description": "Core UI: coreDisclaimer"
+  },
+  "coreWarrantyDisclaimer": "To the extent permitted by applicable law, this program is provided without any warranty. Unless stated otherwise in writing, copyright holders and providers supply the program “as is” and disclaim all express or implied warranties, including implied warranties of merchantability and fitness for a particular purpose. You assume all risks arising from use of the program, including risks related to its quality and performance. If the program is defective, you are responsible for the cost of all necessary servicing, repair, or correction.",
+  "@coreWarrantyDisclaimer": {
+    "description": "Core UI: coreWarrantyDisclaimer"
+  },
+  "coreLiabilityLimitation": "Limitation of liability",
+  "@coreLiabilityLimitation": {
+    "description": "Core UI: coreLiabilityLimitation"
+  },
+  "coreLiabilityText": "Unless required by applicable law or agreed to in writing, no copyright holder or other party who modifies or redistributes the program under this license will be liable for damages, including any general, special, incidental, or consequential damages arising from use or inability to use the program. This includes, without limitation, loss or corruption of data, losses sustained by you or third parties, or failure of the program to work with other programs, even if they have been advised of the possibility of such damage.",
+  "@coreLiabilityText": {
+    "description": "Core UI: coreLiabilityText"
+  },
+  "coreViewFullGpl": "View the full GPLv3 license",
+  "@coreViewFullGpl": {
+    "description": "Core UI: coreViewFullGpl"
+  },
+  "coreDiagnosticDisplayMode": "Diagnostic log view",
+  "@coreDiagnosticDisplayMode": {
+    "description": "Core UI: coreDiagnosticDisplayMode"
+  },
+  "coreReadableReport": "Readable report",
+  "@coreReadableReport": {
+    "description": "Core UI: coreReadableReport"
+  },
+  "coreRawLogs": "Raw logs",
+  "@coreRawLogs": {
+    "description": "Core UI: coreRawLogs"
+  },
+  "coreNoReadableRefreshRecords": "No readable refresh records yet",
+  "@coreNoReadableRefreshRecords": {
+    "description": "Core UI: coreNoReadableRefreshRecords"
+  },
+  "coreRefreshRecordsHint": "After a refresh, this page will show its result, module status, and key events.",
+  "@coreRefreshRecordsHint": {
+    "description": "Core UI: coreRefreshRecordsHint"
+  },
+  "coreTotalDuration": "Total time",
+  "@coreTotalDuration": {
+    "description": "Core UI: coreTotalDuration"
+  },
+  "coreSuccess": "Succeeded",
+  "@coreSuccess": {
+    "description": "Core UI: coreSuccess"
+  },
+  "coreDegraded": "Degraded",
+  "@coreDegraded": {
+    "description": "Core UI: coreDegraded"
+  },
+  "coreFailed": "Failed",
+  "@coreFailed": {
+    "description": "Core UI: coreFailed"
+  },
+  "coreRelogged": "Re-authenticated",
+  "@coreRelogged": {
+    "description": "Core UI: coreRelogged"
+  },
+  "coreRetried": "Retried",
+  "@coreRetried": {
+    "description": "Core UI: coreRetried"
+  },
+  "coreCacheFallback": "Used cached data",
+  "@coreCacheFallback": {
+    "description": "Core UI: coreCacheFallback"
+  },
+  "coreHideDetails": "Hide details",
+  "@coreHideDetails": {
+    "description": "Core UI: coreHideDetails"
+  },
+  "coreViewDetails": "View details",
+  "@coreViewDetails": {
+    "description": "Core UI: coreViewDetails"
+  },
+  "coreModuleStatus": "Module status",
+  "@coreModuleStatus": {
+    "description": "Core UI: coreModuleStatus"
+  },
+  "coreKeyTimeline": "Key events",
+  "@coreKeyTimeline": {
+    "description": "Core UI: coreKeyTimeline"
+  },
+  "coreNoKeyEvents": "No key events to display.",
+  "@coreNoKeyEvents": {
+    "description": "Core UI: coreNoKeyEvents"
+  },
+  "coreIssuesFound": "Issues found",
+  "@coreIssuesFound": {
+    "description": "Core UI: coreIssuesFound"
+  },
+  "coreNoIssues": "No issues to report.",
+  "@coreNoIssues": {
+    "description": "Core UI: coreNoIssues"
+  },
+  "coreReauthenticated": "Re-authenticated",
+  "@coreReauthenticated": {
+    "description": "Core UI: coreReauthenticated"
+  },
+  "coreCacheUpdatedAt": "Cache updated ",
+  "@coreCacheUpdatedAt": {
+    "description": "Core UI: coreCacheUpdatedAt"
+  },
+  "coreHideTechnicalDetails": "Hide technical details",
+  "@coreHideTechnicalDetails": {
+    "description": "Core UI: coreHideTechnicalDetails"
+  },
+  "coreViewTechnicalDetails": "View technical details",
+  "@coreViewTechnicalDetails": {
+    "description": "Core UI: coreViewTechnicalDetails"
+  },
+  "coreUtcTime": "UTC time",
+  "@coreUtcTime": {
+    "description": "Core UI: coreUtcTime"
+  },
+  "coreHttpStatus": "HTTP status",
+  "@coreHttpStatus": {
+    "description": "Core UI: coreHttpStatus"
+  },
+  "coreRequestInterface": "Request endpoint",
+  "@coreRequestInterface": {
+    "description": "Core UI: coreRequestInterface"
+  },
+  "coreRedactedUrl": "Redacted URL",
+  "@coreRedactedUrl": {
+    "description": "Core UI: coreRedactedUrl"
+  },
+  "coreExceptionType": "Exception type",
+  "@coreExceptionType": {
+    "description": "Core UI: coreExceptionType"
+  },
+  "coreExceptionSummary": "Error summary",
+  "@coreExceptionSummary": {
+    "description": "Core UI: coreExceptionSummary"
+  },
+  "coreHideStack": "Hide stack trace",
+  "@coreHideStack": {
+    "description": "Core UI: coreHideStack"
+  },
+  "coreShowStack": "Show stack trace",
+  "@coreShowStack": {
+    "description": "Core UI: coreShowStack"
+  },
+  "coreAppBackgroundCoordination": "App and background coordination",
+  "@coreAppBackgroundCoordination": {
+    "description": "Core UI: coreAppBackgroundCoordination"
+  },
+  "coreReadingLogs": "Reading logs…",
+  "@coreReadingLogs": {
+    "description": "Core UI: coreReadingLogs"
+  },
+  "coreNoDiagnosticLogs": "No diagnostic logs yet. Run a refresh and try again.",
+  "@coreNoDiagnosticLogs": {
+    "description": "Core UI: coreNoDiagnosticLogs"
+  },
+  "coreFullRawLogs": "Full raw logs",
+  "@coreFullRawLogs": {
+    "description": "Core UI: coreFullRawLogs"
+  },
+  "coreCopyRawLogs": "Copy full raw logs",
+  "@coreCopyRawLogs": {
+    "description": "Core UI: coreCopyRawLogs"
+  },
+  "coreExportShareTxt": "Export and share TXT",
+  "@coreExportShareTxt": {
+    "description": "Core UI: coreExportShareTxt"
+  },
+  "coreExportContents": "Includes the readable report and full raw logs",
+  "@coreExportContents": {
+    "description": "Core UI: coreExportContents"
+  },
+  "coreClearTestLogs": "Clear diagnostic logs",
+  "@coreClearTestLogs": {
+    "description": "Core UI: coreClearTestLogs"
+  },
+  "coreYes": "Yes",
+  "@coreYes": {
+    "description": "Core UI: coreYes"
+  },
+  "coreNo": "No",
+  "@coreNo": {
+    "description": "Core UI: coreNo"
+  },
+  "coreCopied": "Copied",
+  "@coreCopied": {
+    "description": "Core UI: coreCopied"
+  },
+  "coreRawLogsCopied": "Full raw logs copied to the clipboard.",
+  "@coreRawLogsCopied": {
+    "description": "Core UI: coreRawLogsCopied"
+  },
+  "coreExportSucceeded": "Export complete",
+  "@coreExportSucceeded": {
+    "description": "Core UI: coreExportSucceeded"
+  },
+  "coreExportFailed": "Export failed",
+  "@coreExportFailed": {
+    "description": "Core UI: coreExportFailed"
+  },
+  "coreUnableExportLogs": "Could not export logs: ",
+  "@coreUnableExportLogs": {
+    "description": "Core UI: coreUnableExportLogs"
+  },
+  "coreCleared": "Cleared",
+  "@coreCleared": {
+    "description": "Core UI: coreCleared"
+  },
+  "coreLogsCleared": "Diagnostic logs cleared.",
+  "@coreLogsCleared": {
+    "description": "Core UI: coreLogsCleared"
+  },
+  "coreConfirmClearLogs": "Clear diagnostic logs?",
+  "@coreConfirmClearLogs": {
+    "description": "Core UI: coreConfirmClearLogs"
+  },
+  "coreClearLogsWarning": "Saved diagnostic records cannot be restored in the app after they are cleared.",
+  "@coreClearLogsWarning": {
+    "description": "Core UI: coreClearLogsWarning"
+  },
+  "coreYearMonth": "{year} {month}",
+  "@coreYearMonth": {
+    "description": "Core UI: coreYearMonth",
+    "placeholders": {
+      "year": {
+        "type": "int"
+      },
+      "month": {
+        "type": "int"
+      }
+    }
+  },
+  "coreWeekdayMon": "Mon",
+  "@coreWeekdayMon": {
+    "description": "Core UI: coreWeekdayMon"
+  },
+  "coreWeekdayTue": "Tue",
+  "@coreWeekdayTue": {
+    "description": "Core UI: coreWeekdayTue"
+  },
+  "coreWeekdayWed": "Wed",
+  "@coreWeekdayWed": {
+    "description": "Core UI: coreWeekdayWed"
+  },
+  "coreWeekdayThu": "Thu",
+  "@coreWeekdayThu": {
+    "description": "Core UI: coreWeekdayThu"
+  },
+  "coreWeekdayFri": "Fri",
+  "@coreWeekdayFri": {
+    "description": "Core UI: coreWeekdayFri"
+  },
+  "coreWeekdaySat": "Sat",
+  "@coreWeekdaySat": {
+    "description": "Core UI: coreWeekdaySat"
+  },
+  "coreWeekdaySun": "Sun",
+  "@coreWeekdaySun": {
+    "description": "Core UI: coreWeekdaySun"
+  },
+  "coreEndsIn": "Ends in {duration}",
+  "@coreEndsIn": {
+    "description": "Core UI: coreEndsIn",
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "coreStartsIn": "Starts in {duration}",
+  "@coreStartsIn": {
+    "description": "Core UI: coreStartsIn",
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "coreWorkBreakSummary": "Work {work} · Break {breakDuration}",
+  "@coreWorkBreakSummary": {
+    "description": "Core UI: coreWorkBreakSummary",
+    "placeholders": {
+      "work": {
+        "type": "String"
+      },
+      "breakDuration": {
+        "type": "String"
+      }
+    }
+  },
+  "coreNotEnoughTime": "Not enough time",
+  "@coreNotEnoughTime": {
+    "description": "Core UI: coreNotEnoughTime"
+  },
+  "coreTasksDoNotFit": "Some tasks still cannot fit even with no breaks. Shorten their estimated durations, or check for tasks that end before the plan starts.",
+  "@coreTasksDoNotFit": {
+    "description": "Core UI: coreTasksDoNotFit"
+  },
+  "coreBreaksMustShrink": "There are too many tasks. Shorten breaks to {duration} to fit them all.",
+  "@coreBreaksMustShrink": {
+    "description": "Core UI: coreBreaksMustShrink",
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "coreLocationValue": "Location: {value}",
+  "@coreLocationValue": {
+    "description": "Core UI: coreLocationValue",
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "coreDescriptionValue": "Description: {value}",
+  "@coreDescriptionValue": {
+    "description": "Core UI: coreDescriptionValue",
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "coreTimeValue": "Time: {value}",
+  "@coreTimeValue": {
+    "description": "Core UI: coreTimeValue",
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "coreLanguage": "Language",
+  "@coreLanguage": {
+    "description": "Settings language selector label"
+  },
+  "coreDueWithExpired": "Due {time}{expired, select, true{ · expired} other{}}",
+  "@coreDueWithExpired": {
+    "description": "Core UI: coreDueWithExpired",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      },
+      "expired": {
+        "type": "String"
+      }
+    }
+  },
+  "coreDays": "{count} days",
+  "@coreDays": {
+    "description": "Core UI: coreDays",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "coreTaskProgress": "{percent}% complete · Estimated: {expected} · Remaining: {remaining}",
+  "@coreTaskProgress": {
+    "description": "Core UI: coreTaskProgress",
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      },
+      "expected": {
+        "type": "String"
+      },
+      "remaining": {
+        "type": "String"
+      }
+    }
+  },
+  "coreMarkIncomplete": "Mark incomplete",
+  "@coreMarkIncomplete": {
+    "description": "Core UI: coreMarkIncomplete"
+  },
+  "coreMarkComplete": "Mark complete",
+  "@coreMarkComplete": {
+    "description": "Core UI: coreMarkComplete"
+  },
+  "corePause": "Pause",
+  "@corePause": {
+    "description": "Core UI: corePause"
+  },
+  "coreResume": "Resume",
+  "@coreResume": {
+    "description": "Core UI: coreResume"
+  },
+  "coreLoggedIn": "Signed in: {username}",
+  "@coreLoggedIn": {
+    "description": "Core UI: coreLoggedIn",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "corePeriodCount": "{count} periods",
+  "@corePeriodCount": {
+    "description": "Core UI: corePeriodCount",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "coreFileCreated": "Created {fileName}",
+  "@coreFileCreated": {
+    "description": "Core UI: coreFileCreated",
+    "placeholders": {
+      "fileName": {
+        "type": "String"
+      }
+    }
+  },
+  "coreDamagedLogLines": "{count} log lines could not be parsed and were safely skipped.",
+  "@coreDamagedLogLines": {
+    "description": "Core UI: coreDamagedLogLines",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "coreExporting": "Exporting…",
+  "@coreExporting": {
+    "description": "Core UI: coreExporting"
+  },
+  "coreRawLogRetention": "Raw logs use UTC and retain all redacted technical fields. Up to 2,000 lines and the 10 most recent exports are kept.",
+  "@coreRawLogRetention": {
+    "description": "Core UI: coreRawLogRetention"
+  },
+  "corePaymentCodeStatus": "Payment code: {status}",
+  "@corePaymentCodeStatus": {
+    "description": "Core UI: corePaymentCodeStatus",
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "coreLoadFailed": "Could not load",
+  "@coreLoadFailed": {
+    "description": "Core UI: coreLoadFailed"
+  },
+  "coreVersion": "Version {version}",
+  "@coreVersion": {
+    "description": "Core UI: coreVersion",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "coreContributorKate": "Kate of Sky Explorer",
+  "@coreContributorKate": {
+    "description": "Core UI: coreContributorKate"
+  },
+  "coreStartValue": "Start: {time}",
+  "@coreStartValue": {
+    "description": "Core UI: coreStartValue",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "coreEndValue": "End: {time}",
+  "@coreEndValue": {
+    "description": "Core UI: coreEndValue",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "coreStartMustBeBeforeEnd": "The start time must be before the end time",
+  "@coreStartMustBeBeforeEnd": {
+    "description": "Core UI: coreStartMustBeBeforeEnd"
+  },
+  "coreClear": "Clear",
+  "@coreClear": {
+    "description": "Core UI: coreClear"
+  },
+  "coreSeasonWeek": "{season}, week {week}",
+  "@coreSeasonWeek": {
+    "placeholders": {
+      "season": {
+        "type": "String"
+      },
+      "week": {
+        "type": "int"
+      }
+    }
+  },
+  "coreSemesterDisplay": "{year} {season} term",
+  "@coreSemesterDisplay": {
+    "placeholders": {
+      "year": {
+        "type": "String"
+      },
+      "season": {
+        "type": "String"
+      }
+    }
+  }
+}

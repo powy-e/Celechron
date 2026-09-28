@@ -1,3 +1,4 @@
+import 'package:celechron/l10n/l10n.dart';
 import 'package:celechron/design/custom_decoration.dart';
 import 'package:celechron/design/sub_title.dart';
 import 'package:celechron/model/task.dart';
@@ -35,7 +36,9 @@ class CalendarPage extends StatelessWidget {
               () => SubtitleRow(
                 subtitle: _calendarController.viewMode.value ==
                         CalendarViewMode.calendar
-                    ? '${_calendarController.focusedDay.value.year} 年 ${_calendarController.focusedDay.value.month} 月'
+                    ? context.l10n.coreYearMonth(
+                        _calendarController.focusedDay.value.year,
+                        _calendarController.focusedDay.value.month)
                     : _calendarController.getCurrentSemesterDisplayName(),
                 right: Row(
                   children: [
@@ -64,7 +67,7 @@ class CalendarPage extends StatelessWidget {
                       ),
                       CupertinoButton(
                         padding: EdgeInsets.zero,
-                        child: Text('今天',
+                        child: Text(context.l10n.coreToday,
                             style: TextStyle(
                                 fontSize: 18,
                                 color: CupertinoDynamicColor.resolve(
@@ -83,7 +86,7 @@ class CalendarPage extends StatelessWidget {
                                 CalendarViewMode.calendar
                             ? CupertinoIcons.calendar
                             : CupertinoIcons.list_bullet,
-                        semanticLabel: '切换视图',
+                        semanticLabel: context.l10n.coreSwitchView,
                       ),
                       onPressed: () {
                         _calendarController.toggleViewMode();
@@ -108,28 +111,41 @@ class CalendarPage extends StatelessWidget {
                         padding: const EdgeInsets.only(
                             bottom: 5, left: 12, right: 12),
                         child: TableCalendar(
-                          locale: 'zh_CN',
+                          locale: Localizations.localeOf(context).toString(),
                           firstDay: DateTime.utc(2022, 9, 1),
                           lastDay: DateTime.utc(2030, 12, 31),
                           rowHeight: 48.0,
                           daysOfWeekHeight: 20.0,
                           startingDayOfWeek: StartingDayOfWeek.monday,
                           daysOfWeekStyle: DaysOfWeekStyle(
-                            dowTextFormatter: (date, locale) => <String>[
-                              '',
-                              '一',
-                              '二',
-                              '三',
-                              '四',
-                              '五',
-                              '六',
-                              '日'
-                            ][date.weekday],
+                            dowTextFormatter: (date, locale) =>
+                                (locale?.startsWith('zh') ?? false)
+                                    ? <String>[
+                                        '',
+                                        '一',
+                                        '二',
+                                        '三',
+                                        '四',
+                                        '五',
+                                        '六',
+                                        '日'
+                                      ][date.weekday]
+                                    : <String>[
+                                        '',
+                                        'Mon',
+                                        'Tue',
+                                        'Wed',
+                                        'Thu',
+                                        'Fri',
+                                        'Sat',
+                                        'Sun'
+                                      ][date.weekday],
                           ),
                           availableGestures: AvailableGestures.all,
-                          availableCalendarFormats: const {
-                            CalendarFormat.month: '显示整月',
-                            CalendarFormat.week: '显示一周',
+                          availableCalendarFormats: {
+                            CalendarFormat.month:
+                                context.l10n.coreShowFullMonth,
+                            CalendarFormat.week: context.l10n.coreShowWeek,
                           },
                           headerVisible: false,
                           focusedDay: _calendarController.focusedDay.value,
@@ -274,7 +290,9 @@ class CalendarPage extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return CupertinoAlertDialog(
-          title: Text(deadline.summary),
+          title: Text(deadline.type == TaskType.fixedlegacy
+              ? displayPastEventSummary(deadline.summary)
+              : deadline.summary),
           content: SizedBox(
             width: double.maxFinite,
             child: Column(
@@ -283,24 +301,27 @@ class CalendarPage extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 if (deadline.repeatType != TaskRepeatType.norepeat) ...[
-                  const Text(
-                    '重复日程，接下来的时段：',
+                  Text(
+                    context.l10n.coreRepeatedEventUpcoming,
                   ),
                 ],
                 Text(
-                  '开始于 ${toStringHumanReadable(deadline.startTime)}',
+                  context.l10n.coreStartsAt(
+                      displayText(toStringHumanReadable(deadline.startTime))),
                 ),
                 Text(
-                  '结束于 ${toStringHumanReadable(deadline.endTime)}',
+                  context.l10n.coreEndsAt(
+                      displayText(toStringHumanReadable(deadline.endTime))),
                 ),
                 if (deadline.location.isNotEmpty) ...[
                   Text(
-                    '地点：${deadline.location}',
+                    context.l10n
+                        .coreLocationValue(displayText(deadline.location)),
                   ),
                 ],
                 if (deadline.description.isNotEmpty) ...[
                   Text(
-                    '说明：${deadline.description}',
+                    context.l10n.coreDescriptionValue(deadline.description),
                   ),
                 ],
               ],
@@ -309,7 +330,7 @@ class CalendarPage extends StatelessWidget {
           actions: [
             CupertinoDialogAction(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('返回'),
+              child: Text(context.l10n.coreBack),
             ),
             if (deadline.type == TaskType.fixed)
               CupertinoDialogAction(
@@ -333,7 +354,7 @@ class CalendarPage extends StatelessWidget {
                   _flowController.generateNewFlowList(startsAt);
                   _taskController.taskList.refresh();
                 },
-                child: const Text('编辑'),
+                child: Text(context.l10n.coreEdit),
               ),
             if (deadline.type == TaskType.fixedlegacy)
               CupertinoDialogAction(
@@ -343,7 +364,7 @@ class CalendarPage extends StatelessWidget {
                   _taskController.updateDeadlineList();
                   _taskController.taskList.refresh();
                 },
-                child: const Text('删除'),
+                child: Text(context.l10n.coreDelete),
               ),
           ],
         );
@@ -403,7 +424,9 @@ class CalendarPage extends StatelessWidget {
                       const SizedBox(width: 8.0),
                       Expanded(
                         child: Text(
-                          period.summary,
+                          period.fromFromUid != null
+                              ? displayPastEventSummary(period.summary)
+                              : period.summary,
                           style: CupertinoTheme.of(context)
                               .textTheme
                               .textStyle
@@ -431,7 +454,8 @@ class CalendarPage extends StatelessWidget {
                       const SizedBox(width: 6.0),
                       Expanded(
                         child: Text(
-                          '时间：${period.friendlyTimeStartDayBased}',
+                          context.l10n.coreTimeValue(
+                              displayText(period.friendlyTimeStartDayBased)),
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.normal,
@@ -461,7 +485,8 @@ class CalendarPage extends StatelessWidget {
                         const SizedBox(width: 6.0),
                         Expanded(
                           child: Text(
-                            '地点：${period.location}',
+                            context.l10n.coreLocationValue(
+                                displayText(period.location)),
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.normal,

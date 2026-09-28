@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
+import 'package:celechron/l10n/l10n.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -206,7 +207,7 @@ class DiagnosticLogService {
     await SharePlus.instance.share(
       ShareParams(
         files: [XFile(file.path, mimeType: 'text/plain')],
-        text: 'Celechron 测试日志：$fileName',
+        text: appL10n.diagnosticExportShare(fileName),
       ),
     );
     return fileName;

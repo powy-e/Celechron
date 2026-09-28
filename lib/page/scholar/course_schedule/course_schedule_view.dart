@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:celechron/l10n/l10n.dart';
 
 import 'package:celechron/design/custom_colors.dart';
 import 'package:celechron/utils/tuple.dart';
@@ -88,10 +89,12 @@ class CourseSchedulePage extends StatelessWidget {
                           _courseScheduleController
                               .firstOrSecondSemester.value = true;
                         },
-                        title:
-                            '${_courseScheduleController.semester.firstHalfName}学期课时',
-                        content:
-                            '${_courseScheduleController.semester.firstHalfSessionCount}节/两周',
+                        title: context.l10n.academicSemesterHours(displayText(
+                            _courseScheduleController.semester.firstHalfName)),
+                        content: context.l10n.academicSessionsPerTwoWeeks(
+                            _courseScheduleController
+                                .semester.firstHalfSessionCount
+                                ),
                         backgroundColor: _courseScheduleController
                                 .firstOrSecondSemester.value
                             ? _courseScheduleController.semester.name[9] == '春'
@@ -108,10 +111,12 @@ class CourseSchedulePage extends StatelessWidget {
                           _courseScheduleController
                               .firstOrSecondSemester.value = false;
                         },
-                        title:
-                            '${_courseScheduleController.semester.secondHalfName}学期课时',
-                        content:
-                            '${_courseScheduleController.semester.secondHalfSessionCount}节/两周',
+                        title: context.l10n.academicSemesterHours(displayText(
+                            _courseScheduleController.semester.secondHalfName)),
+                        content: context.l10n.academicSessionsPerTwoWeeks(
+                            _courseScheduleController
+                                .semester.secondHalfSessionCount
+                                ),
                         backgroundColor: _courseScheduleController
                                 .firstOrSecondSemester.value
                             ? CupertinoColors.systemFill
@@ -155,7 +160,7 @@ class CourseSchedulePage extends StatelessWidget {
                 flex: 2,
                 child: Center(
                   child: Text(
-                    '一',
+                    context.l10n.academicMonday,
                     style:
                         CupertinoTheme.of(context).textTheme.textStyle.copyWith(
                               fontSize: 14,
@@ -167,7 +172,7 @@ class CourseSchedulePage extends StatelessWidget {
                 flex: 2,
                 child: Center(
                   child: Text(
-                    '二',
+                    context.l10n.academicTuesday,
                     style:
                         CupertinoTheme.of(context).textTheme.textStyle.copyWith(
                               fontSize: 14,
@@ -179,7 +184,7 @@ class CourseSchedulePage extends StatelessWidget {
                 flex: 2,
                 child: Center(
                   child: Text(
-                    '三',
+                    context.l10n.academicWednesday,
                     style:
                         CupertinoTheme.of(context).textTheme.textStyle.copyWith(
                               fontSize: 14,
@@ -191,7 +196,7 @@ class CourseSchedulePage extends StatelessWidget {
                 flex: 2,
                 child: Center(
                   child: Text(
-                    '四',
+                    context.l10n.academicThursday,
                     style:
                         CupertinoTheme.of(context).textTheme.textStyle.copyWith(
                               fontSize: 14,
@@ -203,7 +208,7 @@ class CourseSchedulePage extends StatelessWidget {
                 flex: 2,
                 child: Center(
                   child: Text(
-                    '五',
+                    context.l10n.academicFriday,
                     style:
                         CupertinoTheme.of(context).textTheme.textStyle.copyWith(
                               fontSize: 14,
@@ -215,7 +220,7 @@ class CourseSchedulePage extends StatelessWidget {
                 flex: 2,
                 child: Center(
                   child: Text(
-                    '六',
+                    context.l10n.academicSaturday,
                     style:
                         CupertinoTheme.of(context).textTheme.textStyle.copyWith(
                               fontSize: 14,
@@ -227,7 +232,7 @@ class CourseSchedulePage extends StatelessWidget {
                 flex: 2,
                 child: Center(
                   child: Text(
-                    '日',
+                    context.l10n.academicSunday,
                     style:
                         CupertinoTheme.of(context).textTheme.textStyle.copyWith(
                               fontSize: 14,
@@ -472,7 +477,8 @@ class CourseSchedulePage extends StatelessWidget {
           CupertinoColors.systemGroupedBackground, context),
       child: CustomScrollView(
         slivers: [
-          const CelechronSliverTextHeader(subtitle: '课表'),
+          CelechronSliverTextHeader(
+              subtitle: context.l10n.academicSchedule),
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -500,7 +506,7 @@ class CourseSchedulePage extends StatelessWidget {
                       additionalDividerMargin: 2,
                       children: <CupertinoListTile>[
                         CupertinoListTile(
-                            title: const Text('隐藏课程信息'),
+                            title: Text(context.l10n.academicHideCourseInfo),
                             trailing: CupertinoSwitch(
                               value: _courseScheduleController
                                   .hideCourseInfomation.value,

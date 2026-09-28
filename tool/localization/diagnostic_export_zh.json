@@ -1,0 +1,160 @@
+{
+  "diagnosticExportTitle": "Celechron 诊断日志",
+  "diagnosticExportLocalTime": "本地导出时间：{time}",
+  "@diagnosticExportLocalTime": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnosticExportUtcTime": "UTC 导出时间：{time}",
+  "@diagnosticExportUtcTime": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnosticExportVersion": "App 版本：{version}",
+  "@diagnosticExportVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnosticExportPlatform": "平台：{platform}",
+  "@diagnosticExportPlatform": {
+    "placeholders": {
+      "platform": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnosticExportRefreshId": "refreshId：{id}",
+  "@diagnosticExportRefreshId": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnosticExportOrigin": "来源：{origin}",
+  "@diagnosticExportOrigin": {
+    "placeholders": {
+      "origin": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnosticExportReadable": "=== 1. 易读诊断报告 ===",
+  "diagnosticExportNoReports": "暂无可解析的刷新记录。",
+  "diagnosticExportTotalTime": "总耗时：{duration}",
+  "@diagnosticExportTotalTime": {
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnosticExportModuleCounts": "模块：成功 {success} / 降级 {degraded} / 失败 {failed}",
+  "@diagnosticExportModuleCounts": {
+    "placeholders": {
+      "success": {
+        "type": "String"
+      },
+      "degraded": {
+        "type": "String"
+      },
+      "failed": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnosticExportFlags": "重新登录：{relogged}；重试：{retried}；缓存回退：{cached}",
+  "@diagnosticExportFlags": {
+    "placeholders": {
+      "relogged": {
+        "type": "String"
+      },
+      "retried": {
+        "type": "String"
+      },
+      "cached": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnosticExportYes": "是",
+  "diagnosticExportNo": "否",
+  "diagnosticExportModules": "=== 2. 模块结果 ===",
+  "diagnosticExportNoModuleRequests": "{title}：未发起独立模块请求。",
+  "@diagnosticExportNoModuleRequests": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnosticExportModuleRow": "{name}：{state}；{duration}；{reason}",
+  "@diagnosticExportModuleRow": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "state": {
+        "type": "String"
+      },
+      "duration": {
+        "type": "String"
+      },
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnosticExportTimeline": "=== 3. 关键时间线 ===",
+  "diagnosticExportNoTimeline": "无关键时间线事件。",
+  "diagnosticExportIssues": "=== 4. 发现的问题 ===",
+  "diagnosticExportNoIssues": "未发现需要说明的问题。",
+  "diagnosticExportTechnical": "  refreshId={id}；UTC={utc}；HTTP={http}；接口={interfaceName}；URL={url}；异常={exceptionType}；摘要={summary}；堆栈={stack}",
+  "@diagnosticExportTechnical": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      },
+      "utc": {
+        "type": "String"
+      },
+      "http": {
+        "type": "String"
+      },
+      "interfaceName": {
+        "type": "String"
+      },
+      "url": {
+        "type": "String"
+      },
+      "exceptionType": {
+        "type": "String"
+      },
+      "summary": {
+        "type": "String"
+      },
+      "stack": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnosticExportRaw": "=== 5. 完整原始日志（UTC） ===",
+  "diagnosticExportRawNote": "以下时间保持 ISO 8601 UTC；与上方本地时间存在时区偏移是正常的。",
+  "diagnosticExportShare": "Celechron 测试日志：{fileName}",
+  "@diagnosticExportShare": {
+    "placeholders": {
+      "fileName": {
+        "type": "String"
+      }
+    }
+  }
+}

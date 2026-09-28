@@ -72,6 +72,7 @@ class DatabaseHelper {
   final String kCourseIdMappingList = 'courseIdMappingList';
   final String kHideHomeGpa = 'hideHomeGpa';
   final String kAsyncRefresh = 'asyncRefresh';
+  static const kLanguageCode = 'languageCode';
 
   Option getOption() {
     return Option(
@@ -85,7 +86,19 @@ class DatabaseHelper {
       courseIdMappingList: getCourseIdMappingList().obs,
       hideHomeGpa: getHideHomeGpa().obs,
       asyncRefresh: getAsyncRefresh().obs,
+      languageCode: getLanguageCode().obs,
     );
+  }
+
+  String getLanguageCode() =>
+      optionsBox.get(kLanguageCode) == 'en' ? 'en' : 'zh';
+
+  Future<void> setLanguageCode(String code) async {
+    final normalized = code == 'en' ? 'en' : 'zh';
+    await optionsBox.put(kLanguageCode, normalized);
+    // Background isolates cannot read the foreground Hive box concurrently.
+    await secureStorage.write(key: kLanguageCode, value: normalized,
+        iOptions: secureStorageIOSOptions);
   }
 
   Duration getWorkTime() {

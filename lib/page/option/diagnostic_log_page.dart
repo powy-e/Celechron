@@ -1,3 +1,4 @@
+import 'package:celechron/l10n/l10n.dart';
 import 'package:celechron/services/diagnostic_log_service.dart';
 import 'package:celechron/services/diagnostic_report.dart';
 import 'package:flutter/cupertino.dart';
@@ -68,7 +69,9 @@ class _DiagnosticLogPageState extends State<DiagnosticLogPage> {
 
   Future<void> _copy() async {
     await Clipboard.setData(ClipboardData(text: _logText));
-    if (mounted) await _showMessage('已复制', '完整原始日志已复制到剪贴板。');
+    if (mounted)
+      await _showMessage(
+          context.l10n.coreCopied, context.l10n.coreRawLogsCopied);
   }
 
   Future<void> _export() async {
@@ -79,7 +82,9 @@ class _DiagnosticLogPageState extends State<DiagnosticLogPage> {
         version: widget.version,
         buildNumber: widget.buildNumber,
       );
-      if (mounted) await _showMessage('导出成功', '已生成 $fileName');
+      if (mounted)
+        await _showMessage(context.l10n.coreExportSucceeded,
+            context.l10n.coreFileCreated(fileName));
     } on Object catch (error, stackTrace) {
       DiagnosticLogService.instance.record(
         level: CelechronLogLevel.error,
@@ -88,7 +93,9 @@ class _DiagnosticLogPageState extends State<DiagnosticLogPage> {
         error: error,
         stackTrace: stackTrace,
       );
-      if (mounted) await _showMessage('导出失败', '无法导出日志：$error');
+      if (mounted)
+        await _showMessage(context.l10n.coreExportFailed,
+            '${context.l10n.coreUnableExportLogs} $error');
     } finally {
       if (mounted) setState(() => _busy = false);
     }
@@ -101,24 +108,26 @@ class _DiagnosticLogPageState extends State<DiagnosticLogPage> {
     } else if (mounted) {
       setState(() => _setLogText(''));
     }
-    if (mounted) await _showMessage('已清空', '测试日志已清空。');
+    if (mounted)
+      await _showMessage(
+          context.l10n.coreCleared, context.l10n.coreLogsCleared);
   }
 
   Future<void> _confirmClear() async {
     final confirmed = await showCupertinoDialog<bool>(
       context: context,
       builder: (dialogContext) => CupertinoAlertDialog(
-        title: const Text('确定清空测试日志？'),
-        content: const Text('清空后，当前保存的诊断记录将无法在 App 内恢复。'),
+        title: Text(context.l10n.coreConfirmClearLogs),
+        content: Text(context.l10n.coreClearLogsWarning),
         actions: [
           CupertinoDialogAction(
             onPressed: () => Navigator.of(dialogContext).pop(false),
-            child: const Text('取消'),
+            child: Text(context.l10n.coreCancel),
           ),
           CupertinoDialogAction(
             isDestructiveAction: true,
             onPressed: () => Navigator.of(dialogContext).pop(true),
-            child: const Text('清空'),
+            child: Text(context.l10n.coreClear),
           ),
         ],
       ),
@@ -135,7 +144,7 @@ class _DiagnosticLogPageState extends State<DiagnosticLogPage> {
         actions: [
           CupertinoDialogAction(
             onPressed: () => Navigator.of(dialogContext).pop(),
-            child: const Text('确定'),
+            child: Text(context.l10n.coreConfirm),
           ),
         ],
       ),
@@ -155,8 +164,8 @@ class _DiagnosticLogPageState extends State<DiagnosticLogPage> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      navigationBar: const CupertinoNavigationBar(
-        middle: Text('诊断与测试'),
+      navigationBar: CupertinoNavigationBar(
+        middle: Text(context.l10n.coreDiagnostics),
       ),
       child: SafeArea(
         child: Column(
@@ -164,22 +173,22 @@ class _DiagnosticLogPageState extends State<DiagnosticLogPage> {
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
               child: Semantics(
-                label: '诊断日志显示模式',
+                label: context.l10n.coreDiagnosticDisplayMode,
                 child: SizedBox(
                   width: double.infinity,
                   child: CupertinoSlidingSegmentedControl<int>(
                     key: const ValueKey('diagnostic-mode-switch'),
                     groupValue: _mode,
-                    children: const {
+                    children: {
                       0: Padding(
                         padding:
                             EdgeInsets.symmetric(horizontal: 8, vertical: 7),
-                        child: Text('易读报告'),
+                        child: Text(context.l10n.coreReadableReport),
                       ),
                       1: Padding(
                         padding:
                             EdgeInsets.symmetric(horizontal: 8, vertical: 7),
-                        child: Text('原始日志'),
+                        child: Text(context.l10n.coreRawLogs),
                       ),
                     },
                     onValueChanged: (value) {
@@ -217,13 +226,13 @@ class _DiagnosticLogPageState extends State<DiagnosticLogPage> {
         children: [
           _card(
             context,
-            child: const Column(
+            child: Column(
               children: [
                 Icon(CupertinoIcons.doc_text_search, size: 36),
                 SizedBox(height: 12),
-                Text('暂无可读的刷新记录'),
+                Text(context.l10n.coreNoReadableRefreshRecords),
                 SizedBox(height: 6),
-                Text('执行一次刷新后，这里会显示刷新结果、模块状态和关键时间线。'),
+                Text(context.l10n.coreRefreshRecordsHint),
               ],
             ),
           ),
@@ -238,7 +247,7 @@ class _DiagnosticLogPageState extends State<DiagnosticLogPage> {
           if (_bundle.damagedLineCount > 0)
             _noticeCard(
               context,
-              '有 ${_bundle.damagedLineCount} 行日志无法解析，已安全跳过。',
+              context.l10n.coreDamagedLogLines(_bundle.damagedLineCount),
             ),
           if (_bundle.globalTimeline.isNotEmpty)
             _globalTimelineCard(context, _bundle.globalTimeline),
@@ -257,8 +266,8 @@ class _DiagnosticLogPageState extends State<DiagnosticLogPage> {
     final description = diagnosticReportDescription(report);
     return Semantics(
       container: true,
-      label: '${diagnosticOriginLabel(report.origin)}，'
-          '${diagnosticReportTitle(report)}，'
+      label: '${displayText(diagnosticOriginLabel(report.origin))}，'
+          '${displayText(diagnosticReportTitle(report))}，'
           '${formatLocalDiagnosticTime(report.startedAtUtc)}',
       child: _card(
         context,
@@ -276,7 +285,7 @@ class _DiagnosticLogPageState extends State<DiagnosticLogPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        diagnosticReportTitle(report),
+                        displayText(diagnosticReportTitle(report)),
                         style: TextStyle(
                           color: statusColor,
                           fontSize: 19,
@@ -285,7 +294,7 @@ class _DiagnosticLogPageState extends State<DiagnosticLogPage> {
                       ),
                       const SizedBox(height: 3),
                       Text(
-                        '${diagnosticOriginLabel(report.origin)} · '
+                        '${displayText(diagnosticOriginLabel(report.origin))} · '
                         '${formatLocalDiagnosticTime(report.startedAtUtc)}',
                         style: TextStyle(
                           color: CupertinoDynamicColor.resolve(
@@ -301,18 +310,22 @@ class _DiagnosticLogPageState extends State<DiagnosticLogPage> {
             ),
             if (description != null) ...[
               const SizedBox(height: 12),
-              Text(description),
+              Text(displayText(description)),
             ],
             const SizedBox(height: 14),
             Wrap(
               spacing: 8,
               runSpacing: 8,
               children: [
-                _metric(context, '总耗时', formatDuration(report.durationMs)),
+                _metric(context, context.l10n.coreTotalDuration,
+                    formatDuration(report.durationMs)),
                 if (report.performedModuleRequests) ...[
-                  _metric(context, '成功', '${report.successCount}'),
-                  _metric(context, '降级', '${report.degradedCount}'),
-                  _metric(context, '失败', '${report.failedCount}'),
+                  _metric(context, context.l10n.coreSuccess,
+                      '${report.successCount}'),
+                  _metric(context, context.l10n.coreDegraded,
+                      '${report.degradedCount}'),
+                  _metric(context, context.l10n.coreFailed,
+                      '${report.failedCount}'),
                 ],
               ],
             ),
@@ -322,9 +335,9 @@ class _DiagnosticLogPageState extends State<DiagnosticLogPage> {
                 spacing: 12,
                 runSpacing: 6,
                 children: [
-                  _flag('重新登录', report.relogged),
-                  _flag('重试', report.retried),
-                  _flag('缓存回退', report.cacheUsed),
+                  _flag(context.l10n.coreRelogged, report.relogged),
+                  _flag(context.l10n.coreRetried, report.retried),
+                  _flag(context.l10n.coreCacheFallback, report.cacheUsed),
                 ],
               ),
             ],
@@ -340,27 +353,29 @@ class _DiagnosticLogPageState extends State<DiagnosticLogPage> {
                     _expandedReports.add(report.refreshId);
                   }
                 }),
-                child: Text(expanded ? '收起详情' : '查看详情'),
+                child: Text(expanded
+                    ? context.l10n.coreHideDetails
+                    : context.l10n.coreViewDetails),
               ),
             ),
             if (expanded) ...[
               _divider(context),
               if (report.modules.isNotEmpty) ...[
-                _sectionTitle('模块状态'),
+                _sectionTitle(context.l10n.coreModuleStatus),
                 for (final module in report.modules)
                   _moduleCard(context, module),
                 const SizedBox(height: 10),
               ],
-              _sectionTitle('关键时间线'),
+              _sectionTitle(context.l10n.coreKeyTimeline),
               if (report.timeline.isEmpty)
-                const Text('没有可展示的关键事件。')
+                Text(context.l10n.coreNoKeyEvents)
               else
                 for (final event in report.timeline)
                   _timelineRow(context, event),
               const SizedBox(height: 10),
-              _sectionTitle('发现的问题'),
+              _sectionTitle(context.l10n.coreIssuesFound),
               if (report.issues.isEmpty)
-                const Text('未发现需要说明的问题。')
+                Text(context.l10n.coreNoIssues)
               else
                 for (final issue in report.issues) _issueCard(context, issue),
             ],
@@ -393,27 +408,28 @@ class _DiagnosticLogPageState extends State<DiagnosticLogPage> {
             children: [
               Expanded(
                 child: Text(
-                  module.name,
+                  displayText(module.name),
                   style: const TextStyle(fontWeight: FontWeight.w600),
                 ),
               ),
               Text(
-                diagnosticModuleStateLabel(module.state),
+                displayText(diagnosticModuleStateLabel(module.state)),
                 style: TextStyle(color: color, fontWeight: FontWeight.w600),
               ),
             ],
           ),
           const SizedBox(height: 5),
-          Text(module.reason),
+          Text(displayText(module.reason)),
           const SizedBox(height: 6),
           Wrap(
             spacing: 10,
             runSpacing: 4,
             children: [
               Text(formatModuleDuration(module)),
-              if (module.relogged) const Text('已重新登录'),
-              if (module.retried) const Text('已重试'),
-              if (cacheTime != null) Text('缓存更新于 $cacheTime'),
+              if (module.relogged) Text(context.l10n.coreReauthenticated),
+              if (module.retried) Text(context.l10n.coreRetried),
+              if (cacheTime != null)
+                Text('${context.l10n.coreCacheUpdatedAt} ${displayText(cacheTime)}'),
             ],
           ),
         ],
@@ -436,10 +452,10 @@ class _DiagnosticLogPageState extends State<DiagnosticLogPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(event.title),
+                Text(displayText(event.title)),
                 Text(
                   '${formatLocalDiagnosticTime(event.timestampUtc)}'
-                  '${event.description == null ? '' : ' · ${event.description}'}',
+                  '${event.description == null ? '' : ' · ${displayText(event.description!)}'}',
                   style: TextStyle(
                     color: CupertinoDynamicColor.resolve(
                       CupertinoColors.secondaryLabel,
@@ -487,10 +503,10 @@ class _DiagnosticLogPageState extends State<DiagnosticLogPage> {
             ),
           ),
           const SizedBox(height: 3),
-          Text(issue.title,
+          Text(displayText(issue.title),
               style: const TextStyle(fontWeight: FontWeight.w600)),
           const SizedBox(height: 4),
-          Text(issue.explanation),
+          Text(displayText(issue.explanation)),
           CupertinoButton(
             key: ValueKey('toggle-issue-${issue.id}'),
             padding: const EdgeInsets.only(top: 7),
@@ -501,17 +517,23 @@ class _DiagnosticLogPageState extends State<DiagnosticLogPage> {
                 _expandedIssues.add(issue.id);
               }
             }),
-            child: Text(expanded ? '收起技术详情' : '查看技术详情'),
+            child: Text(expanded
+                ? context.l10n.coreHideTechnicalDetails
+                : context.l10n.coreViewTechnicalDetails),
           ),
           if (expanded) ...[
             _technicalRow('refreshId', details.refreshId),
+            _technicalRow(context.l10n.coreUtcTime,
+                formatUtcDiagnosticTime(details.timestampUtc)),
             _technicalRow(
-                'UTC 时间', formatUtcDiagnosticTime(details.timestampUtc)),
-            _technicalRow('HTTP 状态码', '${details.statusCode ?? '-'}'),
-            _technicalRow('请求接口', details.interfaceName),
-            _technicalRow('已脱敏 URL', details.url ?? '-'),
-            _technicalRow('异常类型', details.exceptionType ?? '-'),
-            _technicalRow('异常摘要', details.exceptionSummary ?? '-'),
+                context.l10n.coreHttpStatus, '${details.statusCode ?? '-'}'),
+            _technicalRow(context.l10n.coreRequestInterface,
+                displayText(details.interfaceName)),
+            _technicalRow(context.l10n.coreRedactedUrl, details.url ?? '-'),
+            _technicalRow(context.l10n.coreExceptionType,
+                displayText(details.exceptionType ?? '-')),
+            _technicalRow(context.l10n.coreExceptionSummary,
+                displayText(details.exceptionSummary ?? '-')),
             if (details.stack != null) ...[
               CupertinoButton(
                 key: ValueKey('toggle-stack-${issue.id}'),
@@ -523,7 +545,9 @@ class _DiagnosticLogPageState extends State<DiagnosticLogPage> {
                     _expandedStacks.add(issue.id);
                   }
                 }),
-                child: Text(stackExpanded ? '隐藏堆栈' : '显示堆栈'),
+                child: Text(stackExpanded
+                    ? context.l10n.coreHideStack
+                    : context.l10n.coreShowStack),
               ),
               if (stackExpanded)
                 Text(
@@ -548,7 +572,7 @@ class _DiagnosticLogPageState extends State<DiagnosticLogPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _sectionTitle('App 与后台协调'),
+            _sectionTitle(context.l10n.coreAppBackgroundCoordination),
             for (final event in events) _timelineRow(context, event),
           ],
         ),
@@ -558,9 +582,9 @@ class _DiagnosticLogPageState extends State<DiagnosticLogPage> {
 
   Widget _buildRawPage(BuildContext context) {
     final displayText = _loading
-        ? '正在读取日志…'
+        ? context.l10n.coreReadingLogs
         : _logText.isEmpty
-            ? '暂无诊断日志。执行一次刷新后再试。'
+            ? context.l10n.coreNoDiagnosticLogs
             : _logText;
     return CupertinoScrollbar(
       child: ListView(
@@ -568,24 +592,25 @@ class _DiagnosticLogPageState extends State<DiagnosticLogPage> {
         padding: const EdgeInsets.only(top: 4, bottom: 24),
         children: [
           CupertinoListSection.insetGrouped(
-            header: const Text('完整原始日志'),
-            footer: const Text(
-              '原始日志继续使用 UTC 时间并保留完整脱敏技术字段；'
-              '最多保留 2000 行和最近 10 个导出文件。',
+            header: Text(context.l10n.coreFullRawLogs),
+            footer: Text(
+              context.l10n.coreRawLogRetention,
             ),
             children: [
               CupertinoListTile(
-                title: const Text('复制完整原始日志'),
+                title: Text(context.l10n.coreCopyRawLogs),
                 onTap: _copy,
               ),
               CupertinoListTile(
-                title: Text(_busy ? '正在导出…' : '导出并分享 TXT'),
-                subtitle: const Text('包含易读报告和完整原始日志'),
+                title: Text(_busy
+                    ? context.l10n.coreExporting
+                    : context.l10n.coreExportShareTxt),
+                subtitle: Text(context.l10n.coreExportContents),
                 onTap: _busy ? null : _export,
               ),
               CupertinoListTile(
-                title: const Text(
-                  '清空测试日志',
+                title: Text(
+                  context.l10n.coreClearTestLogs,
                   style: TextStyle(color: CupertinoColors.systemRed),
                 ),
                 onTap: _confirmClear,
@@ -671,7 +696,7 @@ class _DiagnosticLogPageState extends State<DiagnosticLogPage> {
           size: 15,
         ),
         const SizedBox(width: 4),
-        Text('$label ${enabled ? '是' : '否'}'),
+        Text('$label ${enabled ? context.l10n.coreYes : context.l10n.coreNo}'),
       ],
     );
   }

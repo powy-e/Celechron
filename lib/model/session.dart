@@ -1,3 +1,4 @@
+import 'package:celechron/l10n/l10n.dart';
 import 'package:celechron/utils/json_utils.dart';
 
 class Session {
@@ -154,6 +155,11 @@ class Session {
         type = asString(json['type']);
 
   String get chineseTime {
+    if (AppLanguage.isEnglish) {
+      final week = oddWeek && evenWeek ? '' : oddWeek
+          ? appL10n.sharedOddWeek : appL10n.sharedEvenWeek;
+      return appL10n.sharedSessionTime(week, localizedWeekday(dayOfWeek), time.join(', '));
+    }
     var timeString =
         '${(oddWeek & evenWeek) ? '' : oddWeek ? '单 - ' : '双 - '}周${dayMap[dayOfWeek]}第';
     for (var i = 0; i < time.length; i++) {

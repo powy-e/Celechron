@@ -42,20 +42,23 @@ struct CelechronWatchApp: App {
 // MARK: - Home
 
 struct WatchHomeView: View {
+    @State private var languageCode = NativeLanguage.code
+
     var body: some View {
+        let _ = languageCode
         // 单屏布局：Logo 与系统时间同行；入口用系统图标，不展示具体余额/课程
         VStack(alignment: .leading, spacing: 8) {
             NavigationLink(value: WatchDeepLink.Destination.flow) {
-                HomeCard(icon: "calendar", title: "日程")
+                HomeCard(icon: "calendar", title: NativeLanguage.text("日程", "Schedule"))
             }
             .buttonStyle(.plain)
-            .accessibilityHint("打开今日日程列表")
+            .accessibilityHint(NativeLanguage.text("打开今日日程列表", "Open today’s schedule"))
 
             NavigationLink(value: WatchDeepLink.Destination.ecard) {
-                HomeCard(icon: "qrcode", title: "付款码")
+                HomeCard(icon: "qrcode", title: NativeLanguage.text("付款码", "Pay code"))
             }
             .buttonStyle(.plain)
-            .accessibilityHint("打开校园卡付款码")
+            .accessibilityHint(NativeLanguage.text("打开校园卡付款码", "Open campus card payment code"))
 
             Spacer(minLength: 0)
         }
@@ -63,6 +66,9 @@ struct WatchHomeView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .navigationTitle("")
         .navigationBarTitleDisplayMode(.inline)
+        .onReceive(NotificationCenter.default.publisher(for: WatchDataSync.didUpdateNotification)) { _ in
+            languageCode = NativeLanguage.code
+        }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 // 与系统时间同行：约 26pt，避免过小模糊或过大挤占
@@ -119,8 +125,10 @@ private struct HomeCard: View {
 struct WatchFlowPage: View {
     @State private var flows: [Flow] = []
     @State private var remainingToday = 0
+    @State private var languageCode = NativeLanguage.code
 
     var body: some View {
+        let _ = languageCode
         TimelineView(.periodic(from: .now, by: 60)) { context in
             List {
                 if flows.isEmpty {
@@ -130,9 +138,9 @@ struct WatchFlowPage: View {
                                 .font(.title2)
                                 .foregroundStyle(.green)
                                 .symbolRenderingMode(.hierarchical)
-                            Text("今日无事可做")
+                            Text(NativeLanguage.text("今日无事可做", "Nothing scheduled today"))
                                 .font(.headline)
-                            Text("好好休息")
+                            Text(NativeLanguage.text("好好休息", "Take a break"))
                                 .font(.caption2)
                                 .foregroundStyle(.secondary)
                         }
@@ -149,7 +157,7 @@ struct WatchFlowPage: View {
                         }
                     } header: {
                         if remainingToday > 0 {
-                            Text("今日还有 \(remainingToday) 项")
+                            Text(NativeLanguage.code == "en" ? "\(remainingToday) more today" : "今日还有 \(remainingToday) 项")
                                 .font(.caption2)
                                 .foregroundStyle(.secondary)
                                 .textCase(nil)
@@ -159,9 +167,10 @@ struct WatchFlowPage: View {
             }
             .listStyle(.automatic)
         }
-        .navigationTitle("日程")
+        .navigationTitle(NativeLanguage.text("日程", "Schedule"))
         .onAppear(perform: reload)
         .onReceive(NotificationCenter.default.publisher(for: WatchDataSync.didUpdateNotification)) { _ in
+            languageCode = NativeLanguage.code
             reload()
         }
     }
@@ -215,11 +224,11 @@ private struct FlowCard: View {
         if m >= 60 {
             return String(format: "%d:%02d", m / 60, m % 60)
         }
-        return "\(m) 分"
+        return NativeLanguage.code == "en" ? "\(m) min" : "\(m) 分"
     }
 
     private var statusLabel: String {
-        hasBegun ? "后结束" : "后开始"
+        hasBegun ? NativeLanguage.text("后结束", "until end") : NativeLanguage.text("后开始", "until start")
     }
 
     private var accent: Color {
@@ -239,7 +248,7 @@ private struct FlowCard: View {
     }
 
     private var locationText: String {
-        flow.location ?? "无地点"
+        flow.location ?? NativeLanguage.text("无地点", "No location")
     }
 
     private var canNavigate: Bool {
@@ -254,7 +263,7 @@ private struct FlowCard: View {
                 .padding(.vertical, 2)
 
             VStack(alignment: .leading, spacing: 3) {
-                Text(flow.name ?? "未命名日程")
+                Text(flow.name ?? NativeLanguage.text("未命名日程", "Untitled event"))
                     .font(.headline)
                     .foregroundStyle(.primary)
                     .lineLimit(2)
@@ -283,8 +292,8 @@ private struct FlowCard: View {
                 }
                 .buttonStyle(.plain)
                 .disabled(!canNavigate)
-                .accessibilityLabel(canNavigate ? "导航至\(locationText)" : locationText)
-                .accessibilityHint(canNavigate ? "在地图中打开步行路线" : "")
+                .accessibilityLabel(canNavigate ? (NativeLanguage.code == "en" ? "Navigate to \(locationText)" : "导航至\(locationText)") : locationText)
+                .accessibilityHint(canNavigate ? NativeLanguage.text("在地图中打开步行路线", "Open walking directions in Maps") : "")
 
                 Text(timeRangeText)
                     .font(.system(.caption2, design: .rounded))
@@ -310,7 +319,9 @@ private struct FlowCard: View {
         .padding(.vertical, 4)
         .padding(.horizontal, 4)
         .accessibilityElement(children: .contain)
-        .accessibilityLabel("\(flow.name ?? "未命名日程")，\(countdownText)\(statusLabel)，\(timeRangeText)")
+        .accessibilityLabel(NativeLanguage.code == "en"
+            ? "\(flow.name ?? "Untitled event"), \(countdownText) \(statusLabel), \(timeRangeText)"
+            : "\(flow.name ?? "未命名日程")，\(countdownText)\(statusLabel)，\(timeRangeText)")
     }
 }
 
@@ -329,17 +340,19 @@ struct WatchECardPayPage: View {
     private let credentialStore = WatchECardCredentialStore.shared
 
     @State private var barcode = ""
-    @State private var balanceText = "待刷新"
+    @State private var balanceText = NativeLanguage.text("待刷新", "Refresh")
     @State private var qrImage: UIImage?
     @State private var codeState: WatchPayCodeState = .connecting
-    @State private var statusMessage = "正在准备付款码"
+    @State private var statusMessage = NativeLanguage.text("正在准备付款码", "Preparing pay code")
     @State private var transientRetryCount = 0
     @State private var credentialRefreshAttempted = false
     @State private var phoneFallbackAttempted = false
     @State private var requestSerial = 0
+    @State private var languageCode = NativeLanguage.code
     @AccessibilityFocusState private var announceRefresh: Bool
 
     var body: some View {
+        let _ = languageCode
         GeometryReader { geo in
             let side = min(geo.size.width, geo.size.height) * 0.78
             VStack(spacing: 4) {
@@ -398,16 +411,16 @@ struct WatchECardPayPage: View {
                 .frame(minWidth: side, minHeight: side)
                 .contentShape(Rectangle())
                 .accessibilityLabel(qrAccessibilityLabel)
-                .accessibilityHint("生成新的付款码")
+                .accessibilityHint(NativeLanguage.text("生成新的付款码", "Generate a new pay code"))
                 .accessibilityValue(statusMessage)
 
                 if isShowingDemo {
-                    Text("演示码 · 请在 iPhone 登录")
+                    Text(NativeLanguage.text("演示码 · 请在 iPhone 登录", "Demo code · Sign in on iPhone"))
                         .font(.caption2)
                         .foregroundStyle(.orange)
                         .lineLimit(1)
                         .minimumScaleFactor(0.75)
-                        .accessibilityLabel("当前为演示码，请在 iPhone 登录校园卡")
+                        .accessibilityLabel(NativeLanguage.text("当前为演示码，请在 iPhone 登录校园卡", "Demo code. Sign in to campus card on iPhone."))
                 }
 
                 Text(balanceText)
@@ -421,13 +434,18 @@ struct WatchECardPayPage: View {
             .padding(.top, 4)
             .frame(width: geo.size.width, height: geo.size.height, alignment: .top)
         }
-        .navigationTitle("付款码")
+        .navigationTitle(NativeLanguage.text("付款码", "Pay code"))
         .onAppear {
             reloadBalance()
             refreshCode()
         }
         .onReceive(NotificationCenter.default.publisher(for: WatchDataSync.didUpdateNotification)) { _ in
+            languageCode = NativeLanguage.code
             reloadBalance()
+            statusMessage = NativeLanguage.relocalized(statusMessage)
+            if case let .unavailable(message) = codeState {
+                codeState = .unavailable(NativeLanguage.relocalized(message))
+            }
             retryBarcodeIfReady()
         }
         .onDisappear {
@@ -463,10 +481,10 @@ struct WatchECardPayPage: View {
 
     private var qrAccessibilityLabel: String {
         switch codeState {
-        case .demo: return "演示付款码，点按刷新"
-        case .real: return "校园卡付款码，点按刷新"
-        case .connecting, .requesting: return "正在获取校园卡付款码"
-        case .unavailable: return "付款码暂不可用，点按重试"
+        case .demo: return NativeLanguage.text("演示付款码，点按刷新", "Demo pay code. Tap to refresh.")
+        case .real: return NativeLanguage.text("校园卡付款码，点按刷新", "Campus card pay code. Tap to refresh.")
+        case .connecting, .requesting: return NativeLanguage.text("正在获取校园卡付款码", "Getting campus card pay code")
+        case .unavailable: return NativeLanguage.text("付款码暂不可用，点按重试", "Pay code unavailable. Tap to retry.")
         }
     }
 
@@ -479,7 +497,7 @@ struct WatchECardPayPage: View {
         qrImage = nil
         barcode = ""
         codeState = .requesting
-        statusMessage = "正在获取付款码"
+        statusMessage = NativeLanguage.text("正在获取付款码", "Getting pay code")
         resolveCredentialAndFetch(serial: serial)
     }
 
@@ -487,10 +505,10 @@ struct WatchECardPayPage: View {
         barcode = code
         qrImage = SimpleQRCode.image(from: code, size: 240)
         if qrImage == nil {
-            setUnavailable("付款码过长\n请在 iPhone 打开")
+            setUnavailable(NativeLanguage.text("付款码过长\n请在 iPhone 打开", "Code too long\nOpen on iPhone"))
         } else {
             codeState = isDemo ? .demo : .real
-            statusMessage = isDemo ? "已刷新演示码" : "已刷新付款码"
+            statusMessage = isDemo ? NativeLanguage.text("已刷新演示码", "Demo code refreshed") : NativeLanguage.text("已刷新付款码", "Pay code refreshed")
             transientRetryCount = 0
         }
         announceRefresh = true
@@ -500,7 +518,7 @@ struct WatchECardPayPage: View {
         barcode = ""
         qrImage = nil
         codeState = .unavailable(message)
-        statusMessage = message.replacingOccurrences(of: "\n", with: "，")
+        statusMessage = message.replacingOccurrences(of: "\n", with: NativeLanguage.code == "en" ? ", " : "，")
     }
 
     private func resolveCredentialAndFetch(serial: Int) {
@@ -519,7 +537,7 @@ struct WatchECardPayPage: View {
     private func fetchDirectlyFromWatch(credential: WatchECardCredential, serial: Int) {
         guard serial == requestSerial else { return }
         codeState = .requesting
-        statusMessage = "正在通过 Watch 网络获取"
+        statusMessage = NativeLanguage.text("正在通过 Watch 网络获取", "Getting code on Watch")
         // Always fetch getCampusCards on Watch. Besides validating the account,
         // this supplies the real balance without relying on WidgetKit timing.
         ecardService.fetchPayCode(auth: credential.auth, cachedAccount: nil) { result in
@@ -542,7 +560,7 @@ struct WatchECardPayPage: View {
                 case .failure(.authenticationExpired):
                     self.credentialStore.markNeedsRefresh()
                     guard !self.credentialRefreshAttempted else {
-                        self.setUnavailable("授权已失效\n请在 iPhone 重新登录")
+                        self.setUnavailable(NativeLanguage.text("授权已失效\n请在 iPhone 重新登录", "Session expired\nSign in on iPhone"))
                         return
                     }
                     self.credentialRefreshAttempted = true
@@ -550,7 +568,7 @@ struct WatchECardPayPage: View {
                 case .failure(.transientFailure):
                     self.handleDirectTransientFailure(credential: credential, serial: serial)
                 case .failure(.invalidResponse), .failure(.noCards), .failure(.noBarcode):
-                    self.setUnavailable("服务返回异常\n点按重试")
+                    self.setUnavailable(NativeLanguage.text("服务返回异常\n点按重试", "Service error\nTap to retry"))
                 }
             }
         }
@@ -558,12 +576,12 @@ struct WatchECardPayPage: View {
 
     private func handleDirectTransientFailure(credential: WatchECardCredential, serial: Int) {
         guard transientRetryCount < 1 else {
-            requestBarcodeFromPhoneFallback(serial: serial, unavailableMessage: "网络请求失败\n点按重试")
+            requestBarcodeFromPhoneFallback(serial: serial, unavailableMessage: NativeLanguage.text("网络请求失败\n点按重试", "Network error\nTap to retry"))
             return
         }
         transientRetryCount += 1
         codeState = .requesting
-        statusMessage = "网络不稳定，正在重试"
+        statusMessage = NativeLanguage.text("网络不稳定，正在重试", "Network unstable. Retrying")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
             guard serial == self.requestSerial else { return }
             self.fetchDirectlyFromWatch(credential: credential, serial: serial)
@@ -580,7 +598,7 @@ struct WatchECardPayPage: View {
             // 表盘 deep link 会在 WCSession 完成冷启动前进入本页。
             // 保留当前画面，由 activationDidComplete 通知触发自动重试。
             codeState = .connecting
-            statusMessage = "正在连接 iPhone"
+            statusMessage = NativeLanguage.text("正在连接 iPhone", "Connecting to iPhone")
             return
         }
         guard session.isReachable else {
@@ -589,7 +607,7 @@ struct WatchECardPayPage: View {
         }
 
         codeState = .requesting
-        statusMessage = refresh ? "正在通过 iPhone 更新授权" : "正在从 iPhone 配置授权"
+        statusMessage = refresh ? NativeLanguage.text("正在通过 iPhone 更新授权", "Updating access via iPhone") : NativeLanguage.text("正在从 iPhone 配置授权", "Setting up access via iPhone")
         session.sendMessage(
             ["action": refresh ? "refreshPayCredential" : "requestPayCredential"],
             replyHandler: { reply in
@@ -605,22 +623,22 @@ struct WatchECardPayPage: View {
                             // passcode, but the existing live iPhone fallback remains usable.
                             self.requestBarcodeFromPhoneFallback(
                                 serial: serial,
-                                unavailableMessage: "请先为 Watch 设置密码"
+                                unavailableMessage: NativeLanguage.text("请先为 Watch 设置密码", "Set a Watch passcode first")
                             )
                         case .failure:
-                            self.setUnavailable("无法安全保存授权\n点按重试")
+                            self.setUnavailable(NativeLanguage.text("无法安全保存授权\n点按重试", "Could not save access\nTap to retry"))
                         }
                     } else if (reply["loggedIn"] as? Bool) == false {
                         self.requestBarcodeFromPhoneFallback(
                             serial: serial,
-                            unavailableMessage: "请在 iPhone 登录"
+                            unavailableMessage: NativeLanguage.text("请在 iPhone 登录", "Sign in on iPhone")
                         )
                     } else if refresh {
-                        self.setUnavailable("授权更新失败\n请在 iPhone 重新登录")
+                        self.setUnavailable(NativeLanguage.text("授权更新失败\n请在 iPhone 重新登录", "Access update failed\nSign in on iPhone"))
                     } else {
                         self.requestBarcodeFromPhoneFallback(
                             serial: serial,
-                            unavailableMessage: "获取失败\n点按重试"
+                            unavailableMessage: NativeLanguage.text("获取失败\n点按重试", "Could not get code\nTap to retry")
                         )
                     }
                 }
@@ -654,7 +672,7 @@ struct WatchECardPayPage: View {
             return
         }
         codeState = .requesting
-        statusMessage = "正在通过 iPhone 获取"
+        statusMessage = NativeLanguage.text("正在通过 iPhone 获取", "Getting code via iPhone")
         session.sendMessage(
             ["action": "requestPayCode"],
             replyHandler: { reply in
@@ -687,9 +705,9 @@ struct WatchECardPayPage: View {
 
     private func setCredentialUnavailable(refresh: Bool) {
         if refresh {
-            setUnavailable("授权已失效\n请连接 iPhone 刷新")
+            setUnavailable(NativeLanguage.text("授权已失效\n请连接 iPhone 刷新", "Session expired\nConnect to iPhone"))
         } else {
-            setUnavailable("尚未配置授权\n请连接 iPhone")
+            setUnavailable(NativeLanguage.text("尚未配置授权\n请连接 iPhone", "Access not set up\nConnect to iPhone"))
         }
     }
 
@@ -826,6 +844,10 @@ final class WatchAppDelegate: NSObject, WKApplicationDelegate, WCSessionDelegate
     private func applyApplicationContext(_ context: [String: Any]) {
         guard !context.isEmpty else { return }
         let defaults = WidgetAppGroup.defaults
+
+        if let languageCode = context[NativeLanguage.key] as? String {
+            NativeLanguage.set(languageCode)
+        }
 
         if let flowData = context["flowList"] as? Data {
             defaults?.set(flowData, forKey: WidgetAppGroup.flowListKey)

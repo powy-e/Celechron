@@ -1,3 +1,4 @@
+import 'package:celechron/l10n/l10n.dart';
 import 'package:celechron/page/scholar/course_list/course_brief_card.dart';
 import 'package:celechron/design/sub_title.dart';
 import 'package:celechron/design/custom_colors.dart';
@@ -26,7 +27,7 @@ class CourseDetailPage extends StatelessWidget {
     sessions.sort((a, b) => a.time.first.compareTo(b.time.first));
     return Column(
       children: [
-        SubSubtitleRow(subtitle: '课时'),
+        SubSubtitleRow(subtitle: context.l10n.academicClassSessions),
         RoundRectangleCard(
             child: Padding(
           padding: const EdgeInsets.only(left: 8, right: 8),
@@ -75,7 +76,10 @@ class CourseDetailPage extends StatelessWidget {
                                 .withValues(alpha: 0.5),
                           ),
                           Expanded(
-                              child: Text(' 地点：${sessions[0].location ?? '未知'}',
+                              child: Text(
+                                  context.l10n.academicLocationLabel(
+                                      displayText(
+                                          sessions[0].location ?? '未知')),
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.normal,
@@ -136,18 +140,20 @@ class CourseDetailPage extends StatelessWidget {
                                   .withValues(alpha: 0.5),
                             ),
                             Expanded(
-                                child:
-                                    Text(' 地点：${sessions[i].location ?? '未知'}',
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.normal,
-                                          color: CupertinoTheme.of(context)
-                                              .textTheme
-                                              .textStyle
-                                              .color!
-                                              .withValues(alpha: 0.75),
-                                          overflow: TextOverflow.ellipsis,
-                                        )))
+                                child: Text(
+                                    context.l10n.academicLocationLabel(
+                                        displayText(
+                                            sessions[i].location ?? '未知')),
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.normal,
+                                      color: CupertinoTheme.of(context)
+                                          .textTheme
+                                          .textStyle
+                                          .color!
+                                          .withValues(alpha: 0.75),
+                                      overflow: TextOverflow.ellipsis,
+                                    )))
                           ]),
                         ],
                       )
@@ -164,7 +170,7 @@ class CourseDetailPage extends StatelessWidget {
   Widget createExamCard(context, List<Exam> exams) {
     return Column(
       children: [
-        SubSubtitleRow(subtitle: '考试'),
+        SubSubtitleRow(subtitle: context.l10n.academicExams),
         RoundRectangleCard(
             child: Padding(
           padding: const EdgeInsets.only(left: 8, right: 8),
@@ -214,7 +220,9 @@ class CourseDetailPage extends StatelessWidget {
                                 .withValues(alpha: 0.5),
                           ),
                           Expanded(
-                              child: Text(' 地点：${exams[0].location ?? '未知'}',
+                              child: Text(
+                                  context.l10n.academicLocationLabel(
+                                      displayText(exams[0].location ?? '未知')),
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.normal,
@@ -237,7 +245,9 @@ class CourseDetailPage extends StatelessWidget {
                                 .withValues(alpha: 0.5),
                           ),
                           Expanded(
-                              child: Text(' 座位：${exams[0].seat ?? '未知'}',
+                              child: Text(
+                                  context.l10n.academicSeatLabel(
+                                      displayText(exams[0].seat ?? '未知')),
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.normal,
@@ -261,7 +271,7 @@ class CourseDetailPage extends StatelessWidget {
                                   .withValues(alpha: 0.5),
                             ),
                             Expanded(
-                                child: Text(' 类型：期中',
+                                child: Text('${context.l10n.academicMidterm}',
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.normal,
@@ -323,7 +333,9 @@ class CourseDetailPage extends StatelessWidget {
                                   .withValues(alpha: 0.5),
                             ),
                             Expanded(
-                                child: Text(' 地点：${exams[i].location ?? '未知'}',
+                                child: Text(
+                                    context.l10n.academicLocationLabel(
+                                        displayText(exams[i].location ?? '未知')),
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.normal,
@@ -346,7 +358,9 @@ class CourseDetailPage extends StatelessWidget {
                                   .withValues(alpha: 0.5),
                             ),
                             Expanded(
-                                child: Text(' 座位：${exams[i].seat ?? '未知'}',
+                                child: Text(
+                                    context.l10n.academicSeatLabel(
+                                        displayText(exams[i].seat ?? '未知')),
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.normal,
@@ -370,7 +384,7 @@ class CourseDetailPage extends StatelessWidget {
                                     .withValues(alpha: 0.5),
                               ),
                               Expanded(
-                                  child: Text(' 类型：期中',
+                                  child: Text('${context.l10n.academicMidterm}',
                                       style: TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.normal,
@@ -401,13 +415,14 @@ class CourseDetailPage extends StatelessWidget {
           CupertinoColors.systemGroupedBackground, context),
       child: CustomScrollView(
         slivers: [
-          const CelechronSliverTextHeader(subtitle: '课程详情'),
+          CelechronSliverTextHeader(
+              subtitle: context.l10n.academicCourseDetails),
           SliverToBoxAdapter(
             child: Container(
               padding: const EdgeInsets.only(bottom: 5, left: 16, right: 16),
               child: Column(
                 children: [
-                  SubSubtitleRow(subtitle: '基本信息'),
+                  SubSubtitleRow(subtitle: context.l10n.academicBasicInfo),
                   CourseBriefCard(course: course),
                 ],
               ),

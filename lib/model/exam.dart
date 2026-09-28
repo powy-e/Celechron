@@ -1,3 +1,4 @@
+import 'package:celechron/l10n/l10n.dart';
 import 'package:celechron/utils/time_helper.dart';
 import 'package:celechron/utils/json_utils.dart';
 
@@ -107,11 +108,13 @@ class Exam {
 
   get chineseTime {
     if (dateLabel == null) return TimeHelper.chineseTime(time[0], time[1]);
-    return '$dateLabel ${_hourMinute(time[0])} - ${_hourMinute(time[1])}';
+    return '${displayText(dateLabel!)} ${_hourMinute(time[0])} - ${_hourMinute(time[1])}';
   }
 
   get chineseDate =>
-      dateLabel ?? TimeHelper.chineseDay(time[0]).replaceAll(" ", "");
+      dateLabel != null ? displayText(dateLabel!) :
+      AppLanguage.isEnglish ? TimeHelper.chineseDay(time[0]).trim() :
+      TimeHelper.chineseDay(time[0]).replaceAll(' ', '');
 
   String _hourMinute(DateTime dateTime) =>
       '${dateTime.hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')}';

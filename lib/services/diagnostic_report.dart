@@ -1,4 +1,5 @@
 import 'diagnostic_sanitizer.dart';
+import 'package:celechron/l10n/l10n.dart';
 
 enum DiagnosticReportSeverity {
   success,
@@ -1027,91 +1028,101 @@ String formatDiagnosticExport({
   final now = (exportedAt ?? DateTime.now()).toUtc();
   final offset = utcOffset ?? now.toLocal().timeZoneOffset;
   final latest = bundle.latestReport;
+  final l = appL10n;
+  String tr(String source) => displayText(source);
+  String yn(bool value) => value ? l.diagnosticExportYes : l.diagnosticExportNo;
   final buffer = StringBuffer()
-    ..writeln('Celechron 诊断日志')
-    ..writeln('本地导出时间：${formatLocalDiagnosticTime(now, utcOffset: offset)}')
-    ..writeln('UTC 导出时间：${formatUtcDiagnosticTime(now)}')
-    ..writeln('App 版本：$version+$buildNumber')
-    ..writeln('平台：${sanitizeDiagnosticText(platform)}')
-    ..writeln('refreshId：${latest?.refreshId ?? '-'}')
-    ..writeln(
-        '来源：${latest == null ? '-' : diagnosticOriginLabel(latest.origin)}')
+    ..writeln(l.diagnosticExportTitle)
+    ..writeln(l.diagnosticExportLocalTime(
+        formatLocalDiagnosticTime(now, utcOffset: offset)))
+    ..writeln(l.diagnosticExportUtcTime(formatUtcDiagnosticTime(now)))
+    ..writeln(l.diagnosticExportVersion('$version+$buildNumber'))
+    ..writeln(l.diagnosticExportPlatform(sanitizeDiagnosticText(platform)))
+    ..writeln(l.diagnosticExportRefreshId(latest?.refreshId ?? '-'))
+    ..writeln(l.diagnosticExportOrigin(
+        latest == null ? '-' : tr(diagnosticOriginLabel(latest.origin))))
     ..writeln()
-    ..writeln('=== 1. 易读诊断报告 ===');
+    ..writeln(l.diagnosticExportReadable);
 
   if (bundle.reports.isEmpty) {
-    buffer.writeln('暂无可解析的刷新记录。');
+    buffer.writeln(l.diagnosticExportNoReports);
   } else {
     for (final report in bundle.reports) {
       buffer
         ..writeln()
         ..writeln(
             '${formatLocalDiagnosticTime(report.startedAtUtc, utcOffset: offset)} '
-            '${diagnosticOriginLabel(report.origin)} · ${diagnosticReportTitle(report)}')
-        ..writeln('refreshId：${report.refreshId}')
-        ..writeln('总耗时：${formatDuration(report.durationMs)}');
+            '${tr(diagnosticOriginLabel(report.origin))} · ${tr(diagnosticReportTitle(report))}')
+        ..writeln(l.diagnosticExportRefreshId(report.refreshId))
+        ..writeln(
+            l.diagnosticExportTotalTime(tr(formatDuration(report.durationMs))));
       final description = diagnosticReportDescription(report);
-      if (description != null) buffer.writeln(description);
+      if (description != null) buffer.writeln(tr(description));
       if (report.performedModuleRequests) {
         buffer
-          ..writeln(
-              '模块：成功 ${report.successCount} / 降级 ${report.degradedCount} / '
-              '失败 ${report.failedCount}')
-          ..writeln('重新登录：${report.relogged ? '是' : '否'}；'
-              '重试：${report.retried ? '是' : '否'}；'
-              '缓存回退：${report.cacheUsed ? '是' : '否'}');
+          ..writeln(l.diagnosticExportModuleCounts(
+              report.successCount.toString(),
+              report.degradedCount.toString(),
+              report.failedCount.toString()))
+          ..writeln(l.diagnosticExportFlags(
+              yn(report.relogged), yn(report.retried), yn(report.cacheUsed)));
       }
     }
   }
 
-  buffer.writeln('\n=== 2. 模块结果 ===');
+  buffer.writeln('\n${l.diagnosticExportModules}');
   for (final report in bundle.reports) {
     buffer.writeln('\n[${report.refreshId}]');
     if (report.modules.isEmpty) {
-      buffer.writeln('${diagnosticReportTitle(report)}：未发起独立模块请求。');
+      buffer.writeln(l
+          .diagnosticExportNoModuleRequests(tr(diagnosticReportTitle(report))));
     } else {
       for (final module in report.modules) {
-        buffer.writeln(
-            '${module.name}：${diagnosticModuleStateLabel(module.state)}；'
-            '${formatModuleDuration(module)}；${module.reason}');
+        buffer.writeln(l.diagnosticExportModuleRow(
+            tr(module.name),
+            tr(diagnosticModuleStateLabel(module.state)),
+            tr(formatModuleDuration(module)),
+            tr(module.reason)));
       }
     }
   }
 
-  buffer.writeln('\n=== 3. 关键时间线 ===');
+  buffer.writeln('\n${l.diagnosticExportTimeline}');
   final timeline = <DiagnosticTimelineEvent>[
     ...bundle.globalTimeline,
     for (final report in bundle.reports) ...report.timeline,
   ]..sort((a, b) => a.timestampUtc.compareTo(b.timestampUtc));
-  if (timeline.isEmpty) buffer.writeln('无关键时间线事件。');
+  if (timeline.isEmpty) buffer.writeln(l.diagnosticExportNoTimeline);
   for (final event in timeline) {
     buffer.writeln(
         '${formatLocalDiagnosticTime(event.timestampUtc, utcOffset: offset)} '
-        '${event.title}${event.description == null ? '' : '：${event.description}'} '
+        '${tr(event.title)}${event.description == null ? '' : '：${tr(event.description!)}'} '
         '[refreshId=${event.refreshId ?? '-'}]');
   }
 
-  buffer.writeln('\n=== 4. 发现的问题 ===');
+  buffer.writeln('\n${l.diagnosticExportIssues}');
   final issues = [for (final report in bundle.reports) ...report.issues];
-  if (issues.isEmpty) buffer.writeln('未发现需要说明的问题。');
+  if (issues.isEmpty) buffer.writeln(l.diagnosticExportNoIssues);
   for (final issue in issues) {
     buffer
       ..writeln(
-          '${diagnosticIssueCategoryLabel(issue.category)}：${issue.title}')
-      ..writeln(issue.explanation)
-      ..writeln('  refreshId=${issue.details.refreshId}；'
-          'UTC=${formatUtcDiagnosticTime(issue.details.timestampUtc)}；'
-          'HTTP=${issue.details.statusCode ?? '-'}；'
-          '接口=${issue.details.interfaceName}；'
-          'URL=${issue.details.url ?? '-'}；'
-          '异常=${issue.details.exceptionType ?? '-'}；'
-          '摘要=${issue.details.exceptionSummary ?? '-'}；'
-          '堆栈=${issue.details.stack ?? '-'}');
+          '${tr(diagnosticIssueCategoryLabel(issue.category))}：${tr(issue.title)}')
+      ..writeln(tr(issue.explanation))
+      ..writeln(l.diagnosticExportTechnical(
+          issue.details.refreshId,
+          formatUtcDiagnosticTime(issue.details.timestampUtc),
+          (issue.details.statusCode ?? '-').toString(),
+          tr(issue.details.interfaceName),
+          issue.details.url ?? '-',
+          issue.details.exceptionType ?? '-',
+          issue.details.exceptionSummary ?? '-',
+          issue.details.stack ?? '-'));
   }
 
+  // Keep the source log byte for byte so it remains useful for debugging.
   buffer
-    ..writeln('\n=== 5. 完整原始日志（UTC） ===')
-    ..writeln('以下时间保持 ISO 8601 UTC；与上方本地时间存在时区偏移是正常的。')
+    ..writeln('\n${l.diagnosticExportRaw}')
+    ..writeln(l.diagnosticExportRawNote)
     ..write(rawLog);
   return buffer.toString();
 }

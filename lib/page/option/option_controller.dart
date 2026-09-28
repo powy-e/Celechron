@@ -215,6 +215,8 @@ class OptionController extends GetxController {
 
   bool get asyncRefresh => _option.asyncRefresh.value;
 
+  String get languageCode => _option.languageCode.value;
+
   set asyncRefresh(bool value) {
     _option.asyncRefresh.value = value;
     _db.setAsyncRefresh(value);

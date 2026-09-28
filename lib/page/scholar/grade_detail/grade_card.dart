@@ -1,3 +1,4 @@
+import 'package:celechron/l10n/l10n.dart';
 import 'dart:math';
 
 import 'package:celechron/page/scholar/grade_detail/grade_detail_controller.dart';
@@ -168,7 +169,9 @@ class _GradeCardState extends State<GradeCard>
                                 ),
                           ),
                           Text(
-                            '${widget.grade.realId} / ${widget.grade.credit.toStringAsFixed(1)} 学分',
+                            context.l10n.academicGradeCredit(
+                                widget.grade.realId,
+                                widget.grade.credit.toStringAsFixed(1)),
                             style: CupertinoTheme.of(context)
                                 .textTheme
                                 .textStyle

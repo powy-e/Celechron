@@ -14,14 +14,14 @@ struct FlowWidgetView : View {
     @ViewBuilder
     var body: some View {
         if(entry.flows.isEmpty) {
-            Text("今日无事可做")
+            Text(NativeLanguage.text("今日无事可做", "Nothing scheduled today"))
                 .font(.subheadline).bold()
         } else if(entry.flows.count == 1) {
             SingleFlowView(entry: entry)
         } else if(entry.flows.count == 2) {
             MultiFlowView(entry: entry)
         } else {
-            Text("事情太多了")
+            Text(NativeLanguage.text("事情太多了", "Too many events"))
                 .font(.subheadline).bold()
         }
     }
@@ -40,7 +40,7 @@ struct SingleFlowView: View {
             HStack {
                 Image(systemName: "location").font(.caption2.bold())
                 Spacer().frame(width: 5)
-                Text(flow.location ?? "无地点信息")
+                Text(flow.location ?? NativeLanguage.text("无地点信息", "No location"))
                     .font(.caption2.bold()).lineLimit(1)
             }
             
@@ -48,7 +48,7 @@ struct SingleFlowView: View {
                 Circle().frame(height: 12)
                     .font(.subheadline).foregroundColor(.blue)
                 Spacer().frame(width: 6)
-                Text(flow.name ?? "未命名日程")
+                Text(flow.name ?? NativeLanguage.text("未命名日程", "Untitled event"))
                     .font(.subheadline.bold())
             }
             
@@ -56,7 +56,7 @@ struct SingleFlowView: View {
                 Text(String(format: "%02d:%02d", arguments: [timeDifference / 60, timeDifference % 60]))
                     .font(.title.bold())
                 Spacer().frame(width: 2)
-                Text(hasBegun ? "后结束" : "后开始")
+                Text(hasBegun ? NativeLanguage.text("后结束", "until end") : NativeLanguage.text("后开始", "until start"))
                     .font(.caption2)
             }
             Spacer().frame(height: 0)
@@ -71,7 +71,8 @@ struct SingleFlowView: View {
             }
             
             HStack {
-                Text(entry.remaining == 0 ? "今日已无更多事务" : String(format: "今日还有%d项事务", arguments: [entry.remaining]))
+                Text(entry.remaining == 0 ? NativeLanguage.text("今日已无更多事务", "No more events today")
+                    : (NativeLanguage.code == "en" ? "\(entry.remaining) more today" : "今日还有\(entry.remaining)项事务"))
                     .font(.caption2).foregroundColor(.secondary).lineLimit(2)
             }
         }
@@ -102,7 +103,7 @@ struct MultiFlowView: View {
                 HStack {
                     Image(systemName: "location").font(.caption2.bold())
                     Spacer().frame(width: 4)
-                    Text(flow.location ?? "无地点信息")
+                    Text(flow.location ?? NativeLanguage.text("无地点信息", "No location"))
                         .font(.caption2.bold()).lineLimit(1)
                 }
                 
@@ -110,7 +111,7 @@ struct MultiFlowView: View {
                     Image(systemName: "circle.fill").font(.caption2.bold())
                         .foregroundColor(.blue)
                     Spacer().frame(width: 4)
-                    Text(flow.name ?? "未命名日程")
+                    Text(flow.name ?? NativeLanguage.text("未命名日程", "Untitled event"))
                         .font(.caption).bold()
                 }
                 
@@ -129,7 +130,7 @@ struct MultiFlowView: View {
                     Text(String(format: "%02d:%02d", arguments: [timeDifference / 60, timeDifference % 60]))
                         .font(.caption2.bold())
                     Spacer().frame(width: 1)
-                    Text(hasBegun ? "终" : "始")
+                    Text(hasBegun ? NativeLanguage.text("终", "End") : NativeLanguage.text("始", "Start"))
                         .font(.caption2.bold())
                 }
                 
@@ -144,5 +145,5 @@ struct MultiFlowView: View {
 #Preview(as: .systemSmall) {
     FlowWidget()
 } timeline: {
-    FlowEntry(refreshAt: Date(), toDisplay: [Flow(location: "紫金港西1-216", name: "信号与系统", startTime: Date().addingTimeInterval(-3600), endTime: Date().addingTimeInterval(1500))], stillToDoToday: 0)
+    FlowEntry(refreshAt: Date(), toDisplay: [Flow(location: NativeLanguage.text("紫金港西1-216", "Zijingang West 1-216"), name: NativeLanguage.text("信号与系统", "Signals and Systems"), startTime: Date().addingTimeInterval(-3600), endTime: Date().addingTimeInterval(1500))], stillToDoToday: 0)
 }

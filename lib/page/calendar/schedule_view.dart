@@ -1,3 +1,4 @@
+import 'package:celechron/l10n/l10n.dart';
 import 'dart:math';
 
 import 'package:celechron/utils/tuple.dart';
@@ -39,7 +40,7 @@ class ScheduleView extends StatelessWidget {
                 flex: 2,
                 child: Center(
                   child: Text(
-                    '一',
+                    context.l10n.coreWeekdayMon,
                     style:
                         CupertinoTheme.of(context).textTheme.textStyle.copyWith(
                               fontSize: 14,
@@ -51,7 +52,7 @@ class ScheduleView extends StatelessWidget {
                 flex: 2,
                 child: Center(
                   child: Text(
-                    '二',
+                    context.l10n.coreWeekdayTue,
                     style:
                         CupertinoTheme.of(context).textTheme.textStyle.copyWith(
                               fontSize: 14,
@@ -63,7 +64,7 @@ class ScheduleView extends StatelessWidget {
                 flex: 2,
                 child: Center(
                   child: Text(
-                    '三',
+                    context.l10n.coreWeekdayWed,
                     style:
                         CupertinoTheme.of(context).textTheme.textStyle.copyWith(
                               fontSize: 14,
@@ -75,7 +76,7 @@ class ScheduleView extends StatelessWidget {
                 flex: 2,
                 child: Center(
                   child: Text(
-                    '四',
+                    context.l10n.coreWeekdayThu,
                     style:
                         CupertinoTheme.of(context).textTheme.textStyle.copyWith(
                               fontSize: 14,
@@ -87,7 +88,7 @@ class ScheduleView extends StatelessWidget {
                 flex: 2,
                 child: Center(
                   child: Text(
-                    '五',
+                    context.l10n.coreWeekdayFri,
                     style:
                         CupertinoTheme.of(context).textTheme.textStyle.copyWith(
                               fontSize: 14,
@@ -99,7 +100,7 @@ class ScheduleView extends StatelessWidget {
                 flex: 2,
                 child: Center(
                   child: Text(
-                    '六',
+                    context.l10n.coreWeekdaySat,
                     style:
                         CupertinoTheme.of(context).textTheme.textStyle.copyWith(
                               fontSize: 14,
@@ -111,7 +112,7 @@ class ScheduleView extends StatelessWidget {
                 flex: 2,
                 child: Center(
                   child: Text(
-                    '日',
+                    context.l10n.coreWeekdaySun,
                     style:
                         CupertinoTheme.of(context).textTheme.textStyle.copyWith(
                               fontSize: 14,
@@ -130,7 +131,7 @@ class ScheduleView extends StatelessWidget {
                 if (semester == null) {
                   return Center(
                     child: Text(
-                      '当前不在学期内',
+                      context.l10n.coreOutsideSemester,
                       style: CupertinoTheme.of(context)
                           .textTheme
                           .textStyle

@@ -1,3 +1,4 @@
+import 'package:celechron/l10n/l10n.dart';
 import 'dart:async';
 import 'dart:typed_data';
 
@@ -40,7 +41,7 @@ class ImageCodePortal {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Text("安全验证",
+                    Text(context.l10n.coreSecurityVerification,
                         style: TextStyle(
                             fontSize: 17, fontWeight: FontWeight.bold)),
                     const SizedBox(height: 20),
@@ -64,7 +65,7 @@ class ImageCodePortal {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    const Text("点击图片刷新",
+                    Text(context.l10n.coreTapImageToRefresh,
                         style: TextStyle(
                             fontSize: 12,
                             color: CupertinoColors.secondaryLabel)),
@@ -74,7 +75,7 @@ class ImageCodePortal {
                     // 输入框
                     CupertinoTextField(
                       controller: _inputController,
-                      placeholder: "请输入验证码",
+                      placeholder: context.l10n.coreEnterCaptcha,
                       autofocus: true,
                       padding: const EdgeInsets.symmetric(
                           vertical: 12, horizontal: 10),
@@ -92,7 +93,7 @@ class ImageCodePortal {
                       children: [
                         Expanded(
                           child: CupertinoButton(
-                            child: const Text("取消"),
+                            child: Text(context.l10n.coreCancel),
                             onPressed: () {
                               Navigator.pop(context);
                               if (!completer.isCompleted) {
@@ -104,7 +105,7 @@ class ImageCodePortal {
                         Expanded(
                           child: CupertinoButton.filled(
                             padding: EdgeInsets.zero,
-                            child: const Text("确定"),
+                            child: Text(context.l10n.coreConfirm),
                             onPressed: () {
                               final text = _inputController.text;
                               Navigator.pop(context);

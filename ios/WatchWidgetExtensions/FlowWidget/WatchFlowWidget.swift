@@ -43,8 +43,8 @@ struct WatchFlowWidget: Widget {
                 }
                 .widgetURL(WatchAccessoryKind.flow.deepLink)
         }
-        .configurationDisplayName("日程")
-        .description("打开日程")
+        .configurationDisplayName(NativeLanguage.text("日程", "Schedule"))
+        .description(NativeLanguage.text("打开日程", "Open schedule"))
         .supportedFamilies([
             .accessoryCircular,
             .accessoryRectangular,
@@ -64,25 +64,25 @@ struct WatchFlowWidgetView: View {
 
 // MARK: - Previews（四种复杂功能族）
 
-#Preview("日程 · 圆形", as: .accessoryCircular) {
+#Preview("Schedule · Circular", as: .accessoryCircular) {
     WatchFlowWidget()
 } timeline: {
     WatchFlowEntry(date: Date())
 }
 
-#Preview("日程 · 矩形", as: .accessoryRectangular) {
+#Preview("Schedule · Rectangular", as: .accessoryRectangular) {
     WatchFlowWidget()
 } timeline: {
     WatchFlowEntry(date: Date())
 }
 
-#Preview("日程 · 行内", as: .accessoryInline) {
+#Preview("Schedule · Inline", as: .accessoryInline) {
     WatchFlowWidget()
 } timeline: {
     WatchFlowEntry(date: Date())
 }
 
-#Preview("日程 · 角位", as: .accessoryCorner) {
+#Preview("Schedule · Corner", as: .accessoryCorner) {
     WatchFlowWidget()
 } timeline: {
     WatchFlowEntry(date: Date())

@@ -1,3 +1,4 @@
+import 'package:celechron/l10n/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:celechron/design/custom_colors.dart';
@@ -64,7 +65,7 @@ class WeightedGpaPage extends StatelessWidget {
                       children: [
                         Expanded(
                           child: TwoLineCard(
-                            title: '加权学分',
+                            title: context.l10n.academicWeightedCredits,
                             content: credits.toStringAsFixed(1),
                             backgroundColor: CustomCupertinoDynamicColors.sand,
                           ),
@@ -72,7 +73,7 @@ class WeightedGpaPage extends StatelessWidget {
                         const SizedBox(width: 8),
                         Expanded(
                           child: TwoLineCard(
-                            title: '加权五分制',
+                            title: context.l10n.academicWeightedFivePoint,
                             content: gpa[0].toStringAsFixed(2),
                             backgroundColor:
                                 CustomCupertinoDynamicColors.sakura,
@@ -155,7 +156,7 @@ class WeightedGpaPage extends StatelessWidget {
         child: CustomScrollView(
           slivers: [
             CelechronSliverTextHeader(
-              subtitle: '加权成绩',
+              subtitle: context.l10n.academicWeightedGrades,
               right: Obx(
                 () => Padding(
                   padding: const EdgeInsets.only(right: 18),
@@ -164,8 +165,8 @@ class WeightedGpaPage extends StatelessWidget {
                     children: [
                       CupertinoButton(
                         padding: EdgeInsets.zero,
-                        child: const Text(
-                          '重置',
+                        child: Text(
+                          context.l10n.academicReset,
                           style: TextStyle(fontSize: 16),
                         ),
                         onPressed: () {
@@ -176,7 +177,9 @@ class WeightedGpaPage extends StatelessWidget {
                       CupertinoButton(
                         padding: EdgeInsets.zero,
                         child: Text(
-                          _controller.showAllSemesters.value ? '按学期' : '全选',
+                          _controller.showAllSemesters.value
+                              ? context.l10n.academicBySemester
+                              : context.l10n.academicSelectAll,
                           style: const TextStyle(fontSize: 16),
                         ),
                         onPressed: () {
@@ -269,7 +272,10 @@ class WeightedGpaPage extends StatelessWidget {
                                                   ),
                                             ),
                                             Text(
-                                              '${grade.realId} / ${grade.credit.toStringAsFixed(1)} 学分',
+                                              context.l10n.academicGradeCredit(
+                                                  grade.realId,
+                                                  grade.credit
+                                                      .toStringAsFixed(1)),
                                               style: CupertinoTheme.of(context)
                                                   .textTheme
                                                   .textStyle
@@ -322,7 +328,7 @@ class WeightedGpaPage extends StatelessWidget {
                                         SizedBox(
                                           width: 56,
                                           child: Text(
-                                            '加权比例',
+                                            context.l10n.academicWeight,
                                             style: CupertinoTheme.of(context)
                                                 .textTheme
                                                 .textStyle

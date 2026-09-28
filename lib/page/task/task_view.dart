@@ -1,3 +1,4 @@
+import 'package:celechron/l10n/l10n.dart';
 import 'package:celechron/design/custom_decoration.dart';
 import 'package:celechron/page/flow/flow_controller.dart';
 import 'package:celechron/page/task/task_controller.dart';
@@ -19,8 +20,13 @@ class TaskPage extends StatelessWidget {
   final _taskController = Get.put(TaskController());
   final _flowController = Get.put(FlowController());
 
-  String deadlineProgress(Task deadline) {
-    return '${(deadline.getProgress() * 100).toInt()}% 已完成：预期 ${durationToString(deadline.timeNeeded)}，还要 ${durationToString(deadline.timeNeeded <= deadline.timeSpent ? Duration.zero : (deadline.timeNeeded - deadline.timeSpent))}';
+  String deadlineProgress(BuildContext context, Task deadline) {
+    return context.l10n.coreTaskProgress(
+        (deadline.getProgress() * 100).toInt(),
+        durationToString(deadline.timeNeeded),
+        durationToString(deadline.timeNeeded <= deadline.timeSpent
+            ? Duration.zero
+            : (deadline.timeNeeded - deadline.timeSpent)));
   }
 
   Future<void> showCardDialog(BuildContext context, Task deadline) async {
@@ -29,7 +35,7 @@ class TaskPage extends StatelessWidget {
       builder: (BuildContext context) {
         return CupertinoAlertDialog(
           title: Text(
-            '${deadline.summary}：${deadline.type == TaskType.deadline ? deadlineStatusName[deadline.status]! : deadline.type == TaskType.fixed ? deadlineTypeName[TaskType.fixed] : ''}',
+            '${deadline.summary}：${deadline.type == TaskType.deadline ? displayText(deadlineStatusName[deadline.status]!) : deadline.type == TaskType.fixed ? displayText(deadlineTypeName[TaskType.fixed] ?? '') : ''}',
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
           content: SizedBox(
@@ -41,28 +47,33 @@ class TaskPage extends StatelessWidget {
                 children: [
                   if (deadline.type == TaskType.fixed) ...[
                     Text(
-                      '开始于 ${toStringHumanReadable(deadline.startTime)}',
+                      context.l10n.coreStartsAt(displayText(
+                          toStringHumanReadable(deadline.startTime))),
                     ),
                     Text(
-                      '结束于 ${toStringHumanReadable(deadline.endTime)}',
+                      context.l10n.coreEndsAt(
+                          displayText(toStringHumanReadable(deadline.endTime))),
                     ),
                   ],
                   if (deadline.type == TaskType.deadline) ...[
                     Text(
-                      '截止于 ${toStringHumanReadable(deadline.endTime)}${deadline.endTime.isBefore(DateTime.now()) ? ' - 已过期' : ''}',
+                      context.l10n.coreDueWithExpired(
+                          displayText(toStringHumanReadable(deadline.endTime)),
+                          deadline.endTime.isBefore(DateTime.now()).toString()),
                     ),
                     Text(
-                      deadlineProgress(deadline),
+                      deadlineProgress(context, deadline),
                     ),
                   ],
                   if (deadline.location.isNotEmpty) ...[
                     Text(
-                      '地点：${deadline.location}',
+                      context.l10n
+                          .coreLocationValue(displayText(deadline.location)),
                     ),
                   ],
                   if (deadline.description.isNotEmpty) ...[
                     Text(
-                      '说明：${deadline.description}',
+                      context.l10n.coreDescriptionValue(deadline.description),
                     ),
                   ],
                 ],
@@ -72,7 +83,7 @@ class TaskPage extends StatelessWidget {
           actions: [
             CupertinoDialogAction(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('返回'),
+              child: Text(context.l10n.coreBack),
             ),
             if (deadline.type == TaskType.deadline &&
                 deadline.timeSpent < deadline.timeNeeded)
@@ -87,8 +98,9 @@ class TaskPage extends StatelessWidget {
                   _taskController.taskList.refresh();
                   Navigator.of(context).pop();
                 },
-                child: Text(
-                    '标记为${deadline.status == TaskStatus.completed ? '未' : ''}完成'),
+                child: Text(deadline.status == TaskStatus.completed
+                    ? context.l10n.coreMarkIncomplete
+                    : context.l10n.coreMarkComplete),
               ),
             if (deadline.type == TaskType.deadline &&
                 (deadline.status == TaskStatus.running ||
@@ -104,8 +116,9 @@ class TaskPage extends StatelessWidget {
                   _taskController.taskList.refresh();
                   Navigator.of(context).pop();
                 },
-                child:
-                    Text(deadline.status == TaskStatus.running ? '暂停' : '继续'),
+                child: Text(deadline.status == TaskStatus.running
+                    ? context.l10n.corePause
+                    : context.l10n.coreResume),
               ),
             if (deadline.type == TaskType.deadline ||
                 deadline.type == TaskType.fixed)
@@ -129,7 +142,7 @@ class TaskPage extends StatelessWidget {
                   // 仅改 summary 等字段时 updateDeadlineList 检测不到变化，需显式落盘
                   _taskController.saveDeadlineListToDb();
                 },
-                child: const Text('编辑'),
+                child: Text(context.l10n.coreEdit),
               ),
             if (deadline.type == TaskType.fixedlegacy)
               CupertinoDialogAction(
@@ -139,7 +152,7 @@ class TaskPage extends StatelessWidget {
                   _taskController.updateDeadlineList();
                   _taskController.taskList.refresh();
                 },
-                child: const Text('删除'),
+                child: Text(context.l10n.coreDelete),
               ),
           ],
         );
@@ -190,7 +203,8 @@ class TaskPage extends StatelessWidget {
     _taskController.taskList.refresh();
   }
 
-  Widget createCard(context, Task deadline, Color color, String? title) {
+  Widget createCard(
+      BuildContext context, Task deadline, Color color, String? title) {
     double progress = deadline.getProgress();
 
     return Column(
@@ -338,7 +352,10 @@ class TaskPage extends StatelessWidget {
                       const SizedBox(width: 8.0),
                       Expanded(
                           flex: 4,
-                          child: Text(deadline.summary,
+                          child: Text(
+                              deadline.type == TaskType.fixedlegacy
+                                  ? displayPastEventSummary(deadline.summary)
+                                  : deadline.summary,
                               style: CupertinoTheme.of(context)
                                   .textTheme
                                   .textStyle
@@ -353,12 +370,13 @@ class TaskPage extends StatelessWidget {
                         final now = _flowController.timeNow.value;
                         return Text(
                             deadline.type == TaskType.deadline
-                                ? deadlineStatusName[deadline.status]!
+                                ? displayText(
+                                    deadlineStatusName[deadline.status]!)
                                 : (now.isBefore(deadline.startTime)
-                                    ? '未开始'
+                                    ? context.l10n.coreNotStarted
                                     : (!now.isBefore(deadline.endTime)
-                                        ? '已结束'
-                                        : '进行中')),
+                                        ? context.l10n.coreEnded
+                                        : context.l10n.coreOngoing)),
                             style: CupertinoTheme.of(context)
                                 .textTheme
                                 .textStyle
@@ -385,8 +403,8 @@ class TaskPage extends StatelessWidget {
                       Expanded(
                         child: Text(
                           deadline.type == TaskType.fixed
-                              ? ' 开始于：${toStringHumanReadable(deadline.startTime)}'
-                              : ' 截止于：${toStringHumanReadable(deadline.endTime)}${deadline.endTime.isBefore(DateTime.now()) ? ' - 已过期' : ''}',
+                              ? ' ${context.l10n.coreStartsAt(displayText(toStringHumanReadable(deadline.startTime)))}'
+                              : ' ${context.l10n.coreDueWithExpired(displayText(toStringHumanReadable(deadline.endTime)), deadline.endTime.isBefore(DateTime.now()).toString())}',
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.normal,
@@ -415,7 +433,7 @@ class TaskPage extends StatelessWidget {
                         ),
                         Expanded(
                           child: Text(
-                            ' 结束于：${toStringHumanReadable(deadline.endTime)}',
+                            ' ${context.l10n.coreEndsAt(displayText(toStringHumanReadable(deadline.endTime)))}',
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.normal,
@@ -443,7 +461,8 @@ class TaskPage extends StatelessWidget {
                             .withValues(alpha: 0.5),
                       ),
                       Expanded(
-                          child: Text(' 地点：${deadline.location}',
+                          child: Text(
+                              ' ${context.l10n.coreLocationValue(displayText(deadline.location))}',
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.normal,
@@ -468,7 +487,7 @@ class TaskPage extends StatelessWidget {
                             .withValues(alpha: 0.5),
                       ),
                       Expanded(
-                          child: Text(deadlineProgress(deadline),
+                          child: Text(deadlineProgress(context, deadline),
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.normal,
@@ -540,7 +559,7 @@ class TaskPage extends StatelessWidget {
         child: CustomScrollView(
           slivers: [
             CupertinoSliverNavigationBar(
-              largeTitle: const Text('任务'),
+              largeTitle: Text(context.l10n.coreTasks),
               border: null,
               stretch: true,
               trailing: // Two buttons in the nav bar.
@@ -571,7 +590,8 @@ class TaskPage extends StatelessWidget {
                         builder: (BuildContext context) => CupertinoActionSheet(
                           actions: <Widget>[
                             CupertinoActionSheetAction(
-                              child: const Text('删除已完成任务'),
+                              child:
+                                  Text(context.l10n.coreDeleteCompletedTasks),
                               onPressed: () async {
                                 _taskController
                                     .removeCompletedDeadline(context);
@@ -581,7 +601,7 @@ class TaskPage extends StatelessWidget {
                               },
                             ),
                             CupertinoActionSheetAction(
-                              child: const Text('删除已过期任务'),
+                              child: Text(context.l10n.coreDeleteExpiredTasks),
                               onPressed: () async {
                                 _taskController.removeFailedDeadline(context);
                                 _taskController.updateDeadlineList();
@@ -590,7 +610,7 @@ class TaskPage extends StatelessWidget {
                               },
                             ),
                             CupertinoActionSheetAction(
-                              child: const Text('暂停所有任务'),
+                              child: Text(context.l10n.corePauseAllTasks),
                               onPressed: () {
                                 if (_taskController
                                         .suspendAllDeadline(context) >
@@ -603,7 +623,7 @@ class TaskPage extends StatelessWidget {
                               },
                             ),
                             CupertinoActionSheetAction(
-                              child: const Text('继续所有任务'),
+                              child: Text(context.l10n.coreResumeAllTasks),
                               onPressed: () {
                                 if (_taskController
                                         .continueAllDeadline(context) >
@@ -621,7 +641,7 @@ class TaskPage extends StatelessWidget {
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
-                            child: const Text('取消'),
+                            child: Text(context.l10n.coreCancel),
                           ),
                         ),
                       );
@@ -647,7 +667,7 @@ class TaskPage extends StatelessWidget {
                     children: [
                       const Spacer(),
                       Text(
-                        '没有任务',
+                        context.l10n.coreNoTasks,
                         style: CupertinoTheme.of(context).textTheme.textStyle,
                         textAlign: TextAlign.center,
                       ),
@@ -673,7 +693,7 @@ class TaskPage extends StatelessWidget {
                           _taskController.todoDeadlineList[index],
                           UidColors.colorFromUid(
                               _taskController.todoDeadlineList[index].uid),
-                          index == 0 ? '待办' : null),
+                          index == 0 ? context.l10n.coreToDo : null),
                     );
                   },
                   childCount: _taskController.todoDeadlineList.length,
@@ -696,7 +716,7 @@ class TaskPage extends StatelessWidget {
                           _taskController.doneDeadlineList[index],
                           UidColors.colorFromUid(
                               _taskController.doneDeadlineList[index].uid),
-                          index == 0 ? '已完成' : null),
+                          index == 0 ? context.l10n.coreCompleted : null),
                     );
                   },
                   childCount: _taskController.doneDeadlineList.length,
@@ -719,7 +739,7 @@ class TaskPage extends StatelessWidget {
                           _taskController.fixedDeadlineList[index],
                           UidColors.colorFromUid(
                               _taskController.fixedDeadlineList[index].uid),
-                          index == 0 ? '日程列表' : null),
+                          index == 0 ? context.l10n.coreEventList : null),
                     );
                   },
                   childCount: _taskController.fixedDeadlineList.length,

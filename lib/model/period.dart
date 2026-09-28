@@ -1,4 +1,5 @@
 import 'package:celechron/utils/time_helper.dart';
+import 'package:celechron/l10n/l10n.dart';
 import 'package:uuid/uuid.dart';
 import 'package:hive/hive.dart';
 
@@ -77,6 +78,27 @@ class Period {
 
   void genUid() {
     uid = const Uuid().v4();
+  }
+
+  /// Render only the labels added by the app when building class/exam periods.
+  /// Course names, instructor names, and user-authored descriptions stay raw.
+  String get localizedCalendarDescription {
+    if (!AppLanguage.isEnglish) return description;
+    if (type == PeriodType.classes && description.startsWith('教师: ')) {
+      return appL10n.exportInstructor(description.substring('教师: '.length));
+    }
+    if (type == PeriodType.test) {
+      final match = RegExp(r'^([\s\S]+) - (期末考试|期中考试)\n座位号[：:]([\s\S]*)$')
+          .firstMatch(description);
+      if (match != null) {
+        final examType = match.group(2) == '期末考试'
+            ? appL10n.exportFinalExam
+            : appL10n.exportMidtermExam;
+        return appL10n.exportExamDescription(
+            match.group(1)!, examType, match.group(3)!);
+      }
+    }
+    return description;
   }
 
   String get friendlyTimeStartDayBased {

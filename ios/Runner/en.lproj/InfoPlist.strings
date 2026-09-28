@@ -1,0 +1,3 @@
+"NSCalendarsFullAccessUsageDescription" = "Celechron needs full calendar access to sync your course schedule.";
+"NSCalendarsUsageDescription" = "Celechron needs calendar access to sync your course schedule.";
+"NSContactsUsageDescription" = "Celechron needs contacts access to add event participants.";

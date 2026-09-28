@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:crypto/crypto.dart';
+import 'package:celechron/l10n/l10n.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
@@ -65,7 +66,7 @@ class CalendarToIcal {
     // 描述信息
     if (period.description.isNotEmpty) {
       // 处理特殊字符和换行
-      String description = period.description
+      String description = period.localizedCalendarDescription
           .replaceAll('\n', '\\n')
           .replaceAll(',', '\\,')
           .replaceAll(';', '\\;');
@@ -84,7 +85,8 @@ class CalendarToIcal {
     }
 
     buffer.writeln('SEQUENCE:0');
-    buffer.writeln('SUMMARY;LANGUAGE=zh-cn:${period.summary}');
+    buffer.writeln(
+        'SUMMARY;LANGUAGE=${AppLanguage.isEnglish ? 'en' : 'zh-cn'}:${period.summary}');
     buffer.writeln('TRANSP:OPAQUE');
     buffer.writeln('UID:$hash');
 
@@ -92,7 +94,7 @@ class CalendarToIcal {
     buffer.writeln('BEGIN:VALARM');
     buffer.writeln('TRIGGER:-PT15M');
     buffer.writeln('ACTION:DISPLAY');
-    buffer.writeln('DESCRIPTION:提醒');
+    buffer.writeln('DESCRIPTION:${appL10n.exportReminder}');
     buffer.writeln('END:VALARM');
 
     buffer.writeln('END:VEVENT');
@@ -121,7 +123,7 @@ class CalendarToIcal {
 
     // iCal文件头
     buffer.writeln('BEGIN:VCALENDAR');
-    buffer.writeln('X-WR-CALNAME:$calendarName');
+    buffer.writeln('X-WR-CALNAME:${displayText(calendarName)}');
     buffer.writeln('X-APPLE-CALENDAR-COLOR:#2BBFF0');
     buffer.writeln('PRODID:-//Celechron//Course Calendar 1.0//CN');
     buffer.writeln('VERSION:2.0');
@@ -155,11 +157,11 @@ class CalendarToIcal {
   static void _showAlert(String title, String message, {bool isError = false}) {
     Get.dialog(
       CupertinoAlertDialog(
-        title: Text(title),
-        content: Text(message),
+        title: Text(displayText(title)),
+        content: Text(displayText(message)),
         actions: [
           CupertinoDialogAction(
-            child: const Text('确定'),
+            child: Text(appL10n.exportConfirm),
             onPressed: () => Get.back(),
           ),
         ],
@@ -270,8 +272,8 @@ class CalendarToIcal {
       await SharePlus.instance.share(
         ShareParams(
           files: [XFile(tempFile.path)],
-          subject: '浙大课程表',
-          text: '从 Celechron 导出的课程表文件，可导入到其他日历应用中使用。',
+          subject: displayText('浙大课程表'),
+          text: appL10n.exportShareDescription,
           sharePositionOrigin: sharePositionOrigin,
         ),
       );
@@ -309,8 +311,9 @@ class CalendarToIcal {
       await SharePlus.instance.share(
         ShareParams(
           files: [XFile(tempFile.path)],
-          subject: '浙大课程表-$semesterName',
-          text: '从 Celechron 导出的 $semesterName 课程表文件。',
+          subject: displayText('浙大课程表-$semesterName'),
+          text:
+              appL10n.exportSemesterShareDescription(displayText(semesterName)),
           sharePositionOrigin: sharePositionOrigin,
         ),
       );
@@ -347,8 +350,8 @@ class CalendarToIcal {
       await SharePlus.instance.share(
         ShareParams(
           files: [XFile(tempFile.path)],
-          subject: '浙大课程表-完整版',
-          text: '从 Celechron 导出的完整课程表文件，包含所有学期。',
+          subject: displayText('浙大课程表-完整版'),
+          text: appL10n.exportAllShareDescription,
           sharePositionOrigin: sharePositionOrigin,
         ),
       );
@@ -369,27 +372,27 @@ class CalendarToIcal {
     showCupertinoModalPopup(
       context: context,
       builder: (BuildContext popupContext) => CupertinoActionSheet(
-        title: const Text('导出课程表'),
-        message: const Text('选择导出方式'),
+        title: Text(appL10n.exportSchedule),
+        message: Text(appL10n.exportChooseMethod),
         actions: [
           CupertinoActionSheetAction(
             onPressed: () {
               Navigator.pop(popupContext);
               exportIcsFile(scholar, context: popupContext);
             },
-            child: const Text('导出当前学期'),
+            child: Text(appL10n.exportCurrentSemester),
           ),
           CupertinoActionSheetAction(
             onPressed: () {
               Navigator.pop(popupContext);
               _showSemesterSelectionDialog(context, scholar);
             },
-            child: const Text('选择学期导出'),
+            child: Text(appL10n.exportChooseSemester),
           ),
         ],
         cancelButton: CupertinoActionSheetAction(
           onPressed: () => Navigator.pop(popupContext),
-          child: const Text('取消'),
+          child: Text(appL10n.exportCancel),
         ),
       ),
     );
@@ -404,11 +407,11 @@ class CalendarToIcal {
       showCupertinoDialog(
         context: context,
         builder: (BuildContext dialogContext) => CupertinoAlertDialog(
-          title: const Text('提示'),
-          content: const Text('没有可导出的课程表数据'),
+          title: Text(appL10n.exportNotice),
+          content: Text(appL10n.exportNoData),
           actions: [
             CupertinoDialogAction(
-              child: const Text('确定'),
+              child: Text(appL10n.exportConfirm),
               onPressed: () => Navigator.pop(dialogContext),
             ),
           ],
@@ -421,8 +424,8 @@ class CalendarToIcal {
     showCupertinoModalPopup(
       context: context,
       builder: (BuildContext popupContext) => CupertinoActionSheet(
-        title: const Text('选择学期'),
-        message: const Text('选择要导出的学期'),
+        title: Text(appL10n.exportChooseSemester),
+        message: Text(appL10n.exportChooseSemesterMessage),
         actions: [
           ...semesters.map((semester) => CupertinoActionSheetAction(
                 onPressed: () {
@@ -430,19 +433,19 @@ class CalendarToIcal {
                   exportSpecificSemester(scholar, semester,
                       context: popupContext);
                 },
-                child: Text(semester),
+                child: Text(displayText(semester)),
               )),
           CupertinoActionSheetAction(
             onPressed: () {
               Navigator.pop(popupContext);
               exportAllSemesters(scholar, context: popupContext);
             },
-            child: const Text('导出所有学期'),
+            child: Text(appL10n.exportAllSemesters),
           ),
         ],
         cancelButton: CupertinoActionSheetAction(
           onPressed: () => Navigator.pop(popupContext),
-          child: const Text('取消'),
+          child: Text(appL10n.exportCancel),
         ),
       ),
     );

@@ -19,9 +19,21 @@ class MainActivity: FlutterActivity() {
         super.configureFlutterEngine(flutterEngine)
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "top.celechron.celechron/ecardWidget").setMethodCallHandler {
                 call, result ->
+            if (call.method == "setLanguage") {
+                val code = call.argument<String>("languageCode")
+                if (code != "en" && code != "zh") {
+                    result.error("invalid_language", "Expected languageCode en or zh", null)
+                    return@setMethodCallHandler
+                }
+                NativeLanguage.set(this, code)
+            } else if (call.method != "update" && call.method != "logout") {
+                result.notImplemented()
+                return@setMethodCallHandler
+            }
             CoroutineScope(Dispatchers.Main).launch {
                 ECardWidget().updateAll(this@MainActivity)
             }
+            result.success(null)
         }
     }
 }

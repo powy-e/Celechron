@@ -1,0 +1,32 @@
+{
+  "notificationGradeChannel": "Grade change alerts",
+  "notificationDeadlineChannel": "Assignment deadline alerts",
+  "notificationFirstGradeTitle": "Grade notifications are on",
+  "notificationFirstGradeBody": "Celechron will notify you when new grades are available. You can turn this off in Settings.",
+  "notificationGradeTitle": "New grades available",
+  "notificationGradeBody": "New grades are available. Refresh the Academics page in Celechron to view them.",
+  "notificationHoursUntil": "in {hours} hours",
+  "@notificationHoursUntil": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationSoon": "soon",
+  "notificationDeadlineTitle": "Assignment due soon",
+  "notificationDeadlineBody": "“{name}” for “{course}” is due {when}",
+  "@notificationDeadlineBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "course": {
+        "type": "String"
+      },
+      "when": {
+        "type": "String"
+      }
+    }
+  }
+}

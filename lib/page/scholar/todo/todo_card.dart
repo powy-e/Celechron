@@ -1,3 +1,4 @@
+import 'package:celechron/l10n/l10n.dart';
 import 'package:celechron/model/todo.dart';
 import 'package:celechron/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
@@ -63,7 +64,9 @@ class TodoCard extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            todo.endTime != null ? toStringHumanReadable(todo.endTime!) : "无",
+            todo.endTime != null
+                ? toStringHumanReadable(todo.endTime!)
+                : context.l10n.academicNoEndTime,
             style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
